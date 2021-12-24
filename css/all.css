@@ -1146,10 +1146,6 @@ img::-moz-selection {
         padding: 1%;
         width: 60%;
     }
-    #BtnTop {
-        right: 20px;
-        bottom: 20px;
-    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1203,6 +1199,22 @@ img::-moz-selection {
     .base-btn {
         font-size: 1.2rem;
         padding: 15px 45px;
+    }
+    #BtnTop {
+        right: 20px;
+        bottom: 20px;
+    }
+    .footer {
+        flex-direction: column;
+        height: 125px;
+    }
+    .footer-foot {
+        margin-top: 20px;
+    }
+    .footer-ls {
+        margin: 0;
+        padding: 0;
+        border: none;
     }
 }
 
@@ -1269,6 +1281,13 @@ img::-moz-selection {
         padding-right: 3%;
     }
     .footer {
+        font-size: 14px;
+    }
+    #BtnTop {
+        height: 40px;
+        width: 40px;
+    }
+    #BtnTop > i {
         font-size: 14px;
     }
 }

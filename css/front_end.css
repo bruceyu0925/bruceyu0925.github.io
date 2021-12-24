@@ -105,7 +105,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 500px;
+    width: 45%
 }
 
 .paint-box {
@@ -127,7 +127,7 @@
     z-index: 4;
 }
 
-#PaintCanvas.--click {
+#PaintCanvas.--show {
     animation: download 750ms linear 250ms 1 forwards;
     -webkit-animation: download 750ms linear 250ms 1 forwards;
 }
@@ -191,35 +191,21 @@
 }
 
 #PaintImg {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-.paint-img-li {
-    width: 100%;
-    height: 100%;
-}
-
-#PaintImg.--play > #PaintImgBot > #PaintImgWave1 {
+#PaintImgWave1 {
     animation: wavetrans1 4s ease-in-out 0s infinite forwards;
     -webkit-animation: wavetrans1 4s ease-in-out 0s infinite forwards;
 }
 
-#PaintImg.--play > #PaintImgBot > #PaintImgWave2 {
+#PaintImgWave2 {
     animation: wavetrans2 4s ease-in-out 0s infinite forwards;
     -webkit-animation: wavetrans2 4s ease-in-out 0s infinite forwards;
 }
 
 #PaintImgLight {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
-
-#PaintImg.--play > #PaintImgLight {
+    transform-origin: center;
     animation: lightrorare 8s ease-in-out 0s infinite forwards;
     -webkit-animation: lightrorare 8s ease-in-out 0s infinite forwards;
 }
@@ -294,7 +280,7 @@
         -moz-transform: rotateY(180deg);
         -ms-transform: rotateY(180deg);
         -o-transform: rotateY(180deg);
-    }
+}
     80% {
         transform: rotateY(0deg);
         -webkit-transform: rotateY(0deg);
@@ -906,7 +892,7 @@
 #SkillLs{
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    width: 90%;
 }
 
 .skill-li{
@@ -1069,29 +1055,6 @@
 @media screen and (max-width: 1400px) {}
 
 @media screen and (max-width: 1200px) {
-    .paint-input-text,
-    .paint-input-num {
-        font-size: 16px;
-    }
-    .paint-input-text {
-        width: 75px;
-    }
-    .paint-input-num {
-        width: 60px;
-    }
-    .paint-input-span {
-        width: 15px;
-        font-size: 14px;
-    }
-    #PaintBody {
-        padding: 15px 15px 20px;
-    }
-    .paint-input-ls {
-        margin-left: 15px;
-    }
-    #SkillLs{
-        width: 90%;
-    }
     .skill-li-title{
         font-size: 22px;
     }
@@ -1101,23 +1064,24 @@
 }
 
 @media screen and (max-width: 1024px) {
-    #Paint {
+    #Paint{
         flex-direction: column;
+    }
+    .paint-head {
+        width: 65%
     }
     #PaintBody {
         display: none;
         margin-top: 20px;
-        overflow: hidden;
-        transition-duration: 400ms;
     }
-    #Paint.--edit > .paint-body {
-        display: block;
+    #Paint.--edit > #PaintBody {
+        display: flex;
     }
     .paint-blog-box{
         width: 80%;
     }
     #SkillLs{
-        width: 100%;
+        width: 97%;
     }
     .skill-li{
         padding: 15px 10px;
@@ -1128,11 +1092,20 @@
 }
 
 @media screen and ( max-width: 768px ) {
+    .paint-head {
+        width: 100%
+    }
+    .paint-blog-li{
+        width: 50%;
+    }
     .paint-blog-title {
         font-size: 1.2rem;
     }
     .paint-blog-desc {
         font-size: .7rem;
+    }
+    #SkillLs{
+        width: 100%;
     }
     .skill-btn-li{
         width: 100px;
@@ -1151,12 +1124,15 @@
 }
 
 @media screen and (max-width: 600px) {
-    .paint-head {
-        width: 425px;
+    #PaintCanvas {
+        left: -10px;
+        top: -10px;
+        border: 10px solid var(--light);
     }
     .paint-pointer-li {
-        width: 15px;
-        height: 15px;
+        height: 14px;
+        width: 14px;
+        border: 2px solid rgba(255, 255, 255, .8);
     }
     .paint-blog-box {
         width: 100%;
@@ -1166,9 +1142,6 @@
         -moz-border-radius: 0px;
         -ms-border-radius: 0px;
         -o-border-radius: 0px;
-    }
-    .paint-blog-li{
-        width: 50%;
     }
     #SkillTitle{
         font-size: 2rem;
@@ -1187,51 +1160,38 @@
     }
 }
 
-@media screen and (max-width: 540px) {}
+@media screen and (max-width: 540px) {
+    @keyframes download {
+        5% {
+            opacity: 1;
+        }
+        10% {
+            transform: scale(.8) rotateZ(15deg);
+            -webkit-transform: scale(.8) rotateZ(15deg);
+            -moz-transform: scale(.8) rotateZ(15deg);
+            -ms-transform: scale(.8) rotateZ(15deg);
+            -o-transform: scale(.8) rotateZ(15deg);
+        }
+        60% {
+            opacity: 1;
+            transform: scale(.8) rotateZ(15deg);
+            -webkit-transform: scale(.8) rotateZ(15deg);
+            -moz-transform: scale(.8) rotateZ(15deg);
+            -ms-transform: scale(.8) rotateZ(15deg);
+            -o-transform: scale(.8) rotateZ(15deg);
+        }
+        100% {
+            transform: scale(.8) rotateZ(15deg) translate(50px, 186.6025px);
+            -webkit-transform: scale(.8) rotateZ(15deg) translate(50px, 186.6025px);
+            -moz-transform: scale(.8) rotateZ(15deg) translate(50px, 186.6025px);
+            -ms-transform: scale(.8) rotateZ(15deg) translate(50px, 186.6025px);
+            -o-transform: scale(.8) rotateZ(15deg) translate(50px, 186.6025px);
+            opacity: 0;
+        }
+    }
+}
 
 @media screen and (max-width: 480px) {
-    .paint-head {
-        width: 340px;
-    }
-    .paint-toolbar {
-        width: 300px;
-    }
-    .paint-btn-li {
-        width: 90px;
-        font-size: 14px;
-    }
-    .paint-btn-li > i {
-        font-size: 16px;
-        margin-right: 3px;
-    }
-    #PaintCanvas {
-        left: -10px;
-        top: -10px;
-        border-width: 10px;
-    }
-    .paint-input-ls {
-        width: 200px;
-        margin: 0;
-        align-items: center;
-        justify-content: center;
-    }
-    .paint-input-li {
-        width: 150px;
-    }
-    .paint-input-text,
-    .paint-input-num {
-        font-size: 18px;
-    }
-    .paint-input-text {
-        width: 100px;
-    }
-    .paint-input-num {
-        width: 80px;
-    }
-    .paint-input-span {
-        width: 20px;
-        font-size: 16px;
-    }
     .paint-model {
         display: flex;
     }
@@ -1253,6 +1213,10 @@
     #PaintBody.--colorcode > .paint-model > #PaintColorcode {
         opacity: .9;
     }
+    .paint-input-ls {
+        margin: 0px 25px;
+        width: 150px;
+    }
     .paint-blog-box {
         padding: 20px 10px;
     }
@@ -1269,6 +1233,27 @@
 }
 
 @media screen and (max-width: 414px) {  
+    #PaintLibrary {
+        padding: 5px 12px;
+        font-size: 14px;
+    }
+    #PaintLibrary > i {
+        font-size: 16px;
+        margin-right: 3px;
+    }
+    .paint-toolbar {
+        width: 280px;
+        height: 32px;
+    }
+    .paint-btn-li {
+        width: 86px;
+        height: 100%;
+        font-size: 14px;
+    }
+    .paint-btn-li > i {
+        font-size: 16px;
+        margin-right: 3px;
+    }
     .skill-li-title{
         font-size: 20px;
         margin-bottom: 16px;
@@ -1317,15 +1302,6 @@
     }
 }
 
-@media screen and (max-width: 360px) {
-    .paint-head {
-        width: 300px;
-    }
-    #PaintCanvas {
-        left: -5px;
-        top: -5px;
-        border-width: 5px;
-    }
-}
+@media screen and (max-width: 360px) {}
 
 @media screen and (max-width: 320px) {}

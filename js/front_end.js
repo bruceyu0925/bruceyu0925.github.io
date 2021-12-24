@@ -55,13 +55,17 @@ const PaintBody      = getId( 'PaintBody' ),
 var Paint_Len    = PaintPointers.length,
     Paint_Array  = [],
     Paint_Total,
-    Paint_Width,
-    Paint_Height;
+    Paint_Width;
 
 // func 調色盤RWD
 PaintResize = () => {
-    if ( window.innerWidth > 480 ) {
+
+    if ( window.innerWidth > 1200 ) {
+        Paint_Width  = 300;
+        
+    } else if ( window.innerWidth > 600 ) {
         Paint_Width  = 250;
+
     } else {
         Paint_Width  = 200;
     }
@@ -331,42 +335,39 @@ BtnError.onclick = () => {
 // event 下載鍵
 PaintDownload.onclick = () => {
 
-    // carry FB、IG 鎖下載鍵
-    if( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) === true ) {
+    let svg = new XMLSerializer().serializeToString( PaintImg ),
+        img = new Image();
+
+    // 前置作業
+    PaintBtn.forEach( el => el.disabled = true );
+    PaintCanvas.classList.add( '--show' );
+
+    // 圖片轉 base64
+    img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
+
+    // 圖片讀完
+    img.onload = () => {
+
+        let ctx = PaintCanvas.getContext( '2d' ),
+            a   = document.createElement( 'a' );
+
+        // canvas 繪圖
+        PaintCanvas.width  = img.width  * 3;
+        PaintCanvas.height = img.height * 3;
+        ctx.drawImage( img , 0 , 0 );
         
-        alert( 'Facebook、Instagram 內建瀏覽器，不支援下載功能！' )
+        // 下載圖片準備
+        a.download = `BruceYuDesign ${ GetDate( '-' ) }.jpg`;
+        a.href     = PaintCanvas.toDataURL( "image/jpg" );
 
-    } else {
+        // 等待動畫執行
+        setTimeout( () => {
 
-        PaintBtn.forEach( el => el.disabled = true );
-        PaintImg.classList.remove( '--play' );
+            a.click();
+            PaintBtn.forEach( el => el.disabled = false );
+            PaintCanvas.classList.remove( '--show' );
 
-        // （ API: html2canvas.js ）
-        html2canvas( PaintImg , { 
-            
-            scale: 3 ,
-            useCORS: true
-        
-        }).then( c => {
-
-            PaintCanvas.appendChild( c )
-            PaintCanvas.classList.add( '--click' );
-
-            let a = document.createElement( 'a' );
-
-            a.download = `BruceYuDesign ${ GetDate( '-' ) }.jpg`;
-            a.href     = c.toDataURL( 'image/jpeg' );
-
-            setTimeout( () => {
-                
-                a.click();
-                PaintImg   .classList.add( '--play' );
-                PaintCanvas.classList.remove( '--click' );
-                PaintCanvas.innerHTML = '';
-                PaintBtn.forEach( el => el.disabled = false );
-
-            } , 1250 );
-        })
+        } , 1250 );
     }
 }
 
