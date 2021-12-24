@@ -335,43 +335,53 @@ BtnError.onclick = () => {
 // event 下載鍵
 PaintDownload.onclick = () => {
 
-    let svg = new XMLSerializer().serializeToString( PaintImg ),
-        img = new Image();
+    // FB、IG 無法下載檔案
+    if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) === true ) {
+        alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案功能！' )
 
-    // 前置作業
-    PaintBtn.forEach( el => el.disabled = true );
-    PaintCanvas.classList.add( '--show' );
+    // Firefox 相容性問題
+    } else if ( DeviceJudge( 'Firefox' ) === true ) {
+        alert( 'Firefox 尚不支援此功能！' )
+    
+    } else {
+        let svg = new XMLSerializer().serializeToString( PaintImg ),
+            img = new Image();
 
-    // 圖片轉 base64
-    img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
+        // 前置作業
+        PaintBtn.forEach( el => el.disabled = true );
+        PaintCanvas.classList.add( '--show' );
 
-    // 圖片讀完
-    img.onload = () => {
+        // 圖片轉 base64
+        img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
 
-        let ctx = PaintCanvas.getContext( '2d' ),
-            a   = document.createElement( 'a' ),
-            n   = 3;
-        
-        // 裝置相容性問題
-        if ( DeviceJudge() === true ) n = 1;
+        // 圖片讀完
+        img.onload = () => {
 
-        // canvas 繪圖
-        PaintCanvas.width  = img.width  * n;
-        PaintCanvas.height = img.height * n;
-        ctx.drawImage( img , 0 , 0 );
-        
-        // 下載圖片準備
-        a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
-        a.href     = PaintCanvas.toDataURL( "image/png" );
+            let ctx = PaintCanvas.getContext( '2d' ),
+                a   = document.createElement( 'a' ),
+                n   = 3;
+            
+            // Safari 相容性問題
+            if ( DeviceJudge( 'Safari' ) === true ) n = 1;
 
-        // 等待動畫執行
-        setTimeout( () => {
+            // canvas 繪圖
+            PaintCanvas.width  = img.width  * n;
+            PaintCanvas.height = img.height * n;
+            ctx.drawImage( img , 0 , 0 );
+            
+            // 下載圖片準備
+            a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
+            a.href     = PaintCanvas.toDataURL( "image/png" );
 
-            a.click();
-            PaintBtn.forEach( el => el.disabled = false );
-            PaintCanvas.classList.remove( '--show' );
+            // 等待動畫執行
+            setTimeout( () => {
 
-        } , 1250 );
+                a.click();
+                PaintBtn.forEach( el => el.disabled = false );
+                PaintCanvas.classList.remove( '--show' );
+
+            } , 1250 );
+        }
     }
 }
 

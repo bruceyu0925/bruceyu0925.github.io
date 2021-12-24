@@ -1057,7 +1057,7 @@ img::-moz-selection {
     .navi-ls {
         flex-direction: column;
         position: fixed;
-        top: 60px;
+        top: 80px;
         right: 0;
         border-radius: 0 0 0 25px;
         -webkit-border-radius: 0 0 0 25px;
@@ -1162,6 +1162,9 @@ img::-moz-selection {
     }
     .header-logo {
         width: 220px;
+    }
+    .navi-ls {
+        top: 60px;
     }
     .base-row,
     .base-row-re {
