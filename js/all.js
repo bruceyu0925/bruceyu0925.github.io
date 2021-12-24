@@ -76,9 +76,10 @@ DeviceJudge = ( device = '' ) => {
 }
 
 // func 點選螢幕滑動
-ClickScroll = ( btn , obj , time ) => {
+ClickScroll = ( btn , obj , time = 600 ) => {
 
     btn.disabled = true;
+    Header.classList.remove( '--open' );
 
     let w = window.pageYOffset,
         o = obj.offsetTop,
@@ -98,12 +99,6 @@ ClickScroll = ( btn , obj , time ) => {
             btn.disabled = false;
         }
     } , t );
-}
-
-// func Navi連結
-HeaderLink = ( btn , link ) => {
-    ClickScroll( btn , link , 400 );
-    Header.classList.remove( '--open' );
 }
 
 // event 頁面讀取完畢
