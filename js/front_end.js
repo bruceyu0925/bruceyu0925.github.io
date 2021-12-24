@@ -352,13 +352,13 @@ PaintDownload.onclick = () => {
             a   = document.createElement( 'a' );
 
         // canvas 繪圖
-        PaintCanvas.width  = img.width  * 3;
-        PaintCanvas.height = img.height * 3;
+        PaintCanvas.width  = img.width;
+        PaintCanvas.height = img.height;
         ctx.drawImage( img , 0 , 0 );
         
         // 下載圖片準備
-        a.download = `BruceYuDesign ${ GetDate( '-' ) }.jpg`;
-        a.href     = PaintCanvas.toDataURL( "image/jpg" );
+        a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
+        a.href     = PaintCanvas.toDataURL( "image/png" );
 
         // 等待動畫執行
         setTimeout( () => {
