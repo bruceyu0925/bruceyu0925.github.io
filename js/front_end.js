@@ -362,7 +362,7 @@ PaintDownload.onclick = () => {
                 n   = 3;
             
             // Safari 相容性問題
-            if ( DeviceJudge( 'Safari' ) === true ) n = 1;
+            if ( DeviceJudge( [ 'AppleWebKit' ] ) === true ) n = 1;
 
             // canvas 繪圖
             PaintCanvas.width  = img.width  * n;
