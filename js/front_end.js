@@ -122,6 +122,8 @@ PaintBrowse = ( n ) => {
 // func 輸出html
 PaintHtml = () => {
 
+    PaintList.innerHTML = ''; // 防止接收多個 Response
+
     for ( let i = 0 ; i < Paint_Total ; i++ ) {
 
         let n     = Paint_Array[ i ],
