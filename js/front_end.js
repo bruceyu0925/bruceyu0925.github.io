@@ -349,11 +349,15 @@ PaintDownload.onclick = () => {
     img.onload = () => {
 
         let ctx = PaintCanvas.getContext( '2d' ),
-            a   = document.createElement( 'a' );
+            a   = document.createElement( 'a' ),
+            n   = 3;
+        
+        // 裝置相容性問題
+        if ( DeviceJudge() === true ) n = 1;
 
         // canvas 繪圖
-        PaintCanvas.width  = img.width;
-        PaintCanvas.height = img.height;
+        PaintCanvas.width  = img.width  * n;
+        PaintCanvas.height = img.height * n;
         ctx.drawImage( img , 0 , 0 );
         
         // 下載圖片準備
