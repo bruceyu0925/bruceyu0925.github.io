@@ -340,7 +340,7 @@ PaintDownload.onclick = () => {
         alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案功能！' )
 
     // Firefox 相容性問題
-    } else if ( DeviceJudge( 'Firefox' ) === true ) {
+    } else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
         alert( 'Firefox 尚不支援此功能！' )
     
     } else {
