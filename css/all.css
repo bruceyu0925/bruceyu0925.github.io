@@ -854,6 +854,7 @@ img::-moz-selection {
     font-weight: 400;
     position: relative;
     opacity: .8;
+    color: var(--light);
 }
 
 .base-divi {
@@ -867,6 +868,7 @@ img::-moz-selection {
     -o-border-radius: 4px;
     border: none;
     margin: 2rem 0;
+    background-color: var(--light);
 }
 
 .base-desc {
@@ -874,6 +876,7 @@ img::-moz-selection {
     line-height: 2;
     font-weight: 200;
     margin: 0 0 2rem;
+    color: var(--light);
 }
 
 .base-btn {
@@ -889,6 +892,8 @@ img::-moz-selection {
     font-size: 1.1rem;
     font-weight: 600;
     opacity: .85;
+    background-color: var(--light);
+    color: var(--dark);
 }
 
 .base-btn:hover {
@@ -902,42 +907,7 @@ img::-moz-selection {
 
 .base-head-border {
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-}
-
-.base-dark > .base-head-border {
-    background-color: rgba(255, 255, 255, .15);
-}
-
-.base-dark > .base-head > .base-title,
-.base-dark > .base-head > .base-desc {
-    color: var(--dark);
-}
-
-.base-dark > .base-head > .base-divi {
-    background-color: var(--dark);
-}
-
-.base-dark > .base-head > .base-btn {
-    background-color: var(--dark);
-    color: var(--light);
-}
-
-.base-light > .base-head-border {
     background-color: rgba(0, 0, 0, .15);
-}
-
-.base-light > .base-head > .base-title,
-.base-light > .base-head > .base-desc {
-    color: var(--light);
-}
-
-.base-light > .base-head > .base-divi {
-    background-color: var(--light);
-}
-
-.base-light > .base-head > .base-btn {
-    background-color: var(--light);
-    color: var(--dark);
 }
 
 /* footer ---------------------------------------- */
@@ -1221,8 +1191,7 @@ img::-moz-selection {
     .base-col > .base-head > .base-desc > br {
         display: none;
     }
-    .base-light > .base-head-border,
-    .base-dark > .base-head-border {
+    .base-head-border {
         box-shadow: none;
         background-color: transparent;
     }

@@ -13,7 +13,7 @@
 }
 
 #Base2 {
-    background-color: #079fc5;
+    background-color: #2d7095;
 }
 
 #Base3 {
@@ -178,6 +178,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 }
 
 .switch-li {
@@ -189,6 +190,7 @@
 }
 
 .switch-box {
+    width: 100%;
     position: relative;
     overflow: hidden;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -208,7 +210,7 @@
 }
 
 .switch-btn {
-    margin: 2rem 0 0 0;
+    margin: 2rem auto 0;
     width: 80%;
     height: 40px;
     position: relative;
