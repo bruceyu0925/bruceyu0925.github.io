@@ -340,18 +340,15 @@ PaintDownload.onclick = () => {
         alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案功能！' )
 
     // Firefox 相容性問題
-    } 
-    // else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
-    //     alert( 'Firefox 尚不支援此功能！' )
+    } else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
+        alert( 'Firefox 尚不支援此功能！' )
     
-    // } 
-    else {
+    } else {
         let svg = new XMLSerializer().serializeToString( PaintImg ),
             img = new Image();
 
-        // 前置作業
+        // 鎖按鈕
         PaintBtn.forEach( el => el.disabled = true );
-        PaintCanvas.classList.add( '--show' );
 
         // 圖片轉 base64
         img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
@@ -359,15 +356,17 @@ PaintDownload.onclick = () => {
         // 圖片讀完
         img.onload = () => {
 
-            let ctx = PaintCanvas.getContext( '2d' ),
-                a   = document.createElement( 'a' ),
-                n   = 3;
+            let a   = document.createElement( 'a' ),
+                ctx = PaintCanvas.getContext( '2d' );
 
             // canvas 繪圖
-            PaintCanvas.width  = img.width  * n;
-            PaintCanvas.height = img.height * n;
-            ctx.drawImage( img , 0 , 0 , img.width * n , img.height * n );
-            
+            PaintCanvas.width  = img.width  * 3;
+            PaintCanvas.height = img.height * 3;
+            ctx.drawImage( img , 0 , 0 , img.width * 3 , img.height * 3 );
+
+            // 開始動畫
+            PaintCanvas.classList.add( '--show' );
+
             // 下載圖片準備
             a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
             a.href     = PaintCanvas.toDataURL( "image/png" );
