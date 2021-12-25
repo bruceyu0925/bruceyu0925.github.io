@@ -880,16 +880,15 @@ img::-moz-selection {
 }
 
 .base-btn {
-    padding: 15px 45px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 10px 45px;
+    margin: 0px auto 20px ;
     border-radius: 60px;
     -webkit-border-radius: 60px;
     -moz-border-radius: 60px;
     -ms-border-radius: 60px;
     -o-border-radius: 60px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     opacity: .85;
     background-color: var(--light);
@@ -1132,10 +1131,10 @@ img::-moz-selection {
     .base-desc {
         font-size: 1.2rem;
     }
-    .base-btn {
+    /* .base-btn {
         font-size: .9rem;
         padding: 12px 36px;
-    }
+    } */
     .base-row > .base-head,
     .base-row-re > .base-head {
         padding: 5%;
@@ -1199,10 +1198,10 @@ img::-moz-selection {
     .base-desc {
         font-size: 1.4rem;
     }
-    .base-btn {
-        font-size: 1.2rem;
+    /* .base-btn {
+        font-size: 1rem;
         padding: 15px 45px;
-    }
+    } */
     #BtnTop {
         right: 20px;
         bottom: 20px;
@@ -1269,9 +1268,9 @@ img::-moz-selection {
     .base-desc {
         font-size: 1.2rem;
     }
-    .base-btn {
+    /* .base-btn {
         font-size: 1rem;
-    }
+    } */
 }
 
 @media screen and (max-width: 480px) {}
