@@ -362,14 +362,11 @@ PaintDownload.onclick = () => {
             let ctx = PaintCanvas.getContext( '2d' ),
                 a   = document.createElement( 'a' ),
                 n   = 3;
-            
-            // Safari 相容性問題
-            // if ( DeviceJudge( [ 'AppleWebKit' ] ) === true ) n = 1;
 
             // canvas 繪圖
             PaintCanvas.width  = img.width  * n;
             PaintCanvas.height = img.height * n;
-            ctx.drawImage( img , 0 , 0 );
+            ctx.drawImage( img , 0 , 0 , img.width * n , img.height * n );
             
             // 下載圖片準備
             a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
