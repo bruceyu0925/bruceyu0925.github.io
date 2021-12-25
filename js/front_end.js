@@ -340,10 +340,12 @@ PaintDownload.onclick = () => {
         alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案功能！' )
 
     // Firefox 相容性問題
-    } else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
-        alert( 'Firefox 尚不支援此功能！' )
+    } 
+    // else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
+    //     alert( 'Firefox 尚不支援此功能！' )
     
-    } else {
+    // } 
+    else {
         let svg = new XMLSerializer().serializeToString( PaintImg ),
             img = new Image();
 
@@ -362,7 +364,7 @@ PaintDownload.onclick = () => {
                 n   = 3;
             
             // Safari 相容性問題
-            if ( DeviceJudge( [ 'AppleWebKit' ] ) === true ) n = 1;
+            // if ( DeviceJudge( [ 'AppleWebKit' ] ) === true ) n = 1;
 
             // canvas 繪圖
             PaintCanvas.width  = img.width  * n;
