@@ -435,6 +435,7 @@ PaintNew.onclick = function () {
 PaintClose.onclick = () => {
     PaintBlog.classList.remove( '--show' );
     Html     .classList.remove( '--lock' );
+    PaintList.innerHTML = '';
 }
 
 // event 畫板：點選
