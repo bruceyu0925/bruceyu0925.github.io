@@ -240,6 +240,7 @@ PaintClick = ( n ) => {
     Picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
     PaintBlog.classList.remove( '--show' );
     Html     .classList.remove( '--lock' );
+    PaintList.innerHTML = '';
 }
 
 // func 圖庫：點選排序
