@@ -119,7 +119,8 @@ PaintBrowse = ( n ) => {
     }).then( ( data ) => {
         Paint_Array = data;
         Paint_Total = data.length;
-        PaintHtml();
+
+        if ( PaintBlog.classList.contains( '--show' ) ) PaintHtml();
     })
 }
 
@@ -194,16 +195,12 @@ PaintHtml = () => {
 // func 顯示html
 PaintShow = () => {
 
-    setTimeout( () => {
+    PaintLoad.classList.remove( '--show' );
 
-        PaintLoad.classList.remove( '--show' );
+    queAll( '.paint-blog-li' ).forEach( el => el.classList.add( '--show' ) );
 
-        queAll( '.paint-blog-li' ).forEach( el => el.classList.add( '--show' ) );
-
-        PaintMore.disabled = false;
-        PaintNew .disabled = false;
-
-    } , 1000 )
+    PaintMore.disabled = false;
+    PaintNew .disabled = false;
 }
 
 // func 套用圖庫＆回傳觀看次數
