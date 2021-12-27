@@ -362,7 +362,7 @@ PaintDownload.onclick = () => {
 
             // 下載圖片準備
             a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
-            a.href     = PaintCanvas.toDataURL( "image/png" );
+            a.href     = PaintCanvas.toDataURL( 'image/png' );
 
             // 開始動畫
             PaintCanvas.classList.add( '--show' );
