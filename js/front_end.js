@@ -349,7 +349,7 @@ PaintDownload.onclick = () => {
         PaintBtn.forEach( el => el.disabled = true );
 
         // 圖片轉 base64
-        img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
+        img.setAttribute( 'src' , decodeURI( 'data:image/svg+xml;base64,' + btoa( svg ) ) );
 
         console.info( img.getAttribute( 'src' ) );
 
