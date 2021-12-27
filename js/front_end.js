@@ -358,7 +358,7 @@ PaintDownload.onclick = () => {
         a.href     = PaintCanvas.toDataURL( "image/png" );
 
         // 不支援：開新分頁
-        if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' , 'Firefox' ] ) === true ) {
+        if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) === true ) {
 
             let i = `<iframe width='100%' height='100%' style="border:none" src="${ a.href }"></iframe>`,
                 x = window.open();
