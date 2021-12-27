@@ -333,41 +333,38 @@ BtnError.onclick = () => {
 // event 下載鍵
 PaintDownload.onclick = () => {
 
-    let svg = new XMLSerializer().serializeToString( PaintImg ),
-        img = new Image();
+    // 不支援：FB、IG
+    if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) === true ) {
 
-    // 鎖按鈕
-    PaintBtn.forEach( el => el.disabled = true );
+        alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案！' );
+    
+    } else {
 
-    // 圖片轉 base64
-    img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
+        let svg = new XMLSerializer().serializeToString( PaintImg ),
+            img = new Image();
 
-    // 圖片讀完
-    img.onload = () => {
+        // 鎖按鈕
+        PaintBtn.forEach( el => el.disabled = true );
 
-        let a   = document.createElement( 'a' ),
-            ctx = PaintCanvas.getContext( '2d' );
+        // 圖片轉 base64
+        img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
 
-        // canvas 繪圖
-        PaintCanvas.width  = img.width  * 3;
-        PaintCanvas.height = img.height * 3;
-        ctx.drawImage( img , 0 , 0 , img.width * 3 , img.height * 3 );
+        // 圖片讀完
+        img.onload = () => {
 
-        // 下載圖片準備
-        a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
-        a.href     = PaintCanvas.toDataURL( "image/png" );
+            let a   = document.createElement( 'a' ),
+                ctx = PaintCanvas.getContext( '2d' );
 
-        // 不支援：開新分頁
-        if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) === true ) {
+            // canvas 繪圖
+            PaintCanvas.width  = img.width  * 3;
+            PaintCanvas.height = img.height * 3;
+            ctx.drawImage( img , 0 , 0 , img.width * 3 , img.height * 3 );
 
-            let i = `<iframe width='100%' height='100%' style="border:none" src="${ a.href }"></iframe>`,
-                x = window.open();
+            // 下載圖片準備
+            a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
+            a.href     = PaintCanvas.toDataURL( "image/png" );
 
-            x.document.write( i );
-
-        // 支援：下載圖片加動畫
-        } else {
-
+            // 開始動畫
             PaintCanvas.classList.add( '--show' );
 
             setTimeout( () => {
