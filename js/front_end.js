@@ -338,8 +338,8 @@ PaintDownload.onclick = () => {
         alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案功能！' )
 
     // Firefox 相容性問題
-    } else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
-        alert( 'Firefox 尚不支援此功能！' )
+    // } else if ( DeviceJudge( [ 'Firefox' ] ) === true ) {
+    //     alert( 'Firefox 尚不支援此功能！' )
     
     } else {
         let svg = new XMLSerializer().serializeToString( PaintImg ),
@@ -350,6 +350,8 @@ PaintDownload.onclick = () => {
 
         // 圖片轉 base64
         img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
+
+        console.info( img.getAttribute( 'src' ) );
 
         // 圖片讀完
         img.onload = () => {
