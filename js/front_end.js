@@ -4,7 +4,6 @@
 const Paint          = getId( 'Paint' ),
       PaintImg       = getId( 'PaintImg' ),
       PaintCanvas    = getId( 'PaintCanvas' ),
-      PaintDefult    = getId( 'PaintPointer01' ),
       PaintPointers  = queAll( '.paint-pointer-li' );
 
 // const 功能鍵
@@ -76,7 +75,7 @@ PaintResize();
 var PaintPicker = new iro.ColorPicker( '#PaintPicker' , {
     width:     Paint_Width,
     boxHeight: 200,
-    color: PaintDefult.getAttribute( 'data-color-save' ),
+    color: getId( 'PaintPointer01' ).getAttribute( 'data-color-save' ),
     layout: [
         {
             component: iro.ui.Box
@@ -552,7 +551,7 @@ PaintInput.forEach( el => {
 })
 
 // carry out 調色盤名稱
-PaintName.innerHTML = PaintDefult.getAttribute( 'data-color-name' );
+PaintName.innerHTML = getId( 'PaintPointer01' ).getAttribute( 'data-color-name' );
 
 // carry out 設定圖片顏色
 PaintPointers.forEach( el => {

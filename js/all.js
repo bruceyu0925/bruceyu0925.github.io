@@ -10,7 +10,6 @@ const Controller = new AbortController(),
 
 // const dom
 const Html      = getId( 'Html' ),
-      Load      = getId( 'Load' ),
       Header    = getId( 'Header' ),
       NaviLs    = getId( 'NaviLs' ),
       BtnBurger = getId( 'BtnBurger' ),
@@ -19,7 +18,6 @@ const Html      = getId( 'Html' ),
       BanrAni   = queAll( '.banr-img-ani' ),
       Base1     = getId( 'Base1' ),
       BtnTop    = getId( 'BtnTop' ),
-      Version   = getId( 'Version' ),
       Scroll    = queAll( '.--scroll' ),
 
 // func 取得現在日期時間
@@ -104,7 +102,7 @@ ClickScroll = ( btn , obj , time = 600 ) => {
 // event 頁面讀取完畢
 window.onload = () => setTimeout( () => {
 
-    Load.classList.add( '--hide' );
+    getId( 'Load' ).classList.add( '--hide' );
     Banr.classList.add( '--show' );
     Html.classList.remove( '--lock' );
 
@@ -160,7 +158,5 @@ window.onscroll = () => {
     })
 }
 
-
-
 // carry out 版號
-Version.innerHTML = 'v2.6.0';
+getId( 'Version' ).innerHTML = 'v2.6.0';
