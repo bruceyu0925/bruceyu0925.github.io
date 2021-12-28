@@ -204,7 +204,7 @@ BlogHtml = () => {
                     <span class="blog-li-tool">${ tool }</span>
                     <span class="blog-li-date">${ date }</span>
                 </li>`
-            ) // IE 不支援
+            )
 
             Blog_Count++;
         }

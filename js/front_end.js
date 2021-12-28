@@ -186,7 +186,7 @@ PaintHtml = () => {
                     </div>
                 </div>
             </li>`
-        ) // IE 不支援
+        )
     }
     PaintShow();
 }
@@ -339,25 +339,27 @@ PaintDownload.onclick = () => {
     
     } else {
 
-        let svg = new XMLSerializer().serializeToString( PaintImg ),
-            img = new Image();
+        let s = new XMLSerializer().serializeToString( PaintImg ),
+            i = new Image();
 
         // 鎖按鈕
         PaintBtn.forEach( el => el.disabled = true );
 
         // 圖片轉 base64
-        img.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( svg ) );
+        i.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( s ) );
 
         // 圖片讀完
-        img.onload = () => {
+        i.onload = () => {
 
-            let a   = document.createElement( 'a' ),
-                ctx = PaintCanvas.getContext( '2d' );
+            let a = document.createElement( 'a' ),
+                c = PaintCanvas.getContext( '2d' ),
+                w = img.width  * 3,
+                h = img.height * 3; 
 
             // canvas 繪圖
-            PaintCanvas.width  = img.width  * 3;
-            PaintCanvas.height = img.height * 3;
-            ctx.drawImage( img , 0 , 0 , img.width * 3 , img.height * 3 );
+            PaintCanvas.width  = w;
+            PaintCanvas.height = h;
+            c.drawImage( i , 0 , 0 , w , h );
 
             // 下載圖片準備
             a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
@@ -617,7 +619,7 @@ SkillHtml = ( e ) => {
                         </div>
                     </div>
                 </li>`
-            ) // IE 不支援
+            )
 
             SkillPiechart( 'Piechart' + i , s );
         }
@@ -702,7 +704,7 @@ fetch( GAS( 'AKfycbxXLeyvQBab1BSNcpIIcQrz5DAyOg8gXqo9wqZ5M5zHtrkXE9ZUp5RhfFnsSS3
                 value="${ data[ 0 ][ i ] }" onclick="SkillKind(${ i + 1 })">
                 ${ data[ 0 ][ i ] }
             </button>`
-        ) // IE 不支援
+        )
     }
     Skill_Btns = queAll( '.skill-btn-li' );
 

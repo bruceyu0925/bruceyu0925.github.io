@@ -159,4 +159,4 @@ window.onscroll = () => {
 }
 
 // carry out 版號
-getId( 'Version' ).innerHTML = 'v2.6.0';
+getId( 'Version' ).innerHTML = 'v3.0.1';
