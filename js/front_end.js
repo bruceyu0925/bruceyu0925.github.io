@@ -353,8 +353,8 @@ PaintDownload.onclick = () => {
 
             let a = document.createElement( 'a' ),
                 c = PaintCanvas.getContext( '2d' ),
-                w = img.width  * 3,
-                h = img.height * 3; 
+                w = i.width  * 3,
+                h = i.height * 3; 
 
             // canvas 繪圖
             PaintCanvas.width  = w;
@@ -362,7 +362,7 @@ PaintDownload.onclick = () => {
             c.drawImage( i , 0 , 0 , w , h );
 
             // 下載圖片準備
-            a.download = `BruceYuDesign ${ GetDate( '-' ) }.png`;
+            a.download = `BruceYuDesign ${ GetDate( '-' , true ) }.png`;
             a.href     = PaintCanvas.toDataURL( 'image/png' );
 
             // 開始動畫
