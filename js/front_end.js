@@ -54,19 +54,29 @@ const PaintBody      = getId( 'PaintBody' ),
 var Paint_Len    = PaintPointers.length,
     Paint_Array  = [],
     Paint_Total,
-    Paint_Width;
+    Paint_Width,
+    Paint_Height;
 
 // func 調色盤RWD
 PaintResize = () => {
 
-    if ( window.innerWidth > 1200 ) {
+    let w = window.innerWidth;
+
+    if ( w > 1200 ) {
         Paint_Width  = 300;
+        Paint_Height = 200;
         
-    } else if ( window.innerWidth > 600 ) {
+    } else if ( w > 600 ) {
         Paint_Width  = 250;
+        Paint_Height = 200;
+
+    } else if ( w > 480 ) {
+        Paint_Width  = 200;
+        Paint_Height = 200;
 
     } else {
         Paint_Width  = 200;
+        Paint_Height = 130;
     }
 }
 PaintResize();
@@ -74,7 +84,7 @@ PaintResize();
 // var 調色盤（ API: iro.js ）
 var PaintPicker = new iro.ColorPicker( '#PaintPicker' , {
     width:     Paint_Width,
-    boxHeight: 200,
+    boxHeight: Paint_Height,
     color: getId( 'PaintPointer01' ).getAttribute( 'data-color-save' ),
     layout: [
         {
@@ -484,9 +494,7 @@ PaintPicker.on( [ 'color:change' , 'color:init' ] , () => {
 
     o.setAttribute( 'data-color-set' , x );
     
-    queAll( '#PaintImg .' + n ).forEach( el => 
-        el.style.fill = x
-    )
+    queAll( '#PaintImg .' + n ).forEach( el => el.style.fill = x );
 })
 
 // event 調色：Hex blur 設定顏色
@@ -728,10 +736,10 @@ fetch( GAS( 'AKfycbxXLeyvQBab1BSNcpIIcQrz5DAyOg8gXqo9wqZ5M5zHtrkXE9ZUp5RhfFnsSS3
 // event 畫面縮放
 window.onresize = () => {
 
-    // Paint（ API: iro.js ）
+    // Paint（ API: iro.js ）（ 有修改prototype.resize ）
     PaintResize();
 
-    PaintPicker.resize( Paint_Width );
+    PaintPicker.resize( Paint_Width , Paint_Height );
 
     // Skill（ API: circle.js ）
     SkillResize();
