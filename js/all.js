@@ -23,7 +23,7 @@ const Html      = getId( 'Html' ),
 // func 取得現在日期時間
 GetDate = ( dateObj = '' , timer = false , timeObj = '' ) => {
 
-    let T = new Date(),
+    var T = new Date(),
         l = [
             [
                 T.getFullYear(),
@@ -57,11 +57,11 @@ GetDate = ( dateObj = '' , timer = false , timeObj = '' ) => {
 // func 裝置判斷
 DeviceJudge = ( device = '' ) => {
 
-    let d = [ 'Android' , 'webOS' , 'iPhone' , 'iPad' , 'iPod' , 'BlackBerry' , 'Windows Phone' ];
+    var d = [ 'Android' , 'webOS' , 'iPhone' , 'iPad' , 'iPod' , 'BlackBerry' , 'Windows Phone' ];
 
     if( device !== '' ) d = device;
 
-    let u = navigator.userAgent, // Chrome 未來不支援
+    var u = navigator.userAgent, // Chrome 未來不支援
         l = d.length,
         j = false;
 
@@ -79,14 +79,14 @@ ClickScroll = ( btn , obj , time = 600 ) => {
     btn.disabled = true;
     Header.classList.remove( '--open' );
 
-    let w = window.pageYOffset,
+    var w = window.pageYOffset,
         o = obj.offsetTop,
         i = 1,
         f = 50,
         h = ( o - w ) / f,
         t = time / f;
 
-    let e = setInterval( () => {
+    var e = setInterval( () => {
 
         if ( i <= f ) {
             window.scroll( 0 , w + h * i );
@@ -151,7 +151,7 @@ window.onscroll = () => {
     // 動畫
     Scroll.forEach( el => {
 
-        let h = el.offsetTop + el.innerHeight() * 1.5,
+        var h = el.offsetTop + el.innerHeight() * 1.5,
             w = window.innerHeight + window.pageYOffset;
 
         if ( w > h ) el.classList.remove( '--scroll' );
