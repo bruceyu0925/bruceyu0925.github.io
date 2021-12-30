@@ -250,6 +250,14 @@
         PaintList.innerHTML = '';
     }
 
+    // event 畫面縮放
+    window.onresize = () => {
+
+        // Paint（ API: iro.js ）（ 有修改prototype.resize ）
+        PaintResize();
+        PaintPicker.resize( Paint_Width , Paint_Height );
+    };
+
     // func 圖庫：點選排序
     PaintSort = () => {
         PaintList.innerHTML = '';
@@ -585,17 +593,13 @@
     // var
     var Skill_Btns  = [],
         Skill_Array = [],
-        Skill_Total,
-        Skill_Circle = [],
-        Skill_Radius,
-        Skill_Width;
+        Skill_Total;
 
     // func 切換類別
     SkillKind = ( n ) => {
         
         var o = Skill_Btns[ n ];
 
-        Skill_Circle = [];
         SkillLs.innerHTML = '';
         SkillHtml( o.value );
 
@@ -623,20 +627,33 @@
                                 <p class="skill-li-title">${ t }</p>
                                 <p class="skill-li-desc">${ d }</p>
                             </div>
-                            <div class="skill-li-body">
-                                <div id="Piechart${ i }" class="piechart"></div>
+                            <div class="skill-li-body" id="Piechart${ i }">
                             </div>
                         </div>
                     </li>`
                 )
-
-                SkillPiechart( 'Piechart' + i , s );
+                SkillColor( 'Piechart' + i , s );
             }
         }
     }
 
-    // func 產生圓餅圖
-    SkillPiechart = ( o , v ) => {
+    // func 開啟全屏
+    SkillOpen = ( i ) => {
+
+        var n = Skill_Array[ i ],
+            t = n[ 'Title' ],
+            d = n[ 'Desc' ],
+            s = n[ 'Score' ];
+
+        SkillColor( 'PiechartFull' , s );
+        SkillTitle.innerHTML = t;
+        SkillDesc .innerHTML = d;
+        SkillFull.classList.add( '--show' );
+        Html     .classList.add( '--lock' );
+    }
+
+    // func 顏色套用
+    SkillColor = ( o , v ) => {
 
         var c;
             
@@ -650,44 +667,37 @@
             c = '#FE5A5F'
         }
 
-        SkillResize();
-        
-        // （ API: circle.js ）
-        var o = Circles.create({
-            id:       o,
-            radius:   Skill_Radius,
-            value:    v,
-            width:    Skill_Width,
-            colors:   [ '#ddd' , c ],
-            duration: 1000
-        })
-
-        Skill_Circle.push( o );
+        SkillPiechart( o , v , c );
     }
 
-    // func 圓餅圖RWD
-    SkillResize = () => {
-        try {
-            var n = queOne( '.skill-li-box' ).offsetWidth;
-            Skill_Radius = n / 9;
-            Skill_Width  = n / 50;
+    // func 產生圓餅圖
+    SkillPiechart = ( id , score , color , time = 1000 ) => {
 
-        } catch {}
-    }
+        getId( id ).innerHTML =
+            `<svg class="circle" viewBox="0 0 120 120">
+                <text class="circle-text" x="50%" y="50%">0</text>
+                <circle class="circle-bot" r="54" cx="60" cy="60"></circle>
+                <circle class="circle-top" r="54" cx="60" cy="60" style="stroke-dasharray: 0, 360; stroke: ${ color };"></circle>
+            </svg>`;
 
-    // func 開啟全屏
-    SkillOpen = ( i ) => {
+        var x = queOne( `#${ id } .circle-text` ),
+            c = queOne( `#${ id } .circle-top` ),
+            t = time / 20,
+            n = score / t,
+            s = score * 3.39 / t,
+            i = 1,
+            e = setInterval( () => {
 
-        var n = Skill_Array[ i ],
-            t = n[ 'Title' ],
-            d = n[ 'Desc' ],
-            s = n[ 'Score' ];
+                if ( i <= t ) {
+                    x.innerHTML = parseInt( n * i , 10 )
+                    c.style.strokeDasharray = s * i + ',360';
+                    i++;
 
-        SkillPiechart( 'PiechartFull' , s );
-        SkillTitle.innerHTML = t;
-        SkillDesc .innerHTML = d;
-        SkillFull.classList.add( '--show' );
-        Html     .classList.add( '--lock' );
+                } else {
+                    clearInterval( e );
+
+                }
+            } , 20 );
     }
 
     // event 關閉全屏
@@ -731,24 +741,5 @@
         SkillLoad .classList.remove( '--show' );
         SkillBtnLs.classList.add( '--show' );
     });
-
-    // Common --------------------------------------------------
-
-    // event 畫面縮放
-    window.onresize = () => {
-
-        // Paint（ API: iro.js ）（ 有修改prototype.resize ）
-        PaintResize();
-
-        PaintPicker.resize( Paint_Width , Paint_Height );
-
-        // Skill（ API: circle.js ）
-        SkillResize();
-
-        Skill_Circle.forEach( el => {
-            el.updateRadius( Skill_Radius );
-            el.updateWidth ( Skill_Width );
-        });
-    };
 
 }()

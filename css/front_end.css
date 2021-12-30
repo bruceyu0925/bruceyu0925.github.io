@@ -947,7 +947,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 74%;
     height: 100%;
     overflow: hidden;
 }
@@ -968,25 +968,53 @@
 }
 
 .skill-li-body{
+    width: 23%;
+    height: 100%;
     position: relative;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3%;
 }
 
 .skill-li-body::after {
     position: absolute;
     content: '';
-    width: 60px;
+    width: 100%;
     height: 100%;
-    left: -70px;
+    left: -100%;
     top: 0;
     background: linear-gradient(to right ,rgba(255,255,255,0),var(--light));
 }
 
-/* 複寫掉API樣式 */
-.circles-integer{
-    font-family: 'myfutura';
-    color: var(--iron);
-    opacity: .8;
+/* Circle ---------------------------------------- */
+
+.circle-text{
+    opacity: .9;
+    font-family: "myfutura";
+    fill: var(--iron);
+    dominant-baseline: central;
+    text-anchor: middle;
+    font-size: 40px;
+}
+
+.circle-bot,
+.circle-top{
+    fill: transparent;
+    stroke-width: 10px;
+}
+
+.circle-bot{
+    stroke: #ddd;
+}
+
+.circle-top{
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
 }
 
 /* SkillFull ---------------------------------------- */
@@ -1006,6 +1034,7 @@
 }
 
 #PiechartFull{
+    width: 25%;
     margin-bottom: 1rem;
 }
 
@@ -1088,6 +1117,9 @@
     }
     .skill-li-box{
         padding: 10px 20px;
+    }
+    #PiechartFull{
+        width: 30%;
     }
 }
 
@@ -1196,10 +1228,6 @@
     }
     #SkillLs{
         width: 100%;
-    }
-    .skill-li-body::after{
-        width: 40px;
-        left: -50px;
     }
 }
 
