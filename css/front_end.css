@@ -927,6 +927,7 @@
     background-color: var(--light);
     color: var(--iron);
     width: 100%;
+    height: auto;
     padding: 15px 30px;
     overflow: hidden;
     cursor: pointer;
@@ -974,7 +975,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 3%;
 }
 
 .skill-li-body::after {

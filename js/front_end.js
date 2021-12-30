@@ -674,7 +674,7 @@
     SkillPiechart = ( id , score , color , time = 1000 ) => {
 
         getId( id ).innerHTML =
-            `<svg class="circle" viewBox="0 0 120 120">
+            `<svg class="circle __imgresp" viewBox="0 0 120 120">
                 <text class="circle-text" x="50%" y="50%">0</text>
                 <circle class="circle-bot" r="54" cx="60" cy="60"></circle>
                 <circle class="circle-top" r="54" cx="60" cy="60" style="stroke-dasharray: 0, 360; stroke: ${ color };"></circle>
