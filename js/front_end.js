@@ -665,7 +665,7 @@
 
         var x = queOne( `#${ id } .circle-text` ),
             c = queOne( `#${ id } .circle-top` ),
-            t = 1000 / 20,
+            t = 40,
             n = score / t,
             s = score * 3.39 / t,
             i = 1,
@@ -680,7 +680,7 @@
                     clearInterval( e );
 
                 }
-            } , 20 );
+            } , 25 );
     }
 
     // event 關閉全屏
