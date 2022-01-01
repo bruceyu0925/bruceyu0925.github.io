@@ -138,51 +138,29 @@
     PaintHtml = () => {
 
         PaintList.innerHTML = ''; // 防止接收多個 Response
-
+    
         for ( let i = 0 ; i < Paint_Total ; i++ ) {
-
+    
             var n     = Paint_Array[ i ],
                 id    = 'PaintBlog' + i,
-                clr0  = n[ 'Clr0' ],
-                clr1  = n[ 'Clr1' ],
-                clr2  = n[ 'Clr2' ],
-                clr3  = n[ 'Clr3' ],
-                clr4  = n[ 'Clr4' ],
-                clr5  = n[ 'Clr5' ],
-                clr6  = n[ 'Clr6' ],
-                clr7  = n[ 'Clr7' ],
-                clr8  = n[ 'Clr8' ],
-                clr9  = n[ 'Clr9' ],
                 date  = n[ 'Date' ],
                 name  = n[ 'Name' ],
-                watch = n[ 'Watch' ];
-
+                watch = n[ 'Watch' ],
+                src   = n[ 'Src' ];
+    
             var s = new Date( date ),
                 y = ( s.getFullYear()  ).toString(),
                 m = ( s.getMonth() + 1 ).toString(),
                 d = ( s.getDate()      ).toString();
-
+    
             if ( m.length < 2 ) m = '0' + m;
             if ( d.length < 2 ) d = '0' + d;
             date = y + '-' + m + '-' + d;
-
+    
             PaintList.insertAdjacentHTML( 'beforeend' ,
                 `<li class="paint-blog-li">
                     <div id="${ id }" class="paint-blog-block __sha4px __rad12px" onclick="PaintClick(${ i })">
-                        <svg class="img-resp" viewBox="0 0 1377.51952 858.48984"><defs>
-                            <style>.paint-b, .paint-g, .paint-o, .paint-p, .paint-q, .paint-r, .paint-s, .paint-t, .paint-u, .paint-v{ fill: #fff;} .paint-b{ opacity: 0.07;} .paint-l{ opacity: 0.15;} .paint-n{ opacity: 0.45;} .paint-o{ opacity: 0.8;} .paint-p{ opacity: 0.6;} .paint-q{ opacity: 0.75;} .paint-r{ opacity: 0.35;} .paint-s{ opacity: 0.7;} .paint-t{ opacity: 0.2;} .paint-u{ opacity: 0.5;} .paint-v{ opacity: 0.9;} .paint-w{ opacity: 0.4; fill: url(#PaintA);}
-                                #${ id } .paint-c{ fill : ${ clr0 }; }
-                                #${ id } .paint-a{ fill : ${ clr1 }; }
-                                #${ id } .paint-d{ fill : ${ clr2 }; }
-                                #${ id } .paint-e{ fill : ${ clr3 }; }
-                                #${ id } .paint-f{ fill : ${ clr4 }; }
-                                #${ id } .paint-j{ fill : ${ clr5 }; }
-                                #${ id } .paint-h{ fill : ${ clr6 }; }
-                                #${ id } .paint-i{ fill : ${ clr7 }; }
-                                #${ id } .paint-k{ fill : ${ clr8 }; }
-                                #${ id } .paint-m{ fill : ${ clr9 }; }
-                            </style>
-                        </defs><rect class="paint-a" x="-88.89929" y="512.63868" width="1555.3181" height="396.22733" /><rect id="PaintImgWave1" class="paint-b" x="-88.89929" y="486.7494" width="1555.3181" height="259.73331" /><rect id="PaintImgWave2" class="paint-b" x="-88.89929" y="486.7494" width="1555.3181" height="181.4938" /><rect class="paint-c" x="-88.89929" y="-83.26303" width="1555.3181" height="672.91241" /><rect class="paint-d" x="-88.89929" y="818.74492" width="1555.3181" height="119.55217" /><g class="paint-e"><path d="M482.14355,512.63868a45.13086,45.13086,0,0,0-44.78116-51.19784,44.97245,44.97245,0,0,0-23.64766,6.67986c-7.48479-31.18582-39.88908-54.64722-78.73023-54.64722-32.63643,0-60.72793,16.56555-73.31005,40.35912-7.11552-8.17321-16.40327-13.13277-26.57319-13.13277-17.971,0-33.201,15.45688-38.50963,36.85073-11.72424-10.27992-27.07047-13.38293-38.91881-6.54208-9.36673,5.4078-14.44366,15.81595-14.658,27.49452a66.58162,66.58162,0,0,0-23.96356-4.27016c-19.50367,0-36.1213,7.66574-42.45315,18.40584Z" /><path d="M689.12438,303.42457c5.2752-9.56445,19.94345-16.44811,37.22586-16.44811a59.24609,59.24609,0,0,1,18.853,2.96779c4.41094-22.00446,37.19082-39.09971,76.9958-39.09971a132.34025,132.34025,0,0,1,23.22253,2.01843c8.75089-29.65387,39.45045-49.57942,72.81787-45.63566,21.56228,2.54844,39.42724,14.50175,49.569,30.94a38.31813,38.31813,0,0,1,17.76028-9.445c24.46407-5.52031,50.33126,13.69181,58.00945,42.96688a53.85945,53.85945,0,0,1,30.71867-9.23048c26.08882,0,47.23786,17.17226,47.23786,38.3554,0,.87837-.0496,1.74687-.12106,2.61044Z" /></g><path class="paint-f" d="M688.75959,188.926c-15.33367,0-27.76376,13.969-27.76376,31.20075v49.52346h55.52786V220.12679C716.52369,202.89508,704.09326,188.926,688.75959,188.926Z" /><path class="paint-g" d="M689.176,205.1684c-4.56747,0-8.27,11.15835-8.27,24.92291v39.55894h16.5402V230.09131C697.44612,216.32675,693.74344,205.1684,689.176,205.1684Z" /><path class="paint-h" d="M749.44378,194.03824V183.72593h-3.173v-8.72581h-6.70045l-49.42236-35.107V112.333h-2.77639v27.56015l-49.42235,35.107h-6.70045v8.72581h-3.173v10.31231H635.81V199.591h-5.94942v7.1393H635.81v38.07625h-4.56122v30.937h115.022v-30.937h-4.56122V206.73033H747.659V199.591h-5.94942v-5.55279Zm-92.21592,0H684.9918V199.591H657.22786Zm27.76394,12.69209v38.07625H657.22786V206.73033Zm7.53592,0h27.76393v38.07625H692.52772Zm0-7.1393v-5.55279h27.76393V199.591Zm-37.67962-5.55279V199.591H640.56951v-5.55279Zm-14.27859,12.69209H654.8481v38.07625H640.56951Zm82.10191,38.07625V206.73033H736.95v38.07625ZM736.95,199.591H722.67142v-5.55279H736.95Z" /><rect x="708.59114" y="317.78605" width="15.8651" height="26.17742" /><rect x="718.1102" y="511.34032" width="15.8651" height="26.17742" /><polygon class="paint-i" points="617.125 768.355 760.394 768.355 755.351 680.304 622.168 680.304 617.125 768.355" /><polygon class="paint-i" points="738.724 389.972 733.182 293.195 644.337 293.195 638.795 389.972 738.724 389.972" /><polygon class="paint-i" points="633.253 486.749 627.71 583.527 749.809 583.527 744.267 486.749 633.253 486.749" /><rect class="paint-j" x="627.67911" y="275.74353" width="122.1613" height="17.45161" /><polygon class="paint-j" points="633.253 486.749 744.267 486.749 738.724 389.972 638.795 389.972 633.253 486.749" /><polygon class="paint-j" points="627.71 583.527 622.168 680.304 755.351 680.304 749.809 583.527 627.71 583.527" /><rect class="paint-k" x="708.19451" y="317.78605" width="15.8651" height="26.17742" /><rect class="paint-k" x="717.71357" y="511.34032" width="15.8651" height="26.17742" /><rect class="paint-k" x="653.4599" y="414.56318" width="15.8651" height="26.17742" transform="translate(1322.78491 855.30379) rotate(-180)" /><rect class="paint-k" x="643.94084" y="608.11745" width="15.8651" height="26.17742" transform="translate(1303.74678 1242.41232) rotate(-180)" /><rect class="paint-k" x="669.72163" y="666.02508" width="38.07625" height="102.32992" /><polygon class="paint-l" points="733.182 293.195 749.841 293.195 749.841 275.744 706.211 275.744 706.211 768.355 707.798 768.355 760.394 768.355 733.182 293.195" /><polygon class="paint-m" points="435.082 818.745 921.082 818.745 895.822 769.455 844.629 737.266 749.716 752.856 622.317 733.745 484.854 758.893 441.244 787.059 435.082 818.745" /><g class="paint-n"><polygon class="paint-o" points="441.244 787.059 473.951 793.597 435.082 818.745 441.244 787.059" /><polygon class="paint-p" points="499.073 818.745 473.951 793.597 435.082 818.745 499.073 818.745" /><polygon class="paint-q" points="484.854 758.893 473.951 793.597 499.073 818.745 484.854 758.893" /><polygon class="paint-r" points="551.924 776.245 499.073 818.745 607.979 818.745 611.983 802.902 600.039 771.467 551.924 776.245" /><polygon class="paint-p" points="484.854 758.893 551.924 776.245 499.073 818.745 484.854 758.893" /><polygon class="paint-s" points="622.317 733.745 600.039 771.467 611.983 802.902 622.317 733.745" /><polygon class="paint-t" points="676.845 776.245 611.983 802.902 607.979 818.745 711.279 818.745 726.126 777.502 676.845 776.245" /><polygon class="paint-r" points="622.317 733.745 676.845 776.245 611.983 802.902 622.317 733.745" /><polygon class="paint-r" points="749.716 752.856 726.126 777.502 711.279 818.745 774.006 818.745 749.716 752.856" /><polygon class="paint-t" points="810.5 766.437 766.799 799.196 774.006 818.745 831.395 818.745 810.5 766.437" /><polygon class="paint-p" points="749.716 752.856 810.5 766.437 766.799 799.196 749.716 752.856" /><polygon class="paint-s" points="844.629 737.266 810.5 766.437 831.395 818.745 844.629 737.266" /><path class="paint-u" d="M886.91578,785.80064l-55.5205,32.94428h89.687Z" /><polygon class="paint-o" points="844.629 737.266 886.916 785.801 831.395 818.745 844.629 737.266" /><polygon class="paint-s" points="895.822 769.455 886.916 785.801 921.082 818.745 895.822 769.455" /><polygon class="paint-o" points="484.854 758.893 622.317 733.745 600.039 771.467 551.924 776.245 484.854 758.893" /><polygon class="paint-p" points="622.317 733.745 676.845 776.245 726.126 777.502 749.716 752.856 622.317 733.745" /><polygon class="paint-o" points="749.716 752.856 844.629 737.266 810.5 766.437 749.716 752.856" /><polygon class="paint-v" points="484.854 758.893 441.244 787.059 473.951 793.597 484.854 758.893" /><polygon class="paint-v" points="844.629 737.266 895.822 769.455 886.916 785.801 844.629 737.266" /><polygon class="paint-w" points="684.204 244.748 0.863 349.792 0.863 89.656 684.204 194.7 684.204 244.748" /></g><linearGradient id="PaintA" x1="0.86283" y1="219.72398" x2="684.20434" y2="219.72398" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset="1" stop-color="#fff" /></linearGradient></svg>
+                        <img class="__imgresp" src="${ src }" alt=${ name }>
                         <div class="paint-blog-aside">
                             <div class="paint-blog-title">${ name }</div>
                             <div class="paint-blog-desc">
@@ -286,24 +264,27 @@
         var n = InputName.value,
             l = n.replace( /\s*/g , '' ).replace( /[^\x00-\xff]/g , 'xx' ).length;
 
-        fx = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' );
-
         if ( l >= 4 && l <= 20 ) {
 
-            var j = JSON.stringify({
-                'date'    : GetDate( '/' , true , ':' ),
-                'name'    : n,
-                'color01' : fx( 0 ),
-                'color02' : fx( 1 ),
-                'color03' : fx( 2 ),
-                'color04' : fx( 3 ),
-                'color05' : fx( 4 ),
-                'color06' : fx( 5 ),
-                'color07' : fx( 6 ),
-                'color08' : fx( 7 ),
-                'color09' : fx( 8 ),
-                'color10' : fx( 9 )
-            })
+            fx = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' );
+
+            var s = new XMLSerializer().serializeToString( PaintImg ),
+                b = 'data:image/svg+xml;base64,' + btoa( s ),
+                j = JSON.stringify({
+                    'date'    : GetDate( '/' , true , ':' ),
+                    'name'    : n,
+                    'color01' : fx( 0 ),
+                    'color02' : fx( 1 ),
+                    'color03' : fx( 2 ),
+                    'color04' : fx( 3 ),
+                    'color05' : fx( 4 ),
+                    'color06' : fx( 5 ),
+                    'color07' : fx( 6 ),
+                    'color08' : fx( 7 ),
+                    'color09' : fx( 8 ),
+                    'color10' : fx( 9 ),
+                    'img'     : b
+                })
 
             Html    .classList.remove( '--lock' );
             MsgNamed.classList.remove( '--show' );
@@ -616,7 +597,8 @@
                 t = n[ 'Title' ],
                 d = n[ 'Desc' ],
                 k = n[ 'Kind' ],
-                s = n[ 'Score' ];
+                s = n[ 'Score' ],
+                c = SkillColor( s );
 
             if ( k.match( e ) ){
                 
@@ -632,7 +614,7 @@
                         </div>
                     </li>`
                 )
-                SkillColor( 'Piechart' + i , s );
+                SkillPiechart( 'Piechart' + i , s , c );
             }
         }
     }
@@ -643,9 +625,11 @@
         var n = Skill_Array[ i ],
             t = n[ 'Title' ],
             d = n[ 'Desc' ],
-            s = n[ 'Score' ];
+            s = n[ 'Score' ],
+            c = SkillColor( s );
+        
+        SkillPiechart( 'PiechartFull' , s , c );
 
-        SkillColor( 'PiechartFull' , s );
         SkillTitle.innerHTML = t;
         SkillDesc .innerHTML = d;
         SkillFull.classList.add( '--show' );
@@ -653,7 +637,7 @@
     }
 
     // func 顏色套用
-    SkillColor = ( o , v ) => {
+    SkillColor = ( v ) => {
 
         var c;
             
@@ -666,12 +650,11 @@
         } else {
             c = '#FE5A5F'
         }
-
-        SkillPiechart( o , v , c );
+        return c
     }
 
     // func 產生圓餅圖
-    SkillPiechart = ( id , score , color , time = 1000 ) => {
+    SkillPiechart = ( id , score , color ) => {
 
         getId( id ).innerHTML =
             `<svg class="circle __imgresp" viewBox="0 0 120 120">
@@ -682,7 +665,7 @@
 
         var x = queOne( `#${ id } .circle-text` ),
             c = queOne( `#${ id } .circle-top` ),
-            t = time / 20,
+            t = 1000 / 20,
             n = score / t,
             s = score * 3.39 / t,
             i = 1,

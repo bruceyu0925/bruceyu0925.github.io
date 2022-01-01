@@ -165,7 +165,7 @@
     5% {
         opacity: 1;
     }
-    10% {
+    15% {
         transform: scale(.8) rotateZ(15deg);
         -webkit-transform: scale(.8) rotateZ(15deg);
         -moz-transform: scale(.8) rotateZ(15deg);

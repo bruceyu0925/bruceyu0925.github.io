@@ -4,9 +4,9 @@ queOne = n => document.querySelector( n );
 queAll = n => document.querySelectorAll( n );
 GAS    = n => `https://script.google.com/macros/s/${ n }/exec`;
 
-// const request（中斷請求，研究中）
-const Controller = new AbortController(),
-      Signal     = Controller.signal;
+// // const request（中斷請求，研究中）
+// const Controller = new AbortController(),
+//       Signal     = Controller.signal;
 
 // const dom
 const Html      = getId( 'Html' ),
@@ -119,12 +119,12 @@ BtnMore.onclick = function() { ClickScroll( this , Base1 , 400 ) };
 // event 置頂
 BtnTop.onclick = function() { ClickScroll( this , Banr , 800 ) };
 
-// event 若先點選，取消滑動執行
-Scroll.forEach( el => {
-    el.onclick = () => {
-        el.classList.remove( '--scroll' )
-    }
-})
+// // event 若先點選，取消滑動執行
+// Scroll.forEach( el => {
+//     el.onclick = () => {
+//         el.classList.remove( '--scroll' )
+//     }
+// })
 
 // event 滑動觸發
 window.onscroll = () => {
@@ -148,14 +148,14 @@ window.onscroll = () => {
         BanrAni.forEach( el => el.classList.remove( '--hide' ) );
     }
 
-    // 動畫
-    Scroll.forEach( el => {
+    // // 動畫
+    // Scroll.forEach( el => {
 
-        var h = el.offsetTop + el.innerHeight() * 1.5,
-            w = window.innerHeight + window.pageYOffset;
+    //     var h = el.offsetTop + el.innerHeight() * 1.5,
+    //         w = window.innerHeight + window.pageYOffset;
 
-        if ( w > h ) el.classList.remove( '--scroll' );
-    })
+    //     if ( w > h ) el.classList.remove( '--scroll' );
+    // })
 }
 
 // carry out 版號
