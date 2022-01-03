@@ -829,6 +829,100 @@
     margin-top: 20px;
 }
 
+/* Animate ---------------------------------------- */
+
+.animate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* AnimateImg ---------------------------------------- */
+
+.animate-head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#AnimateImg{
+    width: 100%;
+    height: auto;
+    vertical-align: baseline;
+}
+
+#AnimateImg.--sunrise{}
+
+#AnimateImg.--midday{}
+
+#AnimateImg.--sunset{}
+
+#AnimateImg.--night{}
+
+/* AnimateBtn ---------------------------------------- */
+
+.animate-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.animate-btn{
+    position: relative;
+    background-color: transparent;
+    color: var(--light);
+    font-size: 18px;
+    padding: 6px 16px;
+    font-weight: 600;
+    opacity: .5;
+}
+
+.animate-btn + .animate-btn{
+    margin-left: 16px;
+}
+
+.animate-btn::after{
+    content: '';
+    position: absolute;
+    background-color: var(--light);
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transition-duration: 200ms;
+}
+
+.animate-btn.--click,
+.animate-btn:hover{
+    opacity: 1;
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+}
+
+.animate-btn.--click.animate-btn::after,
+.animate-btn:hover.animate-btn::after{
+    width: 100%;
+}
+
 /* Skill ---------------------------------------- */
 
 .skill {
@@ -863,28 +957,53 @@
 }
 
 .skill-btn-li{
-    width: 130px;
-    height: 36px;
-    border: 2px solid var(--light);
-    color: var(--light);
+    position: relative;
     background-color: transparent;
-    font-size: 16px;
-    opacity: .9;
+    color: var(--light);
+    font-size: 18px;
+    padding: 6px 16px;
+    opacity: .5;
     font-family: 'myfutura';
 }
 
 .skill-btn-li+.skill-btn-li{
-    margin-left: 15px;
+    margin-left: 16px;
+}
+
+.skill-btn-li::after{
+    content: '';
+    position: absolute;
+    background-color: var(--light);
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transition-duration: 200ms;
 }
 
 .skill-btn-li.--click,
 .skill-btn-li:hover{
-    background-color: var(--light);
-    color: var(--iron);
+    opacity: 1;
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
 }
 
-.skill-btn-li:hover{
-    opacity: 1;
+.skill-btn-li.--click.skill-btn-li::after,
+.skill-btn-li:hover.skill-btn-li::after{
+    width: 100%;
 }
 
 /* SkillLs ---------------------------------------- */
@@ -1136,12 +1255,13 @@
     .paint-blog-desc {
         font-size: .7rem;
     }
-    #SkillLs{
-        width: 100%;
+    .animate-btn{
+        font-size: 14px;
+    }
+    .animate-btn+.animate-btn{
+        margin-left: 10px;
     }
     .skill-btn-li{
-        width: 100px;
-        height: 32px;
         font-size: 14px;
     }
     .skill-btn-li+.skill-btn-li{

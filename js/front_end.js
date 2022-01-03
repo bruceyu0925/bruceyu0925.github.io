@@ -3,53 +3,53 @@
 
     // const 畫板
     const Paint          = getId( 'Paint' ),
-        PaintImg       = getId( 'PaintImg' ),
-        PaintCanvas    = getId( 'PaintCanvas' ),
-        PaintPointers  = queAll( '.paint-pointer-li' );
+          PaintImg       = getId( 'PaintImg' ),
+          PaintCanvas    = getId( 'PaintCanvas' ),
+          PaintPointers  = queAll( '.paint-pointer-li' );
 
     // const 功能鍵
     const PaintUpload    = getId( 'PaintUpload' ),
-        PaintDownload  = getId( 'PaintDownload' ),
-        PaintEdit      = getId( 'PaintEdit' ),
-        PaintReset     = getId( 'PaintReset' ),
-        PaintCancel    = getId( 'PaintCancel' ),
-        PaintApply     = getId( 'PaintApply' ),
-        PaintBtn       = queAll( '.paint-btn-li' );
+          PaintDownload  = getId( 'PaintDownload' ),
+          PaintEdit      = getId( 'PaintEdit' ),
+          PaintReset     = getId( 'PaintReset' ),
+          PaintCancel    = getId( 'PaintCancel' ),
+          PaintApply     = getId( 'PaintApply' ),
+          PaintBtn       = queAll( '.paint-btn-li' );
 
     // const 浮動視窗：上傳
     const MsgNamed       = getId( 'MsgNamed' ),
-        MsgSuccess     = getId( 'MsgSuccess' ),
-        MsgError       = getId( 'MsgError' ),
-        BtnCancel      = getId( 'BtnCancel' ),
-        BtnSend        = getId( 'BtnSend' ),
-        BtnSuccess     = getId( 'BtnSuccess' ),
-        BtnError       = getId( 'BtnError' ),
-        InputName      = getId( 'InputName' ),
-        InputWarn      = getId( 'InputWarn' );
+          MsgSuccess     = getId( 'MsgSuccess' ),
+          MsgError       = getId( 'MsgError' ),
+          BtnCancel      = getId( 'BtnCancel' ),
+          BtnSend        = getId( 'BtnSend' ),
+          BtnSuccess     = getId( 'BtnSuccess' ),
+          BtnError       = getId( 'BtnError' ),
+          InputName      = getId( 'InputName' ),
+          InputWarn      = getId( 'InputWarn' );
 
     // const 浮動視窗：圖庫
     const PaintLibrary   = getId( 'PaintLibrary' ),
-        PaintBlog      = getId( 'PaintBlog' ),
-        PaintMore      = getId( 'PaintMore' ),
-        PaintNew       = getId( 'PaintNew' ),
-        PaintList      = getId( 'PaintList' ),
-        PaintLoad      = getId( 'PaintLoad' ),
-        PaintClose     = getId( 'PaintClose' );
+          PaintBlog      = getId( 'PaintBlog' ),
+          PaintMore      = getId( 'PaintMore' ),
+          PaintNew       = getId( 'PaintNew' ),
+          PaintList      = getId( 'PaintList' ),
+          PaintLoad      = getId( 'PaintLoad' ),
+          PaintClose     = getId( 'PaintClose' );
 
     // const 調色功能
     const PaintBody      = getId( 'PaintBody' ),
-        PaintName      = getId( 'PaintName' ),
-        PaintPalette   = getId( 'PaintPalette' ),
-        PaintColorcode = getId( 'PaintColorcode' ),
-        PaintHex       = getId( 'PaintHex' ),
-        PaintR         = getId( 'PaintR' ),
-        PaintG         = getId( 'PaintG' ),
-        PaintB         = getId( 'PaintB' ),
-        PaintH         = getId( 'PaintH' ),
-        PaintS         = getId( 'PaintS' ),
-        PaintL         = getId( 'PaintL' ),
-        PaintInput     = queAll( '.paint-input-li > input' ),
-        PaintNum       = queAll( '.paint-input-num' );
+          PaintName      = getId( 'PaintName' ),
+          PaintPalette   = getId( 'PaintPalette' ),
+          PaintColorcode = getId( 'PaintColorcode' ),
+          PaintHex       = getId( 'PaintHex' ),
+          PaintR         = getId( 'PaintR' ),
+          PaintG         = getId( 'PaintG' ),
+          PaintB         = getId( 'PaintB' ),
+          PaintH         = getId( 'PaintH' ),
+          PaintS         = getId( 'PaintS' ),
+          PaintL         = getId( 'PaintL' ),
+          PaintInput     = queAll( '.paint-input-li > input' ),
+          PaintNum       = queAll( '.paint-input-num' );
 
     // var
     var Paint_Len    = PaintPointers.length,
@@ -560,16 +560,33 @@
         queAll( '.' + c ).forEach( o => o.style.fill = s );
     })
 
+    // Animate --------------------------------------------------
+
+    // const
+    const AnimateImg = getId( 'AnimateImg' ),
+          AnimateBtn = queAll( '.animate-btn' );
+
+    AnimateBtn.forEach( el => {
+
+        el.onclick = () => {
+
+            queOne( '.animate-btn.--click' ).classList.remove( '--click' );
+            el.classList.add( '--click' );
+            
+            AnimateImg.setAttribute( 'class' , el.value );
+        }
+    })
+
     // Skill --------------------------------------------------
 
     // const 
     const SkillBtnLs = getId( 'SkillBtnLs' ),
-        SkillLs    = getId( 'SkillLs' ),
-        SkillLoad  = getId( 'SkillLoad' ),
-        SkillFull  = getId( 'SkillFull' ),
-        SkillTitle = getId( 'SkillTitle' ),
-        SkillDesc  = getId( 'SkillDesc' ),
-        SkillClose = getId( 'SkillClose' );
+          SkillLs    = getId( 'SkillLs' ),
+          SkillLoad  = getId( 'SkillLoad' ),
+          SkillFull  = getId( 'SkillFull' ),
+          SkillTitle = getId( 'SkillTitle' ),
+          SkillDesc  = getId( 'SkillDesc' ),
+          SkillClose = getId( 'SkillClose' );
 
     // var
     var Skill_Btns  = [],
@@ -702,7 +719,7 @@
         for( let i = 0 ; i < data[ 0 ].length ; i++ ) {
 
             SkillBtnLs.insertAdjacentHTML( 'beforeend' ,
-                `<button class="skill-btn-li __rad4px __tran100ms"
+                `<button class="skill-btn-li __rad4px __tran200ms"
                     value="${ data[ 0 ][ i ] }" onclick="SkillKind(${ i + 1 })">
                     ${ data[ 0 ][ i ] }
                 </button>`

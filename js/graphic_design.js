@@ -4,11 +4,11 @@
 
     // const
     const Slider      = getId( 'Slider' ),
-        SliderBoard = getId( 'SliderBoard' ),
-        SliderPlay  = getId( 'SliderPlay' ),
-        SliderPause = getId( 'SliderPause' ),
-        SliderBtn   = queAll( '.slider-btn-li' ),
-        SliderImg   = queAll( '.slider-img-li' );
+          SliderBoard = getId( 'SliderBoard' ),
+          SliderPlay  = getId( 'SliderPlay' ),
+          SliderPause = getId( 'SliderPause' ),
+          SliderBtn   = queAll( '.slider-btn-li' ),
+          SliderImg   = queAll( '.slider-img-li' );
 
     // var
     var Slider_Len  = SliderBtn.length,
@@ -103,37 +103,36 @@
 
     // const 搜尋
     const BlogAi       = getId( 'BlogAi' ),
-        BlogPs       = getId( 'BlogPs' ),
-        BlogCheck    = queAll( '.blog-find-check' ),
-        BlogSort     = getId( 'BlogSort' ),
-        BlogSortIcon = queAll( '.blog-find-sort-state' ),
-        BlogText     = getId( 'BlogText' ),
-        BlogClear    = getId( 'BlogClear' ),
-        BlogSearch   = getId( 'BlogSearch' );
+          BlogPs       = getId( 'BlogPs' ),
+          BlogSort     = getId( 'BlogSort' ),
+          BlogSortIcon = queAll( '.blog-find-sort-state' ),
+          BlogText     = getId( 'BlogText' ),
+          BlogClear    = getId( 'BlogClear' ),
+          BlogSearch   = getId( 'BlogSearch' );
 
     // const 狀態
     const BlogPrint    = getId( 'BlogPrint' ),
-        BlogBigpic   = getId( 'BlogBigpic' ),
-        BlogList     = getId( 'BlogList' );
+          BlogBigpic   = getId( 'BlogBigpic' ),
+          BlogList     = getId( 'BlogList' );
 
     // const 清單
     const BlogLs       = getId( 'BlogLs' ),
-        BlogAppend   = getId( 'BlogAppend' ),
-        BlogLoad     = getId( 'BlogLoad' ),
-        BlogWarn     = getId( 'BlogWarn' );
+          BlogAppend   = getId( 'BlogAppend' ),
+          BlogLoad     = getId( 'BlogLoad' ),
+          BlogWarn     = getId( 'BlogWarn' );
 
     // const 全屏
     const BlogFull     = getId( 'BlogFull' ),
-        BlogPrev     = getId( 'BlogPrev' ),
-        BlogNext     = getId( 'BlogNext' ),
-        BlogClose    = getId( 'BlogClose' ),
-        BlogAside    = getId( 'BlogAside' ),
-        BlogNum      = getId( 'BlogNum' ),
-        BlogName     = getId( 'BlogName' ),
-        BlogDate     = getId( 'BlogDate' ),
-        BlogTool     = getId( 'BlogTool' ),
-        BlogDesc     = getId( 'BlogDesc' ),
-        BlogImg      = getId( 'BlogImg' );
+          BlogPrev     = getId( 'BlogPrev' ),
+          BlogNext     = getId( 'BlogNext' ),
+          BlogClose    = getId( 'BlogClose' ),
+          BlogAside    = getId( 'BlogAside' ),
+          BlogNum      = getId( 'BlogNum' ),
+          BlogName     = getId( 'BlogName' ),
+          BlogDate     = getId( 'BlogDate' ),
+          BlogTool     = getId( 'BlogTool' ),
+          BlogDesc     = getId( 'BlogDesc' ),
+          BlogImg      = getId( 'BlogImg' );
 
     // var 搜尋功能
     var Blog_Ai,
