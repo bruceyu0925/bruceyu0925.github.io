@@ -836,7 +836,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
 }
 
 /* AnimateImg ---------------------------------------- */
@@ -856,12 +856,16 @@
     vertical-align: baseline;
 }
 
+/* --sunrise */
 #AnimateImg.--sunrise{}
 
+/* --midday */
 #AnimateImg.--midday{}
 
+/* --sunset */
 #AnimateImg.--sunset{}
 
+/* --night */
 #AnimateImg.--night{}
 
 /* AnimateBtn ---------------------------------------- */
@@ -869,58 +873,51 @@
 .animate-body{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: row;
+    position: relative;
+    background-color: rgba(255, 255, 255, .1);
+    height: 40px;
+    width: 284px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+#AnimateThumb,
+.animate-btn{
+    height: 28px;
+    width: 56px;
+}
+
+#AnimateThumb{
+    content: '';
+    display: block;
+    background-color: var(--light);
+    position: absolute;
+    left: 0;
+    margin-left: 12px;
+    z-index: 1;
 }
 
 .animate-btn{
-    position: relative;
     background-color: transparent;
     color: var(--light);
-    font-size: 18px;
-    padding: 6px 16px;
+    font-size: 16px;
     font-weight: 600;
     opacity: .5;
+    z-index: 2;
 }
 
-.animate-btn + .animate-btn{
-    margin-left: 16px;
-}
-
-.animate-btn::after{
-    content: '';
-    position: absolute;
-    background-color: var(--light);
-    bottom: 0;
-    left: 50%;
-    width: 0%;
-    height: 2px;
-    border-radius: 1px;
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-    -ms-border-radius: 1px;
-    -o-border-radius: 1px;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transition-duration: 200ms;
-}
-
-.animate-btn.--click,
-.animate-btn:hover{
+.animate-btn:hover,
+.animate-btn.--click{
     opacity: 1;
-    transform: translateY(-2px);
-    -webkit-transform: translateY(-2px);
-    -moz-transform: translateY(-2px);
-    -ms-transform: translateY(-2px);
-    -o-transform: translateY(-2px);
 }
 
-.animate-btn.--click.animate-btn::after,
-.animate-btn:hover.animate-btn::after{
-    width: 100%;
+.animate-btn.--click{
+    color: var(--iron);
 }
 
 /* Skill ---------------------------------------- */
@@ -962,7 +959,7 @@
     color: var(--light);
     font-size: 18px;
     padding: 6px 16px;
-    opacity: .5;
+    opacity: .4;
     font-family: 'myfutura';
 }
 
@@ -994,11 +991,7 @@
 .skill-btn-li.--click,
 .skill-btn-li:hover{
     opacity: 1;
-    transform: translateY(-2px);
-    -webkit-transform: translateY(-2px);
-    -moz-transform: translateY(-2px);
-    -ms-transform: translateY(-2px);
-    -o-transform: translateY(-2px);
+    padding: 4px 16px 8px;
 }
 
 .skill-btn-li.--click.skill-btn-li::after,
@@ -1254,12 +1247,6 @@
     }
     .paint-blog-desc {
         font-size: .7rem;
-    }
-    .animate-btn{
-        font-size: 14px;
-    }
-    .animate-btn+.animate-btn{
-        margin-left: 10px;
     }
     .skill-btn-li{
         font-size: 14px;
