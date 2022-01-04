@@ -4,10 +4,6 @@ queOne = n => document.querySelector( n );
 queAll = n => document.querySelectorAll( n );
 GAS    = n => `https://script.google.com/macros/s/${ n }/exec`;
 
-// // const request（中斷請求，研究中）
-// const Controller = new AbortController(),
-//       Signal     = Controller.signal;
-
 // const dom
 const Html      = getId( 'Html' ),
       Header    = getId( 'Header' ),
@@ -157,6 +153,3 @@ window.onscroll = () => {
     //     if ( w > h ) el.classList.remove( '--scroll' );
     // })
 }
-
-// carry out 版號
-getId( 'Version' ).innerHTML = 'v3.1.0';
