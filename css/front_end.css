@@ -859,13 +859,16 @@
     transform-origin: 50% 90%;
 }
 .ani-glow,
+.ani-corona{
+    opacity:0.15;
+}
+.ani-cloud{
+    opacity:0.5;
+}
+.ani-glow,
 .ani-corona,
 .ani-cloud{
     fill:#fff;
-}
-.ani-glow,
-.ani-corona{
-    opacity:0.15;
 }
 .ani-star,
 .ani-moon{
@@ -874,26 +877,16 @@
 .ani-sun{
     fill:#fffeeb;
 }
-.ani-cloud{
-    opacity:0.5;
+.ani-sun,
+.ani-star,
+.ani-moon{
+    filter: drop-shadow( 0 0 10px rgba(255,255,255,.7));
+    -webkit-filter: drop-shadow( 0 0 10px rgba(255,255,255,.7));
 }
 #AnimateImg *{
     transition-duration: 500ms;
-}
-/* .ani-sky,
-.ani-rotate,
-.ani-mount3,
-.ani-mount2,
-.ani-mount1,
-.ani-lake{
     transition-delay: 100ms;
 }
-.ani-glow,
-.ani-corona,
-.ani-cloud,
-.ani-star{
-    transition-delay: 600ms;
-} */
 
 /* --sunrise ---------------------------------------- */
 #AnimateImg.--sunrise > .ani-rotate{
@@ -924,6 +917,7 @@
     -moz-transform: translateX(30%);
     -ms-transform: translateX(30%);
     -o-transform: translateX(30%);
+    transition-delay: 600ms;
 }
 #AnimateImg.--sunrise > .ani-glow{
     opacity: 0;
@@ -974,6 +968,10 @@
 #AnimateImg.--midday > .ani-lake{
     fill: #bad8f1;
 }
+#AnimateImg.--midday > .ani-corona,
+#AnimateImg.--midday > .ani-cloud{
+    transition-delay: 600ms;
+}
 
 /* --sunset ---------------------------------------- */
 #AnimateImg.--sunset > .ani-rotate{
@@ -1010,6 +1008,10 @@
 }
 #AnimateImg.--sunset > .ani-lake{
     fill: #fae1a4;
+}
+#AnimateImg.--sunset > .ani-glow,
+#AnimateImg.--sunset > .ani-cloud{
+    transition-delay: 600ms;
 }
 
 /* --night ---------------------------------------- */
@@ -1053,6 +1055,9 @@
 #AnimateImg.--night > .ani-lake{
     fill: #344752;
 }
+#AnimateImg.--night > .ani-star{
+    transition-delay: 600ms;
+}
 
 /* AnimateBtn ---------------------------------------- */
 
@@ -1064,7 +1069,7 @@
     position: relative;
     background-color: rgba(255, 255, 255, .1);
     height: 40px;
-    width: 284px;
+    width: 300px;
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -1075,7 +1080,7 @@
 #AnimateThumb,
 .animate-btn{
     height: 28px;
-    width: 56px;
+    width: 60px;
 }
 
 #AnimateThumb{
@@ -1098,6 +1103,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .animate-btn:hover,
