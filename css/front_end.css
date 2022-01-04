@@ -871,17 +871,18 @@
     fill:#fff;
 }
 .ani-star,
-.ani-moon{
-    fill:#fffef5;
-}
+.ani-moon,
 .ani-sun{
     fill:#fffeeb;
 }
-.ani-sun,
-.ani-star,
-.ani-moon{
-    filter: drop-shadow( 0 0 10px rgba(255,255,255,.7));
-    -webkit-filter: drop-shadow( 0 0 10px rgba(255,255,255,.7));
+.ani-star{
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+.ani-blur{
+    fill:#fffeeb;
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
 }
 #AnimateImg *{
     transition-duration: 500ms;
@@ -889,6 +890,9 @@
 }
 
 /* --sunrise ---------------------------------------- */
+#AnimateImg.--sunrise > .ani-sky{
+    fill: #edb48c;
+}
 #AnimateImg.--sunrise > .ani-rotate{
     transform: rotate(60deg);
     -webkit-transform: rotate(60deg);
@@ -898,9 +902,6 @@
 }
 #AnimateImg.--sunrise > .ani-corona{
     opacity: 0;
-}
-#AnimateImg.--sunrise > .ani-sky{
-    fill: url(#AniSunrise);
 }
 #AnimateImg.--sunrise > .ani-mount3{
     fill:#a2938c;
@@ -974,15 +975,15 @@
 }
 
 /* --sunset ---------------------------------------- */
+#AnimateImg.--sunset > .ani-sky{
+    fill:#ecbd5e;
+}
 #AnimateImg.--sunset > .ani-rotate{
     transform: rotate(-55deg);
     -webkit-transform: rotate(-55deg);
     -moz-transform: rotate(-55deg);
     -ms-transform: rotate(-55deg);
     -o-transform: rotate(-55deg);
-}
-#AnimateImg.--sunset > .ani-sky{
-    fill:#ecbd5e;
 }
 #AnimateImg.--sunset > .ani-corona{
     opacity: 0;
@@ -1015,15 +1016,15 @@
 }
 
 /* --night ---------------------------------------- */
+#AnimateImg.--night > .ani-sky{
+    fill: #032340;
+}
 #AnimateImg.--night > .ani-rotate{
     transform: rotate(-190deg);
     -webkit-transform: rotate(-190deg);
     -moz-transform: rotate(-190deg);
     -ms-transform: rotate(-190deg);
     -o-transform: rotate(-190deg);
-}
-#AnimateImg.--night > .ani-sky{
-    fill:url(#AniNight);
 }
 #AnimateImg.--night > .ani-corona{
     opacity: 0;
