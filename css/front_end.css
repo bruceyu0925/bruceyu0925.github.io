@@ -872,17 +872,17 @@
 }
 .ani-star,
 .ani-moon,
-.ani-sun{
+.ani-sun,
+.ani-blur{
     fill:#fffeeb;
 }
 .ani-star{
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 .ani-blur{
-    fill:#fffeeb;
-    filter: blur(7px);
-    -webkit-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
 }
 #AnimateImg *{
     transition-duration: 500ms;
