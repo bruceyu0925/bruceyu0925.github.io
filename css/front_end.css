@@ -876,14 +876,6 @@
 .ani-blur{
     fill:#fffeeb;
 }
-.ani-star{
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-}
-.ani-blur{
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-}
 #AnimateImg *{
     transition-duration: 500ms;
     transition-delay: 100ms;
