@@ -6,6 +6,7 @@ GAS    = n => `https://script.google.com/macros/s/${ n }/exec`;
 
 // const dom
 const Html      = getId( 'Html' ),
+      Load      = getId( 'Load' ),
       Header    = getId( 'Header' ),
       NaviLs    = getId( 'NaviLs' ),
       BtnBurger = getId( 'BtnBurger' ),
@@ -98,7 +99,7 @@ ClickScroll = ( btn , obj , time = 600 ) => {
 // event 頁面讀取完畢
 window.onload = () => setTimeout( () => {
 
-    getId( 'Load' ).classList.add( '--hide' );
+    Load.classList.add( '--hide' );
     Banr.classList.add( '--show' );
     Html.classList.remove( '--lock' );
 
