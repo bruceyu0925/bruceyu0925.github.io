@@ -110,7 +110,7 @@
             el.setAttribute( 'data-color-' + set , s );
 
             if ( get !== 'set' ) {
-                queAll( '#PaintImg .' + n ).forEach( o => o.style.fill = s )
+                queAll( '.' + n ).forEach( o => o.style.fill = s )
             }
         })
     }
@@ -218,7 +218,7 @@
 
             o.setAttribute( 'data-color-set' , s );
             
-            queAll( '#PaintImg .' + c ).forEach( el =>
+            queAll( '.' + c ).forEach( el =>
                 el.style.fill = s
             )
         }
@@ -484,7 +484,7 @@
 
         o.setAttribute( 'data-color-set' , x );
         
-        queAll( '#PaintImg .' + n ).forEach( el => el.style.fill = x );
+        queAll( '.' + n ).forEach( el => el.style.fill = x );
     })
 
     // event 調色：Hex blur 設定顏色
