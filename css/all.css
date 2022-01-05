@@ -792,7 +792,7 @@ img::-moz-selection {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -1028,8 +1028,8 @@ img::-moz-selection {
 
 @media screen and (min-width: 1600px) {
     .__container {
-        padding-left: 15%;
-        padding-right: 15%;
+        padding-left: 13%;
+        padding-right: 13%;
     }
 }
 
@@ -1106,16 +1106,6 @@ img::-moz-selection {
         -ms-border-radius: 0;
         -o-border-radius: 0;
     }
-    #Banr {
-        flex-direction: column-reverse;
-    }
-    .banr-head {
-        width: auto;
-        margin: 40px 0;
-    }
-    .banr-body {
-        width: 90%;
-    }
     .banr-webname {
         font-size: 1.9rem;
     }
@@ -1160,6 +1150,16 @@ img::-moz-selection {
     }
     .navi-ls {
         top: 60px;
+    }
+    #Banr {
+        flex-direction: column-reverse;
+    }
+    .banr-head {
+        width: auto;
+        margin: 40px 0;
+    }
+    .banr-body {
+        width: 90%;
     }
     .base-row,
     .base-row-re {
