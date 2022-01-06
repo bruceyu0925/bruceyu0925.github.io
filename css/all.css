@@ -264,6 +264,10 @@ img::-moz-selection {
     overflow: hidden;
 }
 
+.load-path{
+    fill:var(--iron);
+}
+
 .load-text {
     margin-top: 24px;
     display: flex;
@@ -1021,6 +1025,16 @@ img::-moz-selection {
 /* RWD ---------------------------------------- */
 
 @media screen and (orientation: portrait) {
+    #Banr {
+        flex-direction: column-reverse;
+    }
+    .banr-head {
+        width: auto;
+        margin: 40px 0;
+    }
+    .banr-body {
+        width: 70%;
+    }
     .base {
         min-height: 50vh;
     }
