@@ -219,6 +219,10 @@ a {
     text-decoration: none;
 }
 
+img{
+    pointer-events: none!important;
+}
+
 #Html.--lock {
     overflow: hidden;
 }
