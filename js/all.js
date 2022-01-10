@@ -44,9 +44,7 @@ GetDate = ( dateObj = '' , timer = false , timeObj = '' ) => {
         }
     }
 
-    if ( timer === true ) {
-        f = ' ' + l[ 1 ].join( timeObj )
-    }
+    if ( timer ) f = ' ' + l[ 1 ].join( timeObj );
 
     return l[ 0 ].join( dateObj ) + f;
 }

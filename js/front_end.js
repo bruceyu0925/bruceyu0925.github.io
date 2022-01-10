@@ -333,7 +333,7 @@
     PaintDownload.onclick = () => {
 
         // 不支援：FB、IG
-        if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) === true ) {
+        if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) ) {
 
             alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案！' );
         
@@ -621,7 +621,7 @@
                 s = n[ 'Score' ],
                 c = SkillColor( s );
 
-            if ( k.match( e ) ){
+            if ( k.match( e ) ) {
                 
                 SkillLs.insertAdjacentHTML( 'beforeend' ,
                     `<li class="skill-li">
