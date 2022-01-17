@@ -1,4 +1,26 @@
 !function() {
+    
+    // Animate --------------------------------------------------
+
+    // const
+    const AnimateImg   = getId( 'AnimateImg' ),
+          AnimateThumb = getId( 'AnimateThumb' ),
+          AnimateBtn   = queAll( '.animate-btn' );
+
+    // event 切換按鈕
+    AnimateBtn.forEach( el => {
+
+        el.onclick = () => {
+
+            queOne( '.animate-btn.--click' ).classList.remove( '--click' );
+            el.classList.add( '--click' );
+
+            AnimateThumb.style.marginLeft = el.getAttribute( 'data-ani-loc' );
+            
+            AnimateImg.setAttribute( 'class' , el.value );
+        }
+    })
+
     // Paint --------------------------------------------------
 
     // const 畫板
@@ -558,27 +580,6 @@
         var c = el.getAttribute( 'data-color-class' ),
             s = el.getAttribute( 'data-color-save' );
         queAll( '.' + c ).forEach( o => o.style.fill = s );
-    })
-
-    // Animate --------------------------------------------------
-
-    // const
-    const AnimateImg   = getId( 'AnimateImg' ),
-          AnimateThumb = getId( 'AnimateThumb' ),
-          AnimateBtn   = queAll( '.animate-btn' );
-
-    // event 切換按鈕
-    AnimateBtn.forEach( el => {
-
-        el.onclick = () => {
-
-            queOne( '.animate-btn.--click' ).classList.remove( '--click' );
-            el.classList.add( '--click' );
-
-            AnimateThumb.style.marginLeft = el.getAttribute( 'data-ani-loc' );
-            
-            AnimateImg.setAttribute( 'class' , el.value );
-        }
     })
 
     // Skill --------------------------------------------------
