@@ -616,11 +616,11 @@
         for( let i = 0 ; i < Skill_Total ; i++ ) {
 
             var n = Skill_Array[ i ],
-                t = n[ 'Title' ],
-                d = n[ 'Desc' ],
-                k = n[ 'Kind' ],
-                s = n[ 'Score' ],
-                c = SkillColor( s );
+                t  = n[ 'Title' ],
+                d  = n[ 'Desc' ],
+                k  = n[ 'Kind' ].toString(),
+                s  = n[ 'Score' ],
+                c  = SkillColor( s );
 
             if ( k.match( e ) ) {
                 
@@ -711,30 +711,40 @@
         Html     .classList.remove( '--lock' );
     }
 
-    // carry out 取得Json
-    fetch( GAS( 'AKfycbxXLeyvQBab1BSNcpIIcQrz5DAyOg8gXqo9wqZ5M5zHtrkXE9ZUp5RhfFnsSS3r8AB7' ) , {
-        method: 'GET'
-
-    }).then( ( res ) => {
-        return res.json()
-
-    }).then( ( data ) => {
-
+    // carry out Get
+    Promise.all([
+        GAS( 'AKfycbyho-aJp41o7tmxSKUwR6DqB9Z54fawKHrCijXJcmnDoH0euucF0TPT_NZdpgqHu9iT' ),
+        GAS( 'AKfycbxLx2e6WSqDSTmkyoZWDZlJt2Wklz21qUEwi0d0By-e0o5l6L4HiUzs5Oqp7T01-Dg' )
+    
+    ].map( req =>
+    
+        fetch( req , {
+            method: 'GET'
+            
+        }).then( ( res ) => {
+            return res.json()
+            
+        }).then( ( data ) => {
+            return data
+        })
+    
+    )).then( ary => {
+        
         // 產生btn
-        for( let i = 0 ; i < data[ 0 ].length ; i++ ) {
+        for( let i = 0 ; i < ary[ 1 ].length ; i++ ) {
 
             SkillBtnLs.insertAdjacentHTML( 'beforeend' ,
                 `<button class="skill-btn-li __rad4px __tran200ms"
-                    value="${ data[ 0 ][ i ] }" onclick="SkillKind(${ i + 1 })">
-                    ${ data[ 0 ][ i ] }
+                    value="${ ary[ 1 ][ i ][ 'Id' ] }" onclick="SkillKind(${ i + 1 })">
+                    ${ ary[ 1 ][ i ][ 'Kind' ] }
                 </button>`
             )
         }
         Skill_Btns = queAll( '.skill-btn-li' );
 
         // 產生list
-        Skill_Array = data[ 1 ];
-        Skill_Total = data[ 1 ].length;
+        Skill_Array = ary[ 0 ];
+        Skill_Total = ary[ 0 ].length;
 
         Skill_Array.sort( ( a , b ) => {
             return b[ 'Score' ] - a[ 'Score' ]

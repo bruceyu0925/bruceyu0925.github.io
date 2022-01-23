@@ -305,7 +305,7 @@
 
         this.classList.toggle( '--on' );
 
-        if ( this.classList.contains( '--on' ) === true ) {
+        if ( this.classList.contains( '--on' ) ) {
             this.value = 'Illustrator'
 
         } else {
@@ -318,7 +318,7 @@
 
         this.classList.toggle( '--on' );
 
-        if ( this.classList.contains( '--on' ) === true ) {
+        if ( this.classList.contains( '--on' ) ) {
             this.value = 'Photoshop'
 
         } else {
