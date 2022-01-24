@@ -40,11 +40,11 @@
 
             while ( i-- ) {
 
-                if ( SliderBtn[ i ].classList.contains( '--run' ) === true ) {
+                if ( SliderBtn[ i ].classList.contains( '--run' ) ) {
 
                     i++;
 
-                    if ( i === SliderBtn.length ) i = 0;
+                    i === SliderBtn.length ? i = 0 : null;
 
                     SliderReset( i );
                 }

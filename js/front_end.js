@@ -224,12 +224,8 @@
             headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8' },
             body: JSON.stringify( { 'name' : b } )
 
-        }).then( ( res ) => {
-            return res.text()
-
-        }).then( ( data ) => {
-            console.log( data )
-
+        }).catch( ( err ) => {
+            alert( err )
         })
 
         for ( let i = 0 ; i < Paint_Len ; i++ ) {
@@ -723,9 +719,6 @@
             
         }).then( ( res ) => {
             return res.json()
-            
-        }).then( ( data ) => {
-            return data
         })
     
     )).then( ary => {
