@@ -291,7 +291,7 @@
             BlogPrev.classList.add( '--lock' );
             BlogNext.classList.add( '--lock' );
 
-        } else if ( Blog_Order === 0 ) {
+        } else if ( Blog_Order <= 0 ) {
             BlogPrev.classList.add( '--lock' );
             BlogNext.classList.remove( '--lock' );
 
