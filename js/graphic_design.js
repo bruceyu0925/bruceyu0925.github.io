@@ -1,3 +1,5 @@
+'use strict';
+
 !function() {
 
     // Slider --------------------------------------------------
@@ -16,7 +18,7 @@
         Slider_Add  = 1;
 
     // func 切換圖片
-    SliderReset = ( n ) => {
+    function SliderReset( n ) {
 
         queOne( '.slider-btn-li.--run' ) .classList.remove( '--run' );
         queOne( '.slider-img-li.--show' ).classList.remove( '--show' );
@@ -28,7 +30,7 @@
     }
 
     // func 輪播圖片
-    SliderTimer = () => {
+    function SliderTimer() {
 
         if ( Slider_Time < 30 ) {
 
@@ -147,7 +149,7 @@
         Blog_Count;
 
     // func Ajax請求
-    BlogAjax = () => {
+    function BlogData() {
 
         fetch( GAS( 'AKfycbxwwozBbZ4CYTLcPWSQlEsvB1EDmCtj8Wr9KnVnuCEELt4AC7f1mmuqSDNM0Dh2E2It' ) , {
             method: 'POST',
@@ -170,7 +172,7 @@
     }
 
     // func 輸出html
-    BlogHtml = () => {
+    function BlogHtml() {
 
         Blog_Count = queAll( '.blog-li' ).length;
 
@@ -194,7 +196,7 @@
                 if ( DeviceJudge() === true ) m = '';
 
                 BlogLs.insertAdjacentHTML( 'beforeend' ,
-                    `<li class="blog-li" onclick="BlogClick(${ Blog_Count })">
+                    `<li class="blog-li" value="${ Blog_Count }">
                         <span class="blog-li-num">${ num }</span>
                         <div class="blog-li-block">
                             ${ m }
@@ -205,16 +207,19 @@
                         <span class="blog-li-tool">${ tool }</span>
                         <span class="blog-li-date">${ date }</span>
                     </li>`
-                )
-
+                );
                 Blog_Count++;
             }
         }
+        queAll( '.blog-li' ).forEach( el => 
+            el.addEventListener( 'click' , BlogClick )    
+        );
+
         BlogShow();
-    }
+    };
 
     // func 顯示html
-    BlogShow = () => {
+    function BlogShow() {
 
         setTimeout( () => {
 
@@ -230,7 +235,7 @@
     }
 
     // func 判斷資料
-    BlogJudge = () => {
+    function BlogJudge() {
 
         // 判斷資料數量
         if ( Blog_Total === 0 ) {
@@ -252,15 +257,15 @@
     }
 
     // func 開啟全屏
-    BlogClick = ( n ) => {
+    function BlogClick() {
         BlogFull.classList.add( '--show' );
         Html    .classList.add( '--lock' );
-        Blog_Order = n;
+        Blog_Order = this.getAttribute( 'value' );
         BlogOpen();
     }
 
     // func 全屏功能
-    BlogOpen = () => {
+    function BlogOpen() {
 
         BlogAside.scroll( 0 , 0 );
 
@@ -290,7 +295,7 @@
             BlogPrev.classList.add( '--lock' );
             BlogNext.classList.remove( '--lock' );
 
-        } else if ( Blog_Order === Blog_Count - 1 ) {
+        } else if ( Blog_Order >= Blog_Count - 1 ) {
             BlogPrev.classList.remove( '--lock' );
             BlogNext.classList.add( '--lock' );
             
@@ -369,7 +374,7 @@
         BlogLs    .innerHTML = '';
         BlogPrint .innerHTML = '搜尋中...';
 
-        BlogAjax();
+        BlogData();
     }
 
     // event 顯示方式 - big picture
@@ -414,7 +419,7 @@
         Html    .classList.remove( '--lock' );
     }
 
-    // carry out 搜尋
+    // 搜尋
     BlogSearch.click();
 
 }()

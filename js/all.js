@@ -1,8 +1,10 @@
+'use strict';
+
 // func Module
-getId  = n => document.getElementById( n );
-queOne = n => document.querySelector( n );
-queAll = n => document.querySelectorAll( n );
-GAS    = n => `https://script.google.com/macros/s/${ n }/exec`;
+const getId  = n => document.getElementById( n ),
+      queOne = n => document.querySelector( n ),
+      queAll = n => document.querySelectorAll( n ),
+      GAS    = n => `https://script.google.com/macros/s/${ n }/exec`;
 
 // const dom
 const Html      = getId( 'Html' ),
@@ -15,10 +17,10 @@ const Html      = getId( 'Html' ),
       BanrAni   = queAll( '.banr-img-ani' ),
       Base1     = getId( 'Base1' ),
       BtnTop    = getId( 'BtnTop' ),
-      Scroll    = queAll( '.--scroll' ),
+      Scroll    = queAll( '.--scroll' );
 
 // func 取得現在日期時間
-GetDate = ( dateObj = '' , timer = false , timeObj = '' ) => {
+function GetDate( dateObj = '' , timer = false , timeObj = '' ) {
 
     var T = new Date(),
         l = [
@@ -33,7 +35,9 @@ GetDate = ( dateObj = '' , timer = false , timeObj = '' ) => {
                 T.getSeconds()  
             ]
         ],
-        f = '';
+        f = '',
+        i = 0,
+        r = 0;
 
     for ( i in l ) {
         for ( r in l[ i ] ) {
@@ -50,7 +54,7 @@ GetDate = ( dateObj = '' , timer = false , timeObj = '' ) => {
 }
 
 // func 裝置判斷
-DeviceJudge = ( device = '' ) => {
+function DeviceJudge( device = '' ) {
 
     var d = [ 'Android' , 'webOS' , 'iPhone' , 'iPad' , 'iPod' , 'BlackBerry' , 'Windows Phone' ];
 
@@ -69,7 +73,7 @@ DeviceJudge = ( device = '' ) => {
 }
 
 // func 點選螢幕滑動
-ClickScroll = ( btn , obj , time = 600 ) => {
+function ClickScroll( btn , obj , time = 600 ) {
 
     btn.disabled = true;
     Header.classList.remove( '--open' );

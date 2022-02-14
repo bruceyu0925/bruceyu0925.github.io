@@ -1156,6 +1156,7 @@
     padding: 6px 16px;
     opacity: .4;
     font-family: 'myfutura';
+    white-space: nowrap;
 }
 
 .skill-btn-li+.skill-btn-li{

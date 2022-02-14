@@ -1,3 +1,5 @@
+'use strict';
+
 !function() {
     
     // Animate --------------------------------------------------
@@ -81,7 +83,7 @@
         Paint_Height;
 
     // func 調色盤RWD
-    PaintResize = () => {
+    const PaintResize = () => {
 
         var w = window.innerWidth;
 
@@ -122,7 +124,7 @@
     var Picker = PaintPicker.color;
 
     // func 返回設定
-    PaintSet = ( get , set ) => {
+    const PaintSet = ( get , set ) => {
 
         PaintPointers.forEach( el => {
 
@@ -138,7 +140,7 @@
     }
 
     // func 請求圖庫資料
-    PaintBrowse = ( n ) => {
+    const PaintBrowse = ( n ) => {
 
         fetch( GAS( 'AKfycbzjpRHDa7AkMo65J9xTWuBH9VptRWMyXYYAfM62q2LfSfCmYJPkkm3jHbXsDsrthuoP' ) , {
             method: 'POST',
@@ -157,7 +159,7 @@
     }
 
     // func 輸出html
-    PaintHtml = () => {
+    const PaintHtml = () => {
 
         PaintList.innerHTML = ''; // 防止接收多個 Response
     
@@ -181,7 +183,7 @@
     
             PaintList.insertAdjacentHTML( 'beforeend' ,
                 `<li class="paint-blog-li">
-                    <div id="${ id }" class="paint-blog-block __sha4px __rad12px" onclick="PaintClick(${ i })">
+                    <div id="${ id }" class="paint-blog-block __sha4px __rad12px" value="${ i }">
                         <img class="__imgresp" src="${ src }" alt=${ name }>
                         <div class="paint-blog-aside">
                             <div class="paint-blog-title">${ name }</div>
@@ -198,12 +200,16 @@
                     </div>
                 </li>`
             )
-        }
+        };
+        queAll( '.paint-blog-block' ).forEach( el => 
+            el.addEventListener( 'click' , PaintClick )
+        );
+
         PaintShow();
     }
 
     // func 顯示html
-    PaintShow = () => {
+    const PaintShow = () => {
 
         PaintLoad.classList.remove( '--show' );
 
@@ -214,9 +220,9 @@
     }
 
     // func 套用圖庫＆回傳觀看次數
-    PaintClick = ( n ) => {
+    function PaintClick() {
 
-        var l = Paint_Array[ n ],
+        var l = Paint_Array[ this.getAttribute( 'value' ) ],
             b = l[ 'Name' ];
 
         fetch( GAS( 'AKfycbyv_Boek_RXT1XTIkWJQa-5NobUTIgvOMj9rrNCcoNzE3OwQN2ke6d-KP6XQVgE2YkY' ) , {
@@ -224,7 +230,7 @@
             headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8' },
             body: JSON.stringify( { 'name' : b } )
 
-        }).catch( ( err ) => {
+        }).catch( err  => {
             alert( err )
         })
 
@@ -255,7 +261,7 @@
     };
 
     // func 圖庫：點選排序
-    PaintSort = () => {
+    const PaintSort = () => {
         PaintList.innerHTML = '';
         PaintLoad.classList.add( '--show' );
         PaintMore.disabled = true;
@@ -568,10 +574,10 @@
         }
     })
 
-    // carry out 調色盤名稱
+    // 調色盤名稱
     PaintName.innerHTML = getId( 'PaintPointer01' ).getAttribute( 'data-color-name' );
 
-    // carry out 設定圖片顏色
+    // 設定圖片顏色
     PaintPointers.forEach( el => {
         var c = el.getAttribute( 'data-color-class' ),
             s = el.getAttribute( 'data-color-save' );
@@ -594,20 +600,68 @@
         Skill_Array = [],
         Skill_Total;
 
-    // func 切換類別
-    SkillKind = ( n ) => {
+
+    // Get
+    Promise.all([
+        GAS( 'AKfycbyho-aJp41o7tmxSKUwR6DqB9Z54fawKHrCijXJcmnDoH0euucF0TPT_NZdpgqHu9iT' ),
+        GAS( 'AKfycbxLx2e6WSqDSTmkyoZWDZlJt2Wklz21qUEwi0d0By-e0o5l6L4HiUzs5Oqp7T01-Dg' )
+    
+    ].map( req =>
+    
+        fetch( req , {
+            method: 'GET'
+            
+        }).then( ( res ) => {
+            return res.json()
+        })
+    
+    )).then( ary => {
         
-        var o = Skill_Btns[ n ];
+        // 產生btn
+        for( let i = 0 ; i < ary[ 1 ].length ; i++ ) {
+
+            SkillBtnLs.insertAdjacentHTML( 'beforeend' ,
+                `<button id="SkillBtn${ ary[ 1 ][ i ][ 'Id' ] }" value="${ ary[ 1 ][ i ][ 'Id' ] }" class="skill-btn-li __rad4px __tran200ms">
+                    ${ ary[ 1 ][ i ][ 'Kind' ] }
+                </button>`
+            )
+        };
+
+        queAll( '.skill-btn-li' ).forEach( el =>
+            el.addEventListener( 'click' , SkillKind )
+        );
+
+        // 產生list
+        Skill_Array = ary[ 0 ];
+        Skill_Total = ary[ 0 ].length;
+
+        Skill_Array.sort( ( a , b ) => {
+            return b[ 'Score' ] - a[ 'Score' ]
+        });
+
+        queOne( '.skill-btn-li' ).classList.add( '--click' );
+        SkillHtml( ary[ 1 ][ 0 ][ 'Id' ] );
+
+        // 結束loading
+        SkillLoad .classList.remove( '--show' );
+        SkillBtnLs.classList.add( '--show' );
+    });
+
+    // func 切換類別
+    function SkillKind() {
+
+        var d = this.getAttribute( 'id' ),
+            v = this.getAttribute( 'value' );
 
         SkillLs.innerHTML = '';
-        SkillHtml( o.value );
+        SkillHtml( v );
 
-        queOne( '.skill-btn-li.--click' ).classList.remove( '--click' );    
-        o.classList.add( '--click' );
+        queOne( '.skill-btn-li.--click' ).classList.remove( '--click' );
+        getId( d ).classList.add( '--click' );
     }
 
     // func 產生html
-    SkillHtml = ( e ) => {
+    const SkillHtml = ( e ) => {
 
         for( let i = 0 ; i < Skill_Total ; i++ ) {
 
@@ -622,7 +676,7 @@
                 
                 SkillLs.insertAdjacentHTML( 'beforeend' ,
                     `<li class="skill-li">
-                        <div class="skill-li-box __tran200ms __rad12px __sha16px" onclick="SkillOpen(${ i })">
+                        <div class="skill-li-box __tran200ms __rad12px __sha16px" value="${ i }">
                             <div class="skill-li-head">
                                 <p class="skill-li-title">${ t }</p>
                                 <p class="skill-li-desc">${ d }</p>
@@ -631,16 +685,18 @@
                             </div>
                         </div>
                     </li>`
-                )
+                );
                 SkillPiechart( 'Piechart' + i , s , c );
             }
-        }
+        };
+        queAll( '.skill-li-box' ).forEach( el =>
+            el.addEventListener( 'click' , SkillOpen )
+        );
     }
 
     // func 開啟全屏
-    SkillOpen = ( i ) => {
-
-        var n = Skill_Array[ i ],
+    function SkillOpen() {
+        var n = Skill_Array[ this.getAttribute( 'value' ) ],
             t = n[ 'Title' ],
             d = n[ 'Desc' ],
             s = n[ 'Score' ],
@@ -655,7 +711,7 @@
     }
 
     // func 顏色套用
-    SkillColor = ( v ) => {
+    const SkillColor = ( v ) => {
 
         var c;
             
@@ -672,7 +728,7 @@
     }
 
     // func 產生圓餅圖
-    SkillPiechart = ( id , score , color ) => {
+    const SkillPiechart = ( id , score , color ) => {
 
         getId( id ).innerHTML =
             `<svg class="circle __imgresp" viewBox="0 0 120 120">
@@ -706,48 +762,5 @@
         SkillFull.classList.remove( '--show' );
         Html     .classList.remove( '--lock' );
     }
-
-    // carry out Get
-    Promise.all([
-        GAS( 'AKfycbyho-aJp41o7tmxSKUwR6DqB9Z54fawKHrCijXJcmnDoH0euucF0TPT_NZdpgqHu9iT' ),
-        GAS( 'AKfycbxLx2e6WSqDSTmkyoZWDZlJt2Wklz21qUEwi0d0By-e0o5l6L4HiUzs5Oqp7T01-Dg' )
-    
-    ].map( req =>
-    
-        fetch( req , {
-            method: 'GET'
-            
-        }).then( ( res ) => {
-            return res.json()
-        })
-    
-    )).then( ary => {
-        
-        // 產生btn
-        for( let i = 0 ; i < ary[ 1 ].length ; i++ ) {
-
-            SkillBtnLs.insertAdjacentHTML( 'beforeend' ,
-                `<button class="skill-btn-li __rad4px __tran200ms"
-                    value="${ ary[ 1 ][ i ][ 'Id' ] }" onclick="SkillKind(${ i + 1 })">
-                    ${ ary[ 1 ][ i ][ 'Kind' ] }
-                </button>`
-            )
-        }
-        Skill_Btns = queAll( '.skill-btn-li' );
-
-        // 產生list
-        Skill_Array = ary[ 0 ];
-        Skill_Total = ary[ 0 ].length;
-
-        Skill_Array.sort( ( a , b ) => {
-            return b[ 'Score' ] - a[ 'Score' ]
-        });
-
-        SkillHtml( '' );
-
-        // 結束loading
-        SkillLoad .classList.remove( '--show' );
-        SkillBtnLs.classList.add( '--show' );
-    });
 
 }()
