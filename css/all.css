@@ -269,7 +269,7 @@ img::-moz-selection {
     position: relative;
     width: 200px;
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .load-path{
