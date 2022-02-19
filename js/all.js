@@ -107,7 +107,7 @@ window.onload = () => setTimeout( () => {
 
     BanrAni.forEach( el => el.classList.remove( '--hide' ) );
 
-} , 1300 );
+} , 3200 );
 
 // event 漢堡選單
 BtnBurger.onclick = () => Header.classList.toggle( '--open' );

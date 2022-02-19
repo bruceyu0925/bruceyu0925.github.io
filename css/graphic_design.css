@@ -254,14 +254,14 @@
     left: 0px;
 }
 .switch-li.--before > .switch-btn > .switch-btn-bef{
-    color: var(--iron);
+    color: var(--shark);
 }
 
 .switch-li.--after > .switch-btn > .switch-btn-thumb{
     left: 90px;
 }
 .switch-li.--after > .switch-btn > .switch-btn-aft{
-    color: var(--iron);
+    color: var(--shark);
 }
 
 /* Blog ---------------------------------------- */
@@ -342,7 +342,7 @@
     width: 100%;
     flex-direction: column;
     font-family: "myfutura";
-    color: var(--iron);
+    color: var(--shark);
 }
 
 #BlogNum {
@@ -397,7 +397,7 @@
     top: 20px;
     font-size: 24px;
     cursor: pointer;
-    color: var(--iron);
+    color: var(--shark);
     opacity: .5;
 }
 
@@ -438,7 +438,7 @@
     font-size: 16px;
     height: 40px;
     background-color: var(--light);
-    color: var(--iron);
+    color: var(--shark);
     padding: 0 16px;
     display: flex;
     flex-direction: row;
@@ -470,7 +470,7 @@
 .blog-find-check-box{
     width: 22px;
     height: 22px;
-    border: 3px solid var(--iron);
+    border: 3px solid var(--shark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -480,7 +480,7 @@
 
 #BlogAi.--on > .blog-find-check-box,
 #BlogPs.--on > .blog-find-check-box{
-    background-color: var(--iron);
+    background-color: var(--shark);
 }
 
 .blog-find-check-box > i{
