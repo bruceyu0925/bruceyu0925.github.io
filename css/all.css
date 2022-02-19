@@ -269,6 +269,7 @@ img::-moz-selection {
     position: relative;
     width: 200px;
     overflow: hidden;
+    margin-bottom: 40px;
 }
 
 .load-path{
@@ -961,6 +962,7 @@ img::-moz-selection {
         margin: 0;
     }
     .header-btn {
+        color: var(--shark);
         text-align: center;
         width: 175px;
         padding: 0;
