@@ -9,7 +9,7 @@
 
 :root {
     --dark: #282828;
-    --light:#f5fbfe;
+    --light:#f5f5f5;
     --shark: #444d64;
     --warn: #df265a;
     --blue1: #005ead;
@@ -487,7 +487,7 @@ img::-moz-selection {
 #Header.--slide::before,
 #Header.--open::before {
     height: 100%;
-    background-color: rgba(245, 251, 254, .97);
+    background-color: rgba(245, 245, 245, .97);
     box-shadow: 0 5px 5px rgba(0, 0, 0, .15);
 }
 
@@ -931,7 +931,7 @@ img::-moz-selection {
         -ms-border-radius: 0 0 0 25px;
         -o-border-radius: 0 0 0 25px;
         box-shadow: 0 10px 10px rgba(0, 0, 0, .15);
-        background-color: rgba(245, 251, 254, .97);
+        background-color: rgba(245, 245, 245, .97);
         overflow: hidden;
         transform: translateX(100%);
         -webkit-transform: translateX(100%);

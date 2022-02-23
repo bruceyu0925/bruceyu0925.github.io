@@ -1292,7 +1292,7 @@
     height: 100%;
     left: -100%;
     top: 0;
-    background: linear-gradient(to right ,rgba(245, 251, 254, 0),var(--light));
+    background: linear-gradient(to right ,rgba(245, 245, 245, 0),var(--light));
 }
 
 /* Circle ---------------------------------------- */
