@@ -72,17 +72,23 @@ function DeviceJudge( device = '' ) {
 }
 
 // func 點選螢幕滑動
-function ClickScroll( btn , obj , time = 600 ) {
+function ClickScroll( obj , time = 600 ) {
 
-    btn.disabled = true;
-    Header.classList.remove( '--open' );
-
-    var w = window.pageYOffset,
+    var b = [ '#BtnTop' , '#BtnMore' , '.header-btn' ],
+        w = window.pageYOffset,
         o = getId( obj ).offsetTop,
         i = 1,
         f = 50,
         h = ( o - w ) / f,
         t = time / f;
+
+    Header.classList.remove( '--open' );
+
+    b.forEach( el =>
+        queAll( el ).forEach( n =>
+            n.disabled = true
+        )
+    );
 
     var e = setInterval( () => {
 
@@ -92,7 +98,12 @@ function ClickScroll( btn , obj , time = 600 ) {
 
         } else {
             clearInterval( e );
-            btn.disabled = false;
+
+            b.forEach( el =>
+                queAll( el ).forEach( n =>
+                    n.disabled = false
+                )
+            )
         }
     } , t );
 }
@@ -112,10 +123,10 @@ window.onload = () => setTimeout( () => {
 BtnBurger.onclick = () => Header.classList.toggle( '--open' );
 
 // event 觀看更多
-BtnMore.onclick = function() { ClickScroll( this , 'Base1' , 400 ) };
+BtnMore.onclick = () => ClickScroll( 'Base1' , 400 );
 
 // event 置頂
-BtnTop.onclick = function() { ClickScroll( this , 'Banr' , 800 ) };
+BtnTop.onclick = () => ClickScroll( 'Banr' , 800 );
 
 // // event 若先點選，取消滑動執行
 // Scroll.forEach( el => {
