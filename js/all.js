@@ -15,7 +15,6 @@ const Html      = getId( 'Html' ),
       BtnMore   = getId( 'BtnMore'),
       Banr      = getId( 'Banr' ),
       BanrAni   = queAll( '.banr-img-ani' ),
-      Base1     = getId( 'Base1' ),
       BtnTop    = getId( 'BtnTop' ),
       Scroll    = queAll( '.--scroll' );
 
@@ -79,7 +78,7 @@ function ClickScroll( btn , obj , time = 600 ) {
     Header.classList.remove( '--open' );
 
     var w = window.pageYOffset,
-        o = obj.offsetTop,
+        o = getId( obj ).offsetTop,
         i = 1,
         f = 50,
         h = ( o - w ) / f,
@@ -113,10 +112,10 @@ window.onload = () => setTimeout( () => {
 BtnBurger.onclick = () => Header.classList.toggle( '--open' );
 
 // event 觀看更多
-BtnMore.onclick = function() { ClickScroll( this , Base1 , 400 ) };
+BtnMore.onclick = function() { ClickScroll( this , 'Base1' , 400 ) };
 
 // event 置頂
-BtnTop.onclick = function() { ClickScroll( this , Banr , 800 ) };
+BtnTop.onclick = function() { ClickScroll( this , 'Banr' , 800 ) };
 
 // // event 若先點選，取消滑動執行
 // Scroll.forEach( el => {
