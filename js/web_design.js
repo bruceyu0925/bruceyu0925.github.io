@@ -76,8 +76,7 @@
           PaintNum       = queAll( '.paint-input-num' );
 
     // var
-    var Paint_Len    = PaintPointers.length,
-        Paint_Array  = [],
+    var Paint_Array  = [],
         Paint_Total,
         Paint_Width,
         Paint_Height;
@@ -139,20 +138,29 @@
         })
     }
 
-    // func 請求圖庫資料
+    // func 取得資料 GET
     const PaintBrowse = ( n ) => {
 
-        fetch( GAS( 'AKfycbzjpRHDa7AkMo65J9xTWuBH9VptRWMyXYYAfM62q2LfSfCmYJPkkm3jHbXsDsrthuoP' ) , {
-            method: 'POST',
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8' },
-            body: JSON.stringify( { 'sort' : n } )
+        fetch( GAS( 'AKfycbwM-_7NzFHj0roNK-didJ5Qp2gwcewU752sw4GNcY-8F9M_YMPdlAQWpiX4A1xvsNaVTg' ) , {
+            method: 'GET'
 
-        }).then( ( res ) => {
+        }).then( res => {
             return res.json()
 
-        }).then( ( data ) => {
+        }).then( data => {
             Paint_Array = data;
             Paint_Total = data.length;
+
+            // 處理排序
+            Paint_Array.sort( ( a , b ) => {
+        
+                if( n === 'more' ) {
+                    return a[ 'Watch' ] < b[ 'Watch' ] ? 1 : -1
+        
+                } else if( n === 'new' ) {
+                    return a[ 'DateUpdate' ] > b[ 'DateUpdate' ] ? -1 : 1
+                }
+            });
 
             if ( PaintBlog.classList.contains( '--show' ) ) PaintHtml();
         })
@@ -165,31 +173,30 @@
     
         for ( let i = 0 ; i < Paint_Total ; i++ ) {
     
-            var n     = Paint_Array[ i ],
-                id    = 'PaintBlog' + i,
-                date  = n[ 'Date' ],
-                name  = n[ 'Name' ],
-                watch = n[ 'Watch' ],
-                src   = n[ 'Src' ];
+            var n          = Paint_Array[ i ],
+                name       = n[ 'Name' ],
+                watch      = n[ 'Watch' ],
+                src        = n[ 'Src' ],
+                dateupdate = n[ 'DateUpdate' ];
     
-            var s = new Date( date ),
+            var s = new Date( dateupdate ),
                 y = ( s.getFullYear()  ).toString(),
                 m = ( s.getMonth() + 1 ).toString(),
                 d = ( s.getDate()      ).toString();
     
             if ( m.length < 2 ) m = '0' + m;
             if ( d.length < 2 ) d = '0' + d;
-            date = y + '-' + m + '-' + d;
+            dateupdate = y + '-' + m + '-' + d;
     
             PaintList.insertAdjacentHTML( 'beforeend' ,
                 `<li class="paint-blog-li">
-                    <div id="${ id }" class="paint-blog-block __sha4px __rad12px" value="${ i }">
+                    <div class="paint-blog-block __sha4px __rad12px" value="${ i }">
                         <img class="__imgresp" src="${ src }" alt=${ name }>
                         <div class="paint-blog-aside">
                             <div class="paint-blog-title">${ name }</div>
                             <div class="paint-blog-desc">
                                 <span class="paint-blog-date">
-                                    ${ date }
+                                    ${ dateupdate }
                                 </span>
                                 <span class="paint-blog-watch">
                                     <i class="fas fa-eye"></i>
@@ -219,24 +226,22 @@
         PaintNew .disabled = false;
     }
 
-    // func 套用圖庫＆回傳觀看次數
+    // func 套用圖庫＆回傳觀看次數 PUT
     function PaintClick() {
 
-        var l = Paint_Array[ this.getAttribute( 'value' ) ],
-            b = l[ 'Name' ];
+        var n = Paint_Array[ this.getAttribute( 'value' ) ],
+            d = n[ 'Id' ];
 
-        fetch( GAS( 'AKfycbyv_Boek_RXT1XTIkWJQa-5NobUTIgvOMj9rrNCcoNzE3OwQN2ke6d-KP6XQVgE2YkY' ) , {
-            method: 'POST',
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8' },
-            body: JSON.stringify( { 'name' : b } )
+        fetch( GAS( 'AKfycbyNtTQv_FOXq_jf4n6D-a4pnjH_EncrBlS9WXGiuNgWpaDZ4Zjj8zP-chm3DQZAyzdY' ) + '?type=watch&id=' + d , {
+            method: 'POST'
 
         }).catch( err  => {
             alert( err )
         })
 
-        for ( let i = 0 ; i < Paint_Len ; i++ ) {
+        for ( let i = 0 ; i < PaintPointers.length ; i++ ) {
 
-            var s = l[ 'Clr' + i ],
+            var s = n[ 'Clr' + i ],
                 o = PaintPointers[ i ],
                 c = o.getAttribute( 'data-color-class' );
 
@@ -246,6 +251,7 @@
                 el.style.fill = s
             )
         }
+
         Picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
         PaintBlog.classList.remove( '--show' );
         Html     .classList.remove( '--lock' );
@@ -282,7 +288,7 @@
         MsgNamed.classList.remove( '--show' );
     }
 
-    // event 上傳：送出
+    // event 上傳：送出 POST
     BtnSend.onclick = () => {
 
         var n = InputName.value,
@@ -290,38 +296,36 @@
 
         if ( l >= 4 && l <= 20 ) {
 
-            fx = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' );
+            const fx = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' );
 
             var s = new XMLSerializer().serializeToString( PaintImg ),
-                b = 'data:image/svg+xml;base64,' + btoa( s ),
-                j = JSON.stringify({
-                    'date'    : GetDate( '/' , true , ':' ),
-                    'name'    : n,
-                    'color01' : fx( 0 ),
-                    'color02' : fx( 1 ),
-                    'color03' : fx( 2 ),
-                    'color04' : fx( 3 ),
-                    'color05' : fx( 4 ),
-                    'color06' : fx( 5 ),
-                    'color07' : fx( 6 ),
-                    'color08' : fx( 7 ),
-                    'color09' : fx( 8 ),
-                    'color10' : fx( 9 ),
-                    'img'     : b
-                })
+                b = 'data:image/svg+xml;base64,' + btoa( s );
 
             Html    .classList.remove( '--lock' );
             MsgNamed.classList.remove( '--show' );
 
-            fetch( GAS( 'AKfycbzzuSoIudNMfQh7jQHbm-GAWbNSeynqZkIv_Kgt2YMoC0KETt_Z2YoT4gtkTnY15ULM' ) , {
+            fetch( GAS( 'AKfycbzMcXYekQV2kc7LUPUhZ-sl3P8p-8NzIc3k3v83HkrtQJ1VFkuERCkdYUcTE5733n6O' ) , {
                 method: 'POST',
                 headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8' },
-                body: j
+                body: JSON.stringify({
+                    'name' : n,
+                    'src'  : b,
+                    'clr0' : fx( 0 ),
+                    'clr1' : fx( 1 ),
+                    'clr2' : fx( 2 ),
+                    'clr3' : fx( 3 ),
+                    'clr4' : fx( 4 ),
+                    'clr5' : fx( 5 ),
+                    'clr6' : fx( 6 ),
+                    'clr7' : fx( 7 ),
+                    'clr8' : fx( 8 ),
+                    'clr9' : fx( 9 )
+                })
         
-            }).then( ( res ) => {
+            }).then( res => {
                 return res.text()
         
-            }).then( ( data ) => {
+            }).then( data => {
 
                 Html.classList.add( '--lock' );
 
@@ -331,11 +335,12 @@
                 } else if ( data === 'Warn' ) {
                     MsgNamed.classList.add( '--show' );
                     InputWarn.innerHTML = '已有相同名稱！';
-
-                } else {
-                    MsgError.classList.add( '--show' )
                 }
+
+            }).catch( err => {
+                MsgError.classList.add( '--show' );
             })
+
         } else {
             InputWarn.innerHTML = '不符合命名規範！';
         }
@@ -596,12 +601,10 @@
           SkillClose = getId( 'SkillClose' );
 
     // var
-    var Skill_Btns  = [],
-        Skill_Array = [],
+    var Skill_Array = [],
         Skill_Total;
 
-
-    // Get
+    // GET
     Promise.all([
         GAS( 'AKfycbyho-aJp41o7tmxSKUwR6DqB9Z54fawKHrCijXJcmnDoH0euucF0TPT_NZdpgqHu9iT' ),
         GAS( 'AKfycbxLx2e6WSqDSTmkyoZWDZlJt2Wklz21qUEwi0d0By-e0o5l6L4HiUzs5Oqp7T01-Dg' )
@@ -611,7 +614,7 @@
         fetch( req , {
             method: 'GET'
             
-        }).then( ( res ) => {
+        }).then( res => {
             return res.json()
         })
     
@@ -621,7 +624,7 @@
         for( let i = 0 ; i < ary[ 1 ].length ; i++ ) {
 
             SkillBtnLs.insertAdjacentHTML( 'beforeend' ,
-                `<button id="SkillBtn${ ary[ 1 ][ i ][ 'Id' ] }" value="${ ary[ 1 ][ i ][ 'Id' ] }" class="skill-btn-li __rad4px __tran200ms">
+                `<button value="${ ary[ 1 ][ i ][ 'Id' ] }" class="skill-btn-li __rad4px __tran200ms">
                     ${ ary[ 1 ][ i ][ 'Kind' ] }
                 </button>`
             )

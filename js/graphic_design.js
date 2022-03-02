@@ -161,10 +161,10 @@
                 'text' : Blog_Text
             })
 
-        }).then( ( res ) => {
+        }).then( res => {
             return res.json()
 
-        }).then( ( data ) => {
+        }).then( data => {
             Blog_Array = data;
             Blog_Total = data.length;
             BlogHtml();
