@@ -652,14 +652,11 @@
     // func 切換類別
     function SkillKind() {
 
-        var d = this.getAttribute( 'id' ),
-            v = this.getAttribute( 'value' );
-
         SkillLs.innerHTML = '';
-        SkillHtml( v );
+        SkillHtml( this.getAttribute( 'value' ) );
 
         queOne( '.skill-btn-li.--click' ).classList.remove( '--click' );
-        getId( d ).classList.add( '--click' );
+        this.classList.add( '--click' );
     }
 
     // func 產生html
