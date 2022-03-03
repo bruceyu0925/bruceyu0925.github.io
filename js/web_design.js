@@ -82,7 +82,7 @@
         Paint_Height;
 
     // func 調色盤RWD
-    const PaintResize = () => {
+    function PaintResize() {
 
         var w = window.innerWidth;
 
@@ -123,7 +123,7 @@
     var Picker = PaintPicker.color;
 
     // func 返回設定
-    const PaintSet = ( get , set ) => {
+    function PaintSet( get , set ) {
 
         PaintPointers.forEach( el => {
 
@@ -139,7 +139,7 @@
     }
 
     // func 取得資料 GET
-    const PaintBrowse = ( n ) => {
+    function PaintBrowse( n ) {
 
         fetch( GAS( 'AKfycbwM-_7NzFHj0roNK-didJ5Qp2gwcewU752sw4GNcY-8F9M_YMPdlAQWpiX4A1xvsNaVTg' ) , {
             method: 'GET'
@@ -167,7 +167,7 @@
     }
 
     // func 輸出html
-    const PaintHtml = () => {
+    function PaintHtml() {
 
         PaintList.innerHTML = ''; // 防止接收多個 Response
     
@@ -216,7 +216,7 @@
     }
 
     // func 顯示html
-    const PaintShow = () => {
+    function PaintShow() {
 
         PaintLoad.classList.remove( '--show' );
 
@@ -258,6 +258,14 @@
         PaintList.innerHTML = '';
     }
 
+    // func 圖庫：點選排序
+    function PaintSort() {
+        PaintList.innerHTML = '';
+        PaintLoad.classList.add( '--show' );
+        PaintMore.disabled = true;
+        PaintNew .disabled = true;
+    }
+
     // event 畫面縮放
     window.onresize = () => {
 
@@ -265,14 +273,6 @@
         PaintResize();
         PaintPicker.resize( Paint_Width , Paint_Height );
     };
-
-    // func 圖庫：點選排序
-    const PaintSort = () => {
-        PaintList.innerHTML = '';
-        PaintLoad.classList.add( '--show' );
-        PaintMore.disabled = true;
-        PaintNew .disabled = true;
-    }
 
     // event 上傳鍵
     PaintUpload.onclick = () => {
@@ -296,9 +296,8 @@
 
         if ( l >= 4 && l <= 20 ) {
 
-            const fx = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' );
-
-            var s = new XMLSerializer().serializeToString( PaintImg ),
+            var p = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' ),
+                s = new XMLSerializer().serializeToString( PaintImg ),
                 b = 'data:image/svg+xml;base64,' + btoa( s );
 
             Html    .classList.remove( '--lock' );
@@ -310,16 +309,16 @@
                 body: JSON.stringify({
                     'name' : n,
                     'src'  : b,
-                    'clr0' : fx( 0 ),
-                    'clr1' : fx( 1 ),
-                    'clr2' : fx( 2 ),
-                    'clr3' : fx( 3 ),
-                    'clr4' : fx( 4 ),
-                    'clr5' : fx( 5 ),
-                    'clr6' : fx( 6 ),
-                    'clr7' : fx( 7 ),
-                    'clr8' : fx( 8 ),
-                    'clr9' : fx( 9 )
+                    'clr0' : p( 0 ),
+                    'clr1' : p( 1 ),
+                    'clr2' : p( 2 ),
+                    'clr3' : p( 3 ),
+                    'clr4' : p( 4 ),
+                    'clr5' : p( 5 ),
+                    'clr6' : p( 6 ),
+                    'clr7' : p( 7 ),
+                    'clr8' : p( 8 ),
+                    'clr9' : p( 9 )
                 })
         
             }).then( res => {
@@ -664,7 +663,7 @@
     }
 
     // func 產生html
-    const SkillHtml = ( e ) => {
+    function SkillHtml( e ) {
 
         for( let i = 0 ; i < Skill_Total ; i++ ) {
 
@@ -714,7 +713,7 @@
     }
 
     // func 顏色套用
-    const SkillColor = ( v ) => {
+    function SkillColor( v ) {
 
         var c;
             
@@ -731,7 +730,7 @@
     }
 
     // func 產生圓餅圖
-    const SkillPiechart = ( id , score , color ) => {
+    function SkillPiechart( id , score , color ) {
 
         getId( id ).innerHTML =
             `<svg class="circle __imgresp" viewBox="0 0 120 120">
