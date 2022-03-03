@@ -19,37 +19,30 @@ const Html      = getId( 'Html' ),
       Scroll    = queAll( '.--scroll' );
 
 // func 取得現在日期時間
-function GetDate( dateObj = '' , timer = false , timeObj = '' ) {
+function dateTran( date = null , split = '-' , time = false ) {
 
-    var T = new Date(),
-        l = [
-            [
-                T.getFullYear(),
-                T.getMonth() + 1,
-                T.getDate()     
-            ],
-            [ 
-                T.getHours(),
-                T.getMinutes(),
-                T.getSeconds()  
-            ]
-        ],
-        f = '',
-        i = 0,
-        r = 0;
+    var n;
+    date === null ? n = new Date() : n = new Date( date );
 
-    for ( i in l ) {
-        for ( r in l[ i ] ) {
-            l[ i ][ r ] = l[ i ][ r ].toString();
-            if ( l[ i ][ r ].length < 2 ) {
-                l[ i ][ r ] = '0' + l[ i ][ r ]
-            }
-        }
+    var Y = ( n.getFullYear()  ).toString(),
+        M = ( n.getMonth() + 1 ).toString(),
+        D = ( n.getDate()      ).toString(),
+        h = ( n.getHours()     ).toString(),
+        m = ( n.getMinutes()   ).toString(),
+        s = ( n.getSeconds()   ).toString();
+
+    if ( M.length < 2 ) M = '0' + M;
+    if ( D.length < 2 ) D = '0' + D;
+    if ( h.length < 2 ) h = '0' + h;
+    if ( m.length < 2 ) m = '0' + m;
+    if ( s.length < 2 ) s = '0' + s;
+
+    if( time === true ) {
+        return [ Y , M , D , h , m , s ].join( split );
+
+    } else {
+        return [ Y , M , D ].join( split );
     }
-
-    if ( timer ) f = ' ' + l[ 1 ].join( timeObj );
-
-    return l[ 0 ].join( dateObj ) + f;
 }
 
 // func 裝置判斷
@@ -65,14 +58,14 @@ function DeviceJudge( device = '' ) {
 
     for ( let i = 0 ; i < l ; i++ ) {
         if ( u.match( d[ i ] ) ) {
-            j = true
+            j = true;
         }
     }
-    return j
+    return j;
 }
 
 // func 點選螢幕滑動
-function ClickScroll( obj , time = 600 ) {
+function clickScroll( obj , time = 600 ) {
 
     var b = [ '#BtnTop' , '#BtnMore' , '.header-btn' ],
         w = window.pageYOffset,
@@ -85,9 +78,9 @@ function ClickScroll( obj , time = 600 ) {
     Header.classList.remove( '--open' );
 
     b.forEach( el =>
-        queAll( el ).forEach( n =>
+        queAll( el ).forEach( n => {
             n.disabled = true
-        )
+        })
     );
 
     var e = setInterval( () => {
@@ -100,9 +93,9 @@ function ClickScroll( obj , time = 600 ) {
             clearInterval( e );
 
             b.forEach( el =>
-                queAll( el ).forEach( n =>
-                    n.disabled = false
-                )
+                queAll( el ).forEach( n => {
+                    n.disabled = false;
+                })
             )
         }
     } , t );
@@ -123,10 +116,10 @@ window.onload = () => setTimeout( () => {
 BtnBurger.onclick = () => Header.classList.toggle( '--open' );
 
 // event 觀看更多
-BtnMore.onclick = () => ClickScroll( 'Base1' , 400 );
+BtnMore.onclick = () => clickScroll( 'Base1' , 400 );
 
 // event 置頂
-BtnTop.onclick = () => ClickScroll( 'Banr' , 800 );
+BtnTop.onclick = () => clickScroll( 'Banr' , 800 );
 
 // // event 若先點選，取消滑動執行
 // Scroll.forEach( el => {

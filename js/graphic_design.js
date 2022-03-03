@@ -287,21 +287,27 @@
         BlogImg.setAttribute( 'src' , src );
         BlogImg.setAttribute( 'alt' , alt );
 
-        if ( Blog_Total === 1 ) {
-            BlogPrev.classList.add( '--lock' );
-            BlogNext.classList.add( '--lock' );
+        switch( true ) {
 
-        } else if ( Blog_Order <= 0 ) {
-            BlogPrev.classList.add( '--lock' );
-            BlogNext.classList.remove( '--lock' );
+            case Blog_Total === 1:
+                BlogPrev.classList.add( '--lock' );
+                BlogNext.classList.add( '--lock' );
+                break;
 
-        } else if ( Blog_Order >= Blog_Count - 1 ) {
-            BlogPrev.classList.remove( '--lock' );
-            BlogNext.classList.add( '--lock' );
-            
-        } else {
-            BlogPrev.classList.remove( '--lock' );
-            BlogNext.classList.remove( '--lock' );
+            case Blog_Order <= 0:
+                BlogPrev.classList.add( '--lock' );
+                BlogNext.classList.remove( '--lock' );
+                break;
+
+            case Blog_Order >= Blog_Count - 1:
+                BlogPrev.classList.remove( '--lock' );
+                BlogNext.classList.add( '--lock' );
+                break;
+    
+            default:
+                BlogPrev.classList.remove( '--lock' );
+                BlogNext.classList.remove( '--lock' );
+                break;            
         }
     }
 

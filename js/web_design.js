@@ -86,21 +86,27 @@
 
         var w = window.innerWidth;
 
-        if ( w > 1200 ) {
-            Paint_Width  = 300;
-            Paint_Height = 200;
-            
-        } else if ( w > 600 ) {
-            Paint_Width  = 250;
-            Paint_Height = 200;
+        switch( true ) {
 
-        } else if ( w > 480 ) {
-            Paint_Width  = 200;
-            Paint_Height = 200;
+            case w > 1200:
+                Paint_Width  = 300;
+                Paint_Height = 200;
+                break;
 
-        } else {
-            Paint_Width  = 200;
-            Paint_Height = 150;
+            case w > 600:
+                Paint_Width  = 250;
+                Paint_Height = 200;
+                break;
+
+            case w > 480:
+                Paint_Width  = 200;
+                Paint_Height = 200;
+                break;
+
+            default:
+                Paint_Width  = 200;
+                Paint_Height = 150;
+                break;
         }
     }
     PaintResize();
@@ -178,15 +184,8 @@
                 watch      = n[ 'Watch' ],
                 src        = n[ 'Src' ],
                 dateupdate = n[ 'DateUpdate' ];
-    
-            var s = new Date( dateupdate ),
-                y = ( s.getFullYear()  ).toString(),
-                m = ( s.getMonth() + 1 ).toString(),
-                d = ( s.getDate()      ).toString();
-    
-            if ( m.length < 2 ) m = '0' + m;
-            if ( d.length < 2 ) d = '0' + d;
-            dateupdate = y + '-' + m + '-' + d;
+
+            dateupdate = dateTran( dateupdate , '-' , false );
     
             PaintList.insertAdjacentHTML( 'beforeend' ,
                 `<li class="paint-blog-li">
@@ -390,7 +389,7 @@
                 c.drawImage( i , 0 , 0 , w , h );
 
                 // 下載圖片準備
-                a.download = `BruceYuDesign ${ GetDate( '-' , true ) }.png`;
+                a.download = `BruceYuDesign ${ dateTran( null , '-' , true ) }.png`;
                 a.href     = PaintCanvas.toDataURL( 'image/png' );
 
                 // 開始動畫
@@ -440,18 +439,18 @@
     }
 
     // event 圖庫：排序 最多人
-    PaintMore.onclick = function () {
+    PaintMore.onclick = () => {
         PaintSort();
-        this    .classList.add( '--click' );
-        PaintNew.classList.remove( '--click' );
+        PaintMore.classList.add( '--click' );
+        PaintNew .classList.remove( '--click' );
         PaintBrowse( 'more' );
     }
 
     // event 圖庫：排序 最新
-    PaintNew.onclick = function () {
+    PaintNew.onclick = () => {
         PaintSort();
-        this     .classList.add( '--click' );
         PaintMore.classList.remove( '--click' );
+        PaintNew .classList.add( '--click' );
         PaintBrowse( 'new' );
     }
 
@@ -712,18 +711,17 @@
     // func 顏色套用
     function SkillColor( v ) {
 
-        var c;
-            
-        if ( v >= 80 ) {
-            c = '#15BCAB'
+        switch( true ) {
 
-        } else if ( v >= 60 ) {
-            c = '#FEB53F'
+            case v >= 80:
+                return '#15BCAB';
 
-        } else {
-            c = '#FE5A5F'
+            case v >= 60:
+                return '#FEB53F';
+
+            default:
+                return '#FE5A5F';
         }
-        return c
     }
 
     // func 產生圓餅圖
