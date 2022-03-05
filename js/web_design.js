@@ -225,13 +225,13 @@
         PaintNew .disabled = false;
     }
 
-    // func 套用圖庫＆回傳觀看次數 PUT
+    // func 套用圖庫＆回傳觀看次數 PATCH
     function PaintClick() {
 
         var n = Paint_Array[ this.getAttribute( 'value' ) ],
             d = n[ 'Id' ];
 
-        fetch( GAS( 'AKfycbyNtTQv_FOXq_jf4n6D-a4pnjH_EncrBlS9WXGiuNgWpaDZ4Zjj8zP-chm3DQZAyzdY' ) + '?type=watch&id=' + d , {
+        fetch( GAS( 'AKfycbyNtTQv_FOXq_jf4n6D-a4pnjH_EncrBlS9WXGiuNgWpaDZ4Zjj8zP-chm3DQZAyzdY' ) + '?id=' + d , {
             method: 'POST'
 
         }).catch( err  => {
