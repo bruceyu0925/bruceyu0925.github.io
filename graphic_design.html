@@ -311,68 +311,54 @@
                 <!-- BlogFind ---------------------------------------- -->
                 <div class="blog-find">
 
-                    <div class="blog-find-center">
-                        <div class="blog-find-break">
+                    <div class="blog-find-row" style="justify-content: center;">
 
-                            <button id="BlogAi" aria-label="有使用Illustrator" value="Illustrator"
-                                class="blog-find-btn __tran100ms __rad4px --on">
-                                <span class="blog-find-check-box">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                                <span class="">Illustrator</span>
-                            </button>
+                        <div id="BlogBlock">
 
-                            <button id="BlogPs" aria-label="有使用Photoshop" value="Photoshop"
-                                class="blog-find-btn __tran100ms __rad4px --on">
-                                <span class="blog-find-check-box">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                                <span class="">Photoshop</span>
-                            </button>
+                            <div class="blog-block-row">
 
-                        </div>
+                                <button id="BlogOption" class="blog-find-btn __tran100ms __rad50per">
+                                    <i class="fas fa-sliders-h"></i>
+                                </button>
 
-                        <div class="blog-find-break">
+                                <input id="BlogText" name="BlogText" type="text" autocomplete="off">
 
-                            <button id="BlogSort" aria-label="排序方式" value="new"
-                                class="blog-find-btn __tran100ms __rad4px">
-                                <div class="blog-find-sort-state --show" data-blog-sort="new">
-                                    <i class="fas fa-sort-amount-down"></i>
-                                    <span>由新到舊</span>
-                                </div>
-                                <div class="blog-find-sort-state" data-blog-sort="old">
-                                    <i class="fas fa-sort-amount-down-alt"></i>
-                                    <span>由舊到新</span>
-                                </div>
-                            </button>
+                                <button id="BlogClear" class="blog-find-btn __tran100ms __rad50per --hide">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
 
-                        </div>
+                                <button id="BlogSearch" class="blog-find-btn __tran100ms __rad50per">
+                                    <i class="fas fa-search"></i>
+                                </button>
 
-                        <div class="blog-find-break">
-
-                            <div class="blog-find-btn __tran100ms __rad4px">
-                                <input id="BlogText" class="" type="text" placeholder="Keywords" value="">
-                                <i id="BlogClear" class="fas fa-times-circle"></i>
                             </div>
 
-                            <button id="BlogSearch" aria-label="開始搜尋"
-                                class="blog-find-btn __tran100ms __rad4px">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div id="BlogOptionList" class="blog-block-row">
+                                <div class="blog-sort-ls">
+                                    <button value="new" class="blog-sort-li __rad4px --click">由新到舊</button>
+                                    <button value="old" class="blog-sort-li __rad4px">由舊到新</button>
+                                </div>
+                                <ul id="BlogKind" class=""></ul>
+                            </div>
 
                         </div>
 
                     </div>
 
-                    <div class="blog-find-between">
-                        <span id="BlogPrint" class=""></span>
+                    <div class="blog-find-row" style="justify-content: space-between;margin-top: 16px;">
+
+                        <span id="BlogPrint" class="">讀取中...</span>
+
                         <div class="blog-find-array">
-                            <button id="BlogBigpic" aria-label="大圖顯示" class="blog-find-array-btn __tran100ms __rad50per --click">
+
+                            <button aria-label="大圖顯示" value="--bigpic" class="blog-find-array-btn __tran100ms __rad50per --click">
                                 <i class="fas fa-th-large"></i>
                             </button>
-                            <button id="BlogList" aria-label="大圖顯示" class="blog-find-array-btn __tran100ms __rad50per">
+
+                            <button aria-label="清單顯示" value="--list" class="blog-find-array-btn __tran100ms __rad50per">
                                 <i class="fas fa-th-list"></i>
                             </button>
+
                         </div>
                     </div>
 
@@ -387,13 +373,16 @@
 
                 <!-- BlogAppend ---------------------------------------- -->
                 <div class="blog-append">
-                    <button id="BlogAppend" class="blog-find-btn __rad4px">
+
+                    <button id="BlogAppend" class="__rad4px --hide">
                         <i class="fas fa-arrow-alt-circle-down"></i>
                         Load more posters...
                     </button>
-                    <div id="BlogLoad" class="__loading">
+
+                    <div id="BlogLoad" class="__loading --show">
                         <img class="__imgresp" width="50" height="50" src="/image/load-light.svg" alt="Loading">
                     </div>
+
                 </div>
 
                 <!-- BlogFull ---------------------------------------- -->

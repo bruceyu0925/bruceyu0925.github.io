@@ -249,6 +249,27 @@ img::-moz-selection {
     background: transparent;
 }
 
+input[type="checkbox"]{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid var(--shark);
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+input[type="checkbox"][checked]{
+    background-image:  url("/image/checked.png") , linear-gradient( var(--shark) , var(--shark) );
+    background-size: contain;
+}
+
 /* loading ---------------------------------------- */
 
 #Load {
@@ -895,8 +916,8 @@ img::-moz-selection {
 
 @media screen and (min-width: 1600px) {
     .__container {
-        padding-left: 13%;
-        padding-right: 13%;
+        padding-left: 15%;
+        padding-right: 15%;
     }
 }
 
