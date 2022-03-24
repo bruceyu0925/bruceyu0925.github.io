@@ -316,6 +316,8 @@
 #BlogBlock{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
     background-color: var(--light);
     padding: 4px 16px;

@@ -194,13 +194,17 @@
             n.Kind = n.Kind.replace( ',' , ' , ' );
             
             // 新增Dom
+            var m;
+            if(  DeviceJudge() === true ) {
+                m = `<div class="blog-li-cover __tran200ms">
+                        <span class="blog-li-span __tran200ms">${ n.Title }</span>
+                    </div>`
+            }
+
             BlogLs.insertAdjacentHTML( 'beforeend' ,
                 `<li class="blog-li" data-order="${ Blog_Count }" data-id="${ n.Id }">
                     <span class="blog-li-num">${ n.Num }</span>
                     <div class="blog-li-block">
-                        <div class="blog-li-cover __tran200ms">
-                            <span class="blog-li-span __tran200ms">${ n.Title }</span>
-                        </div>
                         <img class="blog-li-img __tran200ms" alt="${ n.Title }"
                             style="top:${ n.Top };left:${ n.Left };" src="${ n.Src }">
                     </div>
