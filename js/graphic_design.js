@@ -33,21 +33,14 @@
     function SliderTimer() {
 
         if ( Slider_Time < 30 ) {
-
             Slider_Time = Slider_Time + Slider_Add
 
         } else {
-
             var i = Slider_Len;
-
             while ( i-- ) {
-
                 if ( SliderBtn[ i ].classList.contains( '--run' ) ) {
-
                     i++;
-
                     i === SliderBtn.length ? i = 0 : null;
-
                     SliderReset( i );
                 }
             }
@@ -71,14 +64,10 @@
 
     // event 點選切換
     SliderBtn.forEach( el => {
-
         el.onclick = () => {
-
             var i = Slider_Len;
-
             while ( i-- ) {
-
-                if ( SliderBtn[ i ] === el ) SliderReset( i );
+                SliderBtn[ i ] === el ? SliderReset( i ) : null;
             }
         }
     })
@@ -187,15 +176,23 @@
 
         data.forEach( n => {
 
+            // 編號
+            while( n.Num.toString().length < 3 ) {
+                n.Num = '0' + n.Num.toString()
+            };
+
             // 類別
             Blog_Kind.forEach( el =>
                 n.Kind = n.Kind.replace( el.Id.toString() , el.Kind )
             );
             n.Kind = n.Kind.replace( ',' , ' , ' );
+
+            // 日期
+            n.DateUpdate = dateTran( n.DateUpdate );
             
             // 新增Dom
-            var m;
-            if(  DeviceJudge() === true ) {
+            var m = '';
+            if(  DeviceJudge() === false ) {
                 m = `<div class="blog-li-cover __tran200ms">
                         <span class="blog-li-span __tran200ms">${ n.Title }</span>
                     </div>`
@@ -204,13 +201,13 @@
             BlogLs.insertAdjacentHTML( 'beforeend' ,
                 `<li class="blog-li" data-order="${ Blog_Count }" data-id="${ n.Id }">
                     <span class="blog-li-num">${ n.Num }</span>
-                    <div class="blog-li-block">
+                    <div class="blog-li-block">${ m }
                         <img class="blog-li-img __tran200ms" alt="${ n.Title }"
                             style="top:${ n.Top };left:${ n.Left };" src="${ n.Src }">
                     </div>
                     <span class="blog-li-name">${ n.Title }</span>
                     <span class="blog-li-tool">${ n.Kind }</span>
-                    <span class="blog-li-date">${ dateTran( n.DateUpdate ) }</span>
+                    <span class="blog-li-date">${ n.DateUpdate }</span>
                 </li>`
             );
             Blog_Array.push( n );
@@ -306,7 +303,9 @@
         Blog_Array = [];
         Blog_Tool  = [];
         queAll( '.blog-kind-check' ).forEach( el => {
-            el.hasAttribute( 'checked' ) ? Blog_Tool.push( el.value ) : null ;
+            el.hasAttribute( 'checked' ) ?
+                Blog_Tool.push( el.value ) :
+                null ;
         });
         Blog_Tool.join( ',' );
         Blog_Text = BlogText.value.toString().toLowerCase();
@@ -351,7 +350,7 @@
         var n = Blog_Array[ Blog_Order ];
         BlogNum .innerHTML = n.Num;
         BlogName.innerHTML = n.Title;
-        BlogDate.innerHTML = dateTran( n.DateUpdate );
+        BlogDate.innerHTML = n.DateUpdate;
         BlogTool.innerHTML = n.Kind;
         BlogDesc.innerHTML = n.Desc;
         BlogImg.setAttribute( 'src' , n.Src );
