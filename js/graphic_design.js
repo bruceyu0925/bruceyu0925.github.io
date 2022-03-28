@@ -203,7 +203,7 @@
                     <span class="blog-li-num">${ n.Num }</span>
                     <div class="blog-li-block">${ m }
                         <img class="blog-li-img __tran200ms" alt="${ n.Title }"
-                            style="top:${ n.Top };left:${ n.Left };" src="${ n.Src }">
+                            style="top:${ n.Top * 100 }%;left:${ n.Left * 100 }%;" src="${ n.Src }">
                     </div>
                     <span class="blog-li-name">${ n.Title }</span>
                     <span class="blog-li-tool">${ n.Kind }</span>
@@ -216,12 +216,14 @@
 
         // 設定圖片
         queAll( '.blog-li-img' ).forEach( el => {
-            if( el.offsetWidth > el.offsetHeight ) {
-                el.style.width  = 'auto';
-                el.style.height = '100%';
-            } else {
-                el.style.width  = '100%';
-                el.style.height = 'auto';
+            el.onload = () => {
+                if( el.offsetHeight > el.offsetWidth ) {
+                    el.style.width  = '100%';
+                    el.style.height = 'auto';
+                } else {
+                    el.style.width  = 'auto';
+                    el.style.height = '100%';
+                }
             }
         });
 
