@@ -192,7 +192,7 @@
             
             // 新增Dom
             var m = '';
-            if(  DeviceJudge() === false ) {
+            if( DeviceJudge() === false ) {
                 m = `<div class="blog-li-cover __tran200ms">
                         <span class="blog-li-span __tran200ms">${ n.Title }</span>
                     </div>`
