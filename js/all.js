@@ -67,7 +67,7 @@ function deviceJudge( device = '' ) {
 // func 點選螢幕滑動
 function clickScroll( obj , time = 600 ) {
 
-    var b = [ '#btnTop' , '#btnMore' , '.header-btn' ],
+    var b = [ '#BtnTop' , '#BtnMore' , '.header-btn' ],
         w = window.pageYOffset,
         o = getId( obj ).offsetTop,
         i = 1,
@@ -116,10 +116,10 @@ window.onload = () => setTimeout( () => {
 btnBurger.onclick = () => header.classList.toggle( '--open' );
 
 // event 觀看更多
-btnMore.onclick = () => clickscroll( 'Base1' , 400 );
+btnMore.onclick = () => clickScroll( 'Base1' , 400 );
 
 // event 置頂
-btnTop.onclick = () => clickscroll( 'banr' , 800 );
+btnTop.onclick = () => clickScroll( 'Banr' , 800 );
 
 // // event 若先點選，取消滑動執行
 // scroll.forEach( el => {
