@@ -8,7 +8,7 @@ const getId  = n => document.getElementById( n ),
 
 // const dom
 const html      = getId( 'Html' ),
-      load      = getId( 'Koad' ),
+      load      = getId( 'Load' ),
       header    = getId( 'Header' ),
       naviLs    = getId( 'NaviLs' ),
       btnBurger = getId( 'BtnBurger' ),
