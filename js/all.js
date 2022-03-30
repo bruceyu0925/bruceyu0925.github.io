@@ -7,16 +7,16 @@ const getId  = n => document.getElementById( n ),
       GAS    = n => `https://script.google.com/macros/s/${ n }/exec`;
 
 // const dom
-const Html      = getId( 'Html' ),
-      Load      = getId( 'Load' ),
-      Header    = getId( 'Header' ),
-      NaviLs    = getId( 'NaviLs' ),
-      BtnBurger = getId( 'BtnBurger' ),
-      BtnMore   = getId( 'BtnMore'),
-      Banr      = getId( 'Banr' ),
-      BanrAni   = queAll( '.banr-img-ani' ),
-      BtnTop    = getId( 'BtnTop' ),
-      Scroll    = queAll( '.--scroll' );
+const html      = getId( 'Html' ),
+      load      = getId( 'Koad' ),
+      header    = getId( 'Header' ),
+      naviLs    = getId( 'NaviLs' ),
+      btnBurger = getId( 'BtnBurger' ),
+      btnMore   = getId( 'BtnMore'),
+      banr      = getId( 'Banr' ),
+      banrAni   = queAll( '.banr-img-ani' ),
+      btnTop    = getId( 'BtnTop' ),
+      scroll    = queAll( '.--scroll' );
 
 // func 取得現在日期時間
 function dateTran( date = null , split = '-' , time = false ) {
@@ -46,7 +46,7 @@ function dateTran( date = null , split = '-' , time = false ) {
 }
 
 // func 裝置判斷
-function DeviceJudge( device = '' ) {
+function deviceJudge( device = '' ) {
 
     var d = [ 'Android' , 'webOS' , 'iPhone' , 'iPad' , 'iPod' , 'BlackBerry' , 'Windows Phone' ];
 
@@ -67,7 +67,7 @@ function DeviceJudge( device = '' ) {
 // func 點選螢幕滑動
 function clickScroll( obj , time = 600 ) {
 
-    var b = [ '#BtnTop' , '#BtnMore' , '.header-btn' ],
+    var b = [ '#btnTop' , '#btnMore' , '.header-btn' ],
         w = window.pageYOffset,
         o = getId( obj ).offsetTop,
         i = 1,
@@ -75,7 +75,7 @@ function clickScroll( obj , time = 600 ) {
         h = ( o - w ) / f,
         t = time / f;
 
-    Header.classList.remove( '--open' );
+    header.classList.remove( '--open' );
 
     b.forEach( el =>
         queAll( el ).forEach( n => {
@@ -104,25 +104,25 @@ function clickScroll( obj , time = 600 ) {
 // event 頁面讀取完畢
 window.onload = () => setTimeout( () => {
 
-    Load.classList.add( '--hide' );
-    Banr.classList.add( '--show' );
-    Html.classList.remove( '--lock' );
+    load.classList.add( '--hide' );
+    banr.classList.add( '--show' );
+    html.classList.remove( '--lock' );
 
-    BanrAni.forEach( el => el.classList.remove( '--hide' ) );
+    banrAni.forEach( el => el.classList.remove( '--hide' ) );
 
 } , 3200 );
 
 // event 漢堡選單
-BtnBurger.onclick = () => Header.classList.toggle( '--open' );
+btnBurger.onclick = () => header.classList.toggle( '--open' );
 
 // event 觀看更多
-BtnMore.onclick = () => clickScroll( 'Base1' , 400 );
+btnMore.onclick = () => clickscroll( 'Base1' , 400 );
 
 // event 置頂
-BtnTop.onclick = () => clickScroll( 'Banr' , 800 );
+btnTop.onclick = () => clickscroll( 'banr' , 800 );
 
 // // event 若先點選，取消滑動執行
-// Scroll.forEach( el => {
+// scroll.forEach( el => {
 //     el.onclick = () => {
 //         el.classList.remove( '--scroll' )
 //     }
@@ -131,27 +131,27 @@ BtnTop.onclick = () => clickScroll( 'Banr' , 800 );
 // event 滑動觸發
 window.onscroll = () => {
 
-    BanrAni.forEach( el => el.classList.remove( '--load' ) );
+    banrAni.forEach( el => el.classList.remove( '--load' ) );
     
     // 顯示
     if ( window.pageYOffset > 50 ) {
 
-        Header.classList.add( '--slide' );
-        BtnTop.classList.add( '--show' );
+        header.classList.add( '--slide' );
+        btnTop.classList.add( '--show' );
 
-        BanrAni.forEach( el => el.classList.add( '--hide' ) );
+        banrAni.forEach( el => el.classList.add( '--hide' ) );
 
     // 隱藏
     } else {
 
-        Header.classList.remove( '--slide' );
-        BtnTop.classList.remove( '--show' );
+        header.classList.remove( '--slide' );
+        btnTop.classList.remove( '--show' );
 
-        BanrAni.forEach( el => el.classList.remove( '--hide' ) );
+        banrAni.forEach( el => el.classList.remove( '--hide' ) );
     }
 
     // // 動畫
-    // Scroll.forEach( el => {
+    // scroll.forEach( el => {
 
     //     var h = el.offsetTop + el.innerHeight() * 1.5,
     //         w = window.innerHeight + window.pageYOffset;

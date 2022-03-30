@@ -1,130 +1,133 @@
 'use strict';
 
+// Slider --------------------------------------------------
+
 !function() {
 
-    // Slider --------------------------------------------------
-
     // const
-    const Slider      = getId( 'Slider' ),
-          SliderBoard = getId( 'SliderBoard' ),
-          SliderPlay  = getId( 'SliderPlay' ),
-          SliderPause = getId( 'SliderPause' ),
-          SliderBtn   = queAll( '.slider-btn-li' ),
-          SliderImg   = queAll( '.slider-img-li' );
+    const slider      = getId( 'Slider' ),
+          sliderBoard = getId( 'SliderBoard' ),
+          sliderPlay  = getId( 'SliderPlay' ),
+          sliderPause = getId( 'SliderPause' ),
+          sliderBtn   = queAll( '.slider-btn-li' ),
+          sliderImg   = queAll( '.slider-img-li' );
 
     // var
-    var Slider_Len  = SliderBtn.length,
-        Slider_Time = 0,
-        Slider_Add  = 1;
+    var _sliderTime = 0,
+        _sliderAdd  = 1;
 
     // func 切換圖片
-    function SliderReset( n ) {
+    function sliderReset( n ) {
 
         queOne( '.slider-btn-li.--run' ) .classList.remove( '--run' );
         queOne( '.slider-img-li.--show' ).classList.remove( '--show' );
 
-        SliderBtn[ n ].classList.add( '--run' );
-        SliderImg[ n ].classList.add( '--show' );
+        sliderBtn[ n ].classList.add( '--run' );
+        sliderImg[ n ].classList.add( '--show' );
 
-        Slider_Time = 0;
+        _sliderTime = 0;
     }
 
     // func 輪播圖片
-    function SliderTimer() {
+    function sliderTimer() {
 
-        if ( Slider_Time < 30 ) {
-            Slider_Time = Slider_Time + Slider_Add
+        if ( _sliderTime < 30 ) {
+            _sliderTime = _sliderTime + _sliderAdd
 
         } else {
-            var i = Slider_Len;
+            var i = sliderBtn.length;
             while ( i-- ) {
-                if ( SliderBtn[ i ].classList.contains( '--run' ) ) {
+                if ( sliderBtn[ i ].classList.contains( '--run' ) ) {
                     i++;
-                    i === SliderBtn.length ? i = 0 : null;
-                    SliderReset( i );
+                    i === sliderBtn.length ? i = 0 : null;
+                    sliderReset( i );
                 }
             }
         }
     }
 
     // event 播放/暫停
-    SliderBoard.onclick = () => {
+    sliderBoard.onclick = () => {
 
-        Slider     .classList.toggle( '--play' );
-        SliderPlay .classList.toggle( '--show' );
-        SliderPause.classList.toggle( '--show' );
+        slider     .classList.toggle( '--play' );
+        sliderPlay .classList.toggle( '--show' );
+        sliderPause.classList.toggle( '--show' );
 
-        if ( Slider.classList.contains( '--play' ) === true ) {
-            Slider_Add = 1
+        if ( slider.classList.contains( '--play' ) === true ) {
+            _sliderAdd = 1
 
         } else {
-            Slider_Add = 0
+            _sliderAdd = 0
         }
     }
 
     // event 點選切換
-    SliderBtn.forEach( el => {
+    sliderBtn.forEach( el => {
         el.onclick = () => {
-            var i = Slider_Len;
+            var i = sliderBtn.length;
             while ( i-- ) {
-                SliderBtn[ i ] === el ? SliderReset( i ) : null;
+                sliderBtn[ i ] === el ? sliderReset( i ) : null;
             }
         }
     })
 
     // event 輪播切換
-    setInterval( () => SliderTimer() , 100 )
+    setInterval( () => sliderTimer() , 100 )
 
-    // Switch --------------------------------------------------
+}()
 
-    queAll( '.switch-btn' ).forEach( el => {
-        el.onclick = () => {
-            el.parentElement.classList.toggle( '--after' );
-            el.parentElement.classList.toggle( '--before' );
-        }
-    })
+// Switch --------------------------------------------------
 
-    // Blog --------------------------------------------------
+queAll( '.switch-btn' ).forEach( el => {
+    el.onclick = () => {
+        el.parentElement.classList.toggle( '--after' );
+        el.parentElement.classList.toggle( '--before' );
+    }
+})
+
+// blog --------------------------------------------------
+
+!function() {
 
     // const 搜尋
-    const BlogBlock  = getId( 'BlogBlock' ),
-          BlogOption = getId( 'BlogOption' ),
-          BlogText   = getId( 'BlogText' ),
-          BlogClear  = getId( 'BlogClear' ),
-          BlogSearch = getId( 'BlogSearch' ),
-          BlogPrint  = getId( 'BlogPrint' );
+    const blogBlock  = getId( 'BlogBlock' ),
+          blogOption = getId( 'BlogOption' ),
+          blogText   = getId( 'BlogText' ),
+          blogClear  = getId( 'BlogClear' ),
+          blogSearch = getId( 'BlogSearch' ),
+          blogPrint  = getId( 'BlogPrint' );
 
     // const 清單
-    const BlogLs       = getId( 'BlogLs' ),
-          BlogAppend   = getId( 'BlogAppend' ),
-          BlogLoad     = getId( 'BlogLoad' ),
-          BlogWarn     = getId( 'BlogWarn' );
+    const blogLs     = getId( 'BlogLs' ),
+          blogAppend = getId( 'BlogAppend' ),
+          blogLoad   = getId( 'BlogLoad' ),
+          blogWarn   = getId( 'BlogWarn' );
 
     // const 全屏
-    const BlogFull     = getId( 'BlogFull' ),
-          BlogPrev     = getId( 'BlogPrev' ),
-          BlogNext     = getId( 'BlogNext' ),
-          BlogClose    = getId( 'BlogClose' ),
-          BlogAside    = getId( 'BlogAside' ),
-          BlogNum      = getId( 'BlogNum' ),
-          BlogName     = getId( 'BlogName' ),
-          BlogDate     = getId( 'BlogDate' ),
-          BlogTool     = getId( 'BlogTool' ),
-          BlogDesc     = getId( 'BlogDesc' ),
-          BlogImg      = getId( 'BlogImg' );
+    const blogFull  = getId( 'BlogFull' ),
+          blogPrev  = getId( 'BlogPrev' ),
+          blogNext  = getId( 'BlogNext' ),
+          blogClose = getId( 'BlogClose' ),
+          blogAside = getId( 'BlogAside' ),
+          blogNum   = getId( 'BlogNum' ),
+          blogName  = getId( 'BlogName' ),
+          blogDate  = getId( 'BlogDate' ),
+          blogTool  = getId( 'BlogTool' ),
+          blogDesc  = getId( 'BlogDesc' ),
+          blogImg   = getId( 'BlogImg' );
 
     // var 資料陣列
-    var Blog_Kind  = [],
-        Blog_Array = [],
-        Blog_Order = 0,
-        Blog_Total = 0,
-        Blog_Count = 0;
+    var _blogKind  = [],
+        _blogArray = [],
+        _blogOrder = 0,
+        _blogTotal = 0,
+        _blogCount = 0;
 
     // var 資料請求
-    var Blog_Page = 0,
-        Blog_Sort,
-        Blog_Tool = [],
-        Blog_Text;
+    var _blogPage = 0,
+        _blogSort,
+        _blogTool = [],
+        _blogText;
 
     // func GET類別
     fetch( GAS( 'AKfycbycpeSbczbsH2gNn9PYSXI8C8NoIPXCOK9hTHCPh6HdL9UM_oPgnBEbRqpCKtqDPfJk' ) , {
@@ -135,7 +138,7 @@
         
     }).then( data => {
 
-        Blog_Kind = data;
+        _blogKind = data;
 
         // 新增Dom
         for( let i = 0 ; i < data.length ; i++ ) {
@@ -152,11 +155,11 @@
             el.onclick = () => el.toggleAttribute( 'checked' )
         })
 
-        BlogSearch.click()
+        blogSearch.click()
     })
 
     // func GET資料
-    function BlogData( page , tool , text , sort ) {
+    function blogData( page , tool , text , sort ) {
 
         fetch( GAS( 'AKfycbwi9ZeGuMtffjXfcSHKdjPV0pard7uGyYkbHbFRRluxKmQD9Ii3K6YtumsAl0CrlEWh2g' ) + 
             `?len=12&page=${ page }&tool=${ tool }&text=${ text }&sort=${ sort }` , {
@@ -166,13 +169,13 @@
             return res.json()
 
         }).then( data => {
-            Blog_Total = data.len;
-            BlogHtml( data.data );
+            _blogTotal = data.len;
+            blogHtml( data.data );
         })
     }
 
     // func 輸出html
-    function BlogHtml( data ) {
+    function blogHtml( data ) {
 
         data.forEach( n => {
 
@@ -182,7 +185,7 @@
             };
 
             // 類別
-            Blog_Kind.forEach( el =>
+            _blogKind.forEach( el =>
                 n.Kind = n.Kind.replace( el.Id.toString() , el.Kind )
             );
             n.Kind = n.Kind.replace( ',' , ' , ' );
@@ -192,14 +195,14 @@
             
             // 新增Dom
             var m = '';
-            if( DeviceJudge() === false ) {
+            if( deviceJudge() === false ) {
                 m = `<div class="blog-li-cover __tran200ms">
                         <span class="blog-li-span __tran200ms">${ n.Title }</span>
                     </div>`
             }
 
-            BlogLs.insertAdjacentHTML( 'beforeend' ,
-                `<li class="blog-li" data-order="${ Blog_Count }" data-id="${ n.Id }">
+            blogLs.insertAdjacentHTML( 'beforeend' ,
+                `<li class="blog-li" data-order="${ _blogCount }" data-id="${ n.Id }">
                     <span class="blog-li-num">${ n.Num }</span>
                     <div class="blog-li-block">${ m }
                         <img class="blog-li-img __tran200ms" alt="${ n.Title }"
@@ -210,8 +213,8 @@
                     <span class="blog-li-date">${ n.DateUpdate }</span>
                 </li>`
             );
-            Blog_Array.push( n );
-            Blog_Count++;
+            _blogArray.push( n );
+            _blogCount++;
         });
 
         // 設定圖片
@@ -228,42 +231,42 @@
         });
 
         // 新增事件
-        queAll( '.blog-li' ).forEach( el => 
-            el.addEventListener( 'click' , BlogClick )    
+        queAll( '.blog-li' ).forEach( el =>
+            el.addEventListener( 'click' , blogClick )
         );
 
         // 讀取完畢
         switch( true ) {
 
-            case Blog_Total > Blog_Count:
-                BlogAppend.classList.remove( '--hide' );
+            case _blogTotal > _blogCount:
+                blogAppend.classList.remove( '--hide' );
                 break;
 
-            case Blog_Total <= Blog_Count:
-                BlogAppend.classList.add( '--hide' );
+            case _blogTotal <= _blogCount:
+                blogAppend.classList.add( '--hide' );
                 break;
         }
 
         switch( true ) {
 
-            case Blog_Total > 0:
-                BlogPrint.innerHTML = `${ Blog_Total }筆相符結果`;
-                BlogWarn.classList.remove( '--show' );
+            case _blogTotal > 0:
+                blogPrint.innerHTML = `${ _blogTotal }筆相符結果`;
+                blogWarn.classList.remove( '--show' );
                 break;
 
-            case Blog_Total === 0:
-                BlogPrint.innerHTML = `未搜尋到相關資料`;
-                BlogWarn.classList.add( '--show' );
+            case _blogTotal === 0:
+                blogPrint.innerHTML = `未搜尋到相關資料`;
+                blogWarn.classList.add( '--show' );
                 break;
         }
 
-        BlogLoad.classList.remove( '--show' );
-        BlogSearch.disabled = false;
+        blogLoad.classList.remove( '--show' );
+        blogSearch.disabled = false;
     };
 
     // event 搜尋功能 - 工具
-    BlogOption.onclick = () => {
-        BlogBlock.classList.toggle( '--show' )
+    blogOption.onclick = () => {
+        blogBlock.classList.toggle( '--show' )
     }
 
     // event 搜尋功能 - 排序
@@ -275,129 +278,129 @@
     })
 
     // event 搜尋功能 - 文字
-    BlogText.onkeyup = function() {
+    blogText.onkeyup = function() {
         this.value === '' ?
-            BlogClear.classList.add( '--hide' ):
-            BlogClear.classList.remove( '--hide' );
+            blogClear.classList.add( '--hide' ):
+            blogClear.classList.remove( '--hide' );
      }
 
     // event 搜尋功能 - 清空
-    BlogClear.onclick = function() {
+    blogClear.onclick = function() {
         this.classList.add( '--hide' );
-        BlogText.value = '';
+        blogText.value = '';
     }
 
     // event 搜尋功能 - 搜尋
-    BlogSearch.onclick = () => {
+    blogSearch.onclick = () => {
         
         // 讀取畫面
-        BlogSearch.disabled = true;
-        BlogAppend.classList.add( '--hide' );
-        BlogLoad  .classList.add( '--show' );
-        BlogWarn  .classList.remove( '--show' );
-        BlogBlock .classList.remove( '--show' );
-        BlogLs   .innerHTML = '';
-        BlogPrint.innerHTML = '搜尋中...';
+        blogSearch.disabled = true;
+        blogAppend.classList.add( '--hide' );
+        blogLoad  .classList.add( '--show' );
+        blogWarn  .classList.remove( '--show' );
+        blogBlock .classList.remove( '--show' );
+        blogLs   .innerHTML = '';
+        blogPrint.innerHTML = '搜尋中...';
 
         // 搜尋條件
-        Blog_Count = 0;
-        Blog_Page  = 0;
-        Blog_Array = [];
-        Blog_Tool  = [];
+        _blogCount = 0;
+        _blogPage  = 0;
+        _blogArray = [];
+        _blogTool  = [];
         queAll( '.blog-kind-check' ).forEach( el => {
             el.hasAttribute( 'checked' ) ?
-                Blog_Tool.push( el.value ) :
+                _blogTool.push( el.value ) :
                 null ;
         });
-        Blog_Tool.join( ',' );
-        Blog_Text = BlogText.value.toString().toLowerCase();
-        Blog_Sort = queOne( '.blog-sort-li.--click' ).value;
-        BlogData( Blog_Page , Blog_Tool , Blog_Text , Blog_Sort );
+        _blogTool.join( ',' );
+        _blogText = blogText.value.toString().toLowerCase();
+        _blogSort = queOne( '.blog-sort-li.--click' ).value;
+        blogData( _blogPage , _blogTool , _blogText , _blogSort );
     }
 
     // event 顯示方式
     queAll( '.blog-find-array-btn' ).forEach( el => {
         el.onclick = () => {
             var cl = queOne( '.blog-find-array-btn.--click' );
-            BlogLs.classList.remove( cl.value );
-            BlogLs.classList.add( el.value );
+            blogLs.classList.remove( cl.value );
+            blogLs.classList.add( el.value );
             cl.classList.remove( '--click' );
             el.classList.add( '--click' );
-            BlogLs.scroll( 0 , 0 )
+            blogLs.scroll( 0 , 0 )
         }
     })
 
     // event 加載按鈕
-    BlogAppend.onclick = () => {
-        Blog_Page++;
-        BlogAppend.classList.add( '--hide' );
-        BlogLoad  .classList.add( '--show' );
-        BlogData( Blog_Page , Blog_Tool , Blog_Text , Blog_Sort );
+    blogAppend.onclick = () => {
+        _blogPage++;
+        blogAppend.classList.add( '--hide' );
+        blogLoad  .classList.add( '--show' );
+        blogData( _blogPage , _blogTool , _blogText , _blogSort );
     }
 
 
     // func 開啟全屏
-    function BlogClick() {
-        BlogFull.classList.add( '--show' );
-        Html    .classList.add( '--lock' );
-        Blog_Order = this.getAttribute( 'data-order' );
-        BlogOpen();
+    function blogClick() {
+        blogFull.classList.add( '--show' );
+        html    .classList.add( '--lock' );
+        _blogOrder = this.getAttribute( 'data-order' );
+        blogOpen();
     }
 
     // func 全屏功能
-    function BlogOpen() {
+    function blogOpen() {
 
-        BlogAside.scroll( 0 , 0 );
+        blogAside.scroll( 0 , 0 );
 
-        var n = Blog_Array[ Blog_Order ];
-        BlogNum .innerHTML = n.Num;
-        BlogName.innerHTML = n.Title;
-        BlogDate.innerHTML = n.DateUpdate;
-        BlogTool.innerHTML = n.Kind;
-        BlogDesc.innerHTML = n.Desc;
-        BlogImg.setAttribute( 'src' , n.Src );
-        BlogImg.setAttribute( 'alt' , n.Title );
+        var n = _blogArray[ _blogOrder ];
+        blogNum .innerHTML = n.Num;
+        blogName.innerHTML = n.Title;
+        blogDate.innerHTML = n.DateUpdate;
+        blogTool.innerHTML = n.Kind;
+        blogDesc.innerHTML = n.Desc;
+        blogImg.setAttribute( 'src' , n.Src );
+        blogImg.setAttribute( 'alt' , n.Title );
 
         switch( true ) {
 
-            case Blog_Total === 1:
-                BlogPrev.classList.add( '--lock' );
-                BlogNext.classList.add( '--lock' );
+            case _blogTotal === 1:
+                blogPrev.classList.add( '--lock' );
+                blogNext.classList.add( '--lock' );
                 break;
 
-            case Blog_Order <= 0:
-                BlogPrev.classList.add( '--lock' );
-                BlogNext.classList.remove( '--lock' );
+            case _blogOrder <= 0:
+                blogPrev.classList.add( '--lock' );
+                blogNext.classList.remove( '--lock' );
                 break;
 
-            case Blog_Order >= Blog_Count - 1:
-                BlogPrev.classList.remove( '--lock' );
-                BlogNext.classList.add( '--lock' );
+            case _blogOrder >= _blogCount - 1:
+                blogPrev.classList.remove( '--lock' );
+                blogNext.classList.add( '--lock' );
                 break;
     
             default:
-                BlogPrev.classList.remove( '--lock' );
-                BlogNext.classList.remove( '--lock' );
+                blogPrev.classList.remove( '--lock' );
+                blogNext.classList.remove( '--lock' );
                 break;            
         }
     }
 
     // event 全屏 prev
-    BlogPrev.onclick = () => {
-        Blog_Order--;
-        BlogOpen();
+    blogPrev.onclick = () => {
+        _blogOrder--;
+        blogOpen();
     }
 
     // event 全屏 next
-    BlogNext.onclick = () => {
-        Blog_Order++;
-        BlogOpen();
+    blogNext.onclick = () => {
+        _blogOrder++;
+        blogOpen();
     }
 
     // event 全屏 close
-    BlogClose.onclick = () => {
-        BlogFull.classList.remove( '--show' );
-        Html    .classList.remove( '--lock' );
+    blogClose.onclick = () => {
+        blogFull.classList.remove( '--show' );
+        html    .classList.remove( '--lock' );
     }
 
 }()

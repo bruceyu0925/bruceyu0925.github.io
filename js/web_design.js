@@ -1,44 +1,46 @@
 'use strict';
 
+// Animate --------------------------------------------------
 !function() {
     
-    // Animate --------------------------------------------------
-
     // const
-    const AnimateImg   = getId( 'AnimateImg' ),
-          AnimateThumb = getId( 'AnimateThumb' ),
-          AnimateBtn   = queAll( '.animate-btn' );
+    const animateImg   = getId( 'AnimateImg' ),
+          animateThumb = getId( 'AnimateThumb' ),
+          animateBtn   = queAll( '.animate-btn' );
 
     // event 切換按鈕
-    AnimateBtn.forEach( el => {
+    animateBtn.forEach( el => {
 
         el.onclick = () => {
 
             queOne( '.animate-btn.--click' ).classList.remove( '--click' );
             el.classList.add( '--click' );
 
-            AnimateThumb.style.marginLeft = el.getAttribute( 'data-ani-loc' );
+            animateThumb.style.marginLeft = el.getAttribute( 'data-ani-loc' );
             
-            AnimateImg.setAttribute( 'class' , el.value );
+            animateImg.setAttribute( 'class' , el.value );
         }
     })
 
-    // Paint --------------------------------------------------
+}()
+
+// Paint --------------------------------------------------
+!function() {
 
     // const 畫板
-    const Paint          = getId( 'Paint' ),
-          PaintImg       = getId( 'PaintImg' ),
-          PaintCanvas    = getId( 'PaintCanvas' ),
-          PaintPointers  = queAll( '.paint-pointer-li' );
+    const paint          = getId( 'Paint' ),
+          paintImg       = getId( 'PaintImg' ),
+          paintCanvas    = getId( 'PaintCanvas' ),
+          paintPointers  = queAll( '.paint-pointer-li' );
 
     // const 功能鍵
-    const PaintUpload    = getId( 'PaintUpload' ),
-          PaintDownload  = getId( 'PaintDownload' ),
-          PaintEdit      = getId( 'PaintEdit' ),
-          PaintReset     = getId( 'PaintReset' ),
-          PaintCancel    = getId( 'PaintCancel' ),
-          PaintApply     = getId( 'PaintApply' ),
-          PaintBtn       = queAll( '.paint-btn-li' );
+    const paintUpload    = getId( 'PaintUpload' ),
+          paintDownload  = getId( 'PaintDownload' ),
+          paintEdit      = getId( 'PaintEdit' ),
+          paintReset     = getId( 'PaintReset' ),
+          paintCancel    = getId( 'PaintCancel' ),
+          paintApply     = getId( 'PaintApply' ),
+          paintBtn       = queAll( '.paint-btn-li' );
 
     // const 浮動視窗：上傳
     const MsgNamed       = getId( 'MsgNamed' ),
@@ -52,69 +54,69 @@
           InputWarn      = getId( 'InputWarn' );
 
     // const 浮動視窗：圖庫
-    const PaintLibrary   = getId( 'PaintLibrary' ),
-          PaintBlog      = getId( 'PaintBlog' ),
-          PaintMore      = getId( 'PaintMore' ),
-          PaintNew       = getId( 'PaintNew' ),
-          PaintList      = getId( 'PaintList' ),
-          PaintLoad      = getId( 'PaintLoad' ),
-          PaintClose     = getId( 'PaintClose' );
+    const paintLibrary   = getId( 'PaintLibrary' ),
+          paintBlog      = getId( 'PaintBlog' ),
+          paintMore      = getId( 'PaintMore' ),
+          paintNew       = getId( 'PaintNew' ),
+          paintList      = getId( 'PaintList' ),
+          paintLoad      = getId( 'PaintLoad' ),
+          paintClose     = getId( 'PaintClose' );
 
     // const 調色功能
-    const PaintBody      = getId( 'PaintBody' ),
-          PaintName      = getId( 'PaintName' ),
-          PaintPalette   = getId( 'PaintPalette' ),
-          PaintColorcode = getId( 'PaintColorcode' ),
-          PaintHex       = getId( 'PaintHex' ),
-          PaintR         = getId( 'PaintR' ),
-          PaintG         = getId( 'PaintG' ),
-          PaintB         = getId( 'PaintB' ),
-          PaintH         = getId( 'PaintH' ),
-          PaintS         = getId( 'PaintS' ),
-          PaintL         = getId( 'PaintL' ),
-          PaintInput     = queAll( '.paint-input-li > input' ),
-          PaintNum       = queAll( '.paint-input-num' );
+    const paintBody      = getId( 'PaintBody' ),
+          paintName      = getId( 'PaintName' ),
+          paintPalette   = getId( 'PaintPalette' ),
+          paintColorcode = getId( 'PaintColorcode' ),
+          paintHex       = getId( 'PaintHex' ),
+          paintR         = getId( 'PaintR' ),
+          paintG         = getId( 'PaintG' ),
+          paintB         = getId( 'PaintB' ),
+          paintH         = getId( 'PaintH' ),
+          paintS         = getId( 'PaintS' ),
+          paintL         = getId( 'PaintL' ),
+          paintInput     = queAll( '.paint-input-li > input' ),
+          paintNum       = queAll( '.paint-input-num' );
 
     // var
-    var Paint_Array  = [],
-        Paint_Total,
-        Paint_Width,
-        Paint_Height;
+    var _paintArray  = [],
+        _paintTotal,
+        _paintWidth,
+        _paintHeight;
 
     // func 調色盤RWD
-    function PaintResize() {
+    function paintResize() {
 
         var w = window.innerWidth;
 
         switch( true ) {
 
             case w > 1200:
-                Paint_Width  = 300;
-                Paint_Height = 200;
+                _paintWidth  = 300;
+                _paintHeight = 200;
                 break;
 
             case w > 600:
-                Paint_Width  = 250;
-                Paint_Height = 200;
+                _paintWidth  = 250;
+                _paintHeight = 200;
                 break;
 
             case w > 480:
-                Paint_Width  = 200;
-                Paint_Height = 200;
+                _paintWidth  = 200;
+                _paintHeight = 200;
                 break;
 
             default:
-                Paint_Width  = 200;
-                Paint_Height = 150;
+                _paintWidth  = 200;
+                _paintHeight = 150;
                 break;
         }
     }
-    PaintResize();
+    paintResize();
 
     // var 調色盤（ API: iro.js ）
-    var PaintPicker = new iro.ColorPicker( '#PaintPicker' , {
-        width:     Paint_Width,
-        boxHeight: Paint_Height,
+    var paintPicker = new iro.ColorPicker( '#PaintPicker' , {
+        width:     _paintWidth,
+        boxHeight: _paintHeight,
         color: getId( 'PaintPointer01' ).getAttribute( 'data-color-save' ),
         layout: [
             {
@@ -126,12 +128,12 @@
             }
         ]
     });
-    var Picker = PaintPicker.color;
+    var picker = paintPicker.color;
 
     // func 返回設定
-    function PaintSet( get , set ) {
+    function paintSet( get , set ) {
 
-        PaintPointers.forEach( el => {
+        paintPointers.forEach( el => {
 
             var s = el.getAttribute( 'data-color-' + get ),
                 n = el.getAttribute( 'data-color-class' );
@@ -145,7 +147,7 @@
     }
 
     // func 取得資料 GET
-    function PaintBrowse( n ) {
+    function paintBrowse( n ) {
 
         fetch( GAS( 'AKfycbwM-_7NzFHj0roNK-didJ5Qp2gwcewU752sw4GNcY-8F9M_YMPdlAQWpiX4A1xvsNaVTg' ) , {
             method: 'GET'
@@ -154,11 +156,11 @@
             return res.json()
 
         }).then( data => {
-            Paint_Array = data;
-            Paint_Total = data.length;
+            _paintArray = data;
+            _paintTotal = data.length;
 
             // 處理排序
-            Paint_Array.sort( ( a , b ) => {
+            _paintArray.sort( ( a , b ) => {
         
                 if( n === 'more' ) {
                     return a[ 'Watch' ] < b[ 'Watch' ] ? 1 : -1
@@ -168,18 +170,18 @@
                 }
             });
 
-            if ( PaintBlog.classList.contains( '--show' ) ) PaintHtml();
+            if ( paintBlog.classList.contains( '--show' ) ) paintHtml();
         })
     }
 
     // func 輸出html
-    function PaintHtml() {
+    function paintHtml() {
 
-        PaintList.innerHTML = ''; // 防止接收多個 Response
+        paintList.innerHTML = ''; // 防止接收多個 Response
     
-        for ( let i = 0 ; i < Paint_Total ; i++ ) {
+        for ( let i = 0 ; i < _paintTotal ; i++ ) {
     
-            var n          = Paint_Array[ i ],
+            var n          = _paintArray[ i ],
                 name       = n[ 'Name' ],
                 watch      = n[ 'Watch' ],
                 src        = n[ 'Src' ],
@@ -187,7 +189,7 @@
 
             dateupdate = dateTran( dateupdate , '-' , false );
     
-            PaintList.insertAdjacentHTML( 'beforeend' ,
+            paintList.insertAdjacentHTML( 'beforeend' ,
                 `<li class="paint-blog-li">
                     <div class="paint-blog-block __sha4px __rad12px" value="${ i }">
                         <img class="__imgresp" src="${ src }" alt=${ name }>
@@ -208,27 +210,27 @@
             )
         };
         queAll( '.paint-blog-block' ).forEach( el => 
-            el.addEventListener( 'click' , PaintClick )
+            el.addEventListener( 'click' , paintClick )
         );
 
-        PaintShow();
+        paintShow();
     }
 
     // func 顯示html
-    function PaintShow() {
+    function paintShow() {
 
-        PaintLoad.classList.remove( '--show' );
+        paintLoad.classList.remove( '--show' );
 
         queAll( '.paint-blog-li' ).forEach( el => el.classList.add( '--show' ) );
 
-        PaintMore.disabled = false;
-        PaintNew .disabled = false;
+        paintMore.disabled = false;
+        paintNew .disabled = false;
     }
 
     // func 套用圖庫＆回傳觀看次數 PATCH
-    function PaintClick() {
+    function paintClick() {
 
-        var n = Paint_Array[ this.getAttribute( 'value' ) ],
+        var n = _paintArray[ this.getAttribute( 'value' ) ],
             d = n[ 'Id' ];
 
         fetch( GAS( 'AKfycbyNtTQv_FOXq_jf4n6D-a4pnjH_EncrBlS9WXGiuNgWpaDZ4Zjj8zP-chm3DQZAyzdY' ) + '?id=' + d , {
@@ -238,10 +240,10 @@
             alert( err )
         })
 
-        for ( let i = 0 ; i < PaintPointers.length ; i++ ) {
+        for ( let i = 0 ; i < paintPointers.length ; i++ ) {
 
             var s = n[ 'Clr' + i ],
-                o = PaintPointers[ i ],
+                o = paintPointers[ i ],
                 c = o.getAttribute( 'data-color-class' );
 
             o.setAttribute( 'data-color-set' , s );
@@ -251,30 +253,30 @@
             )
         }
 
-        Picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
-        PaintBlog.classList.remove( '--show' );
+        picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
+        paintBlog.classList.remove( '--show' );
         Html     .classList.remove( '--lock' );
-        PaintList.innerHTML = '';
+        paintList.innerHTML = '';
     }
 
     // func 圖庫：點選排序
-    function PaintSort() {
-        PaintList.innerHTML = '';
-        PaintLoad.classList.add( '--show' );
-        PaintMore.disabled = true;
-        PaintNew .disabled = true;
+    function paintSort() {
+        paintList.innerHTML = '';
+        paintLoad.classList.add( '--show' );
+        paintMore.disabled = true;
+        paintNew .disabled = true;
     }
 
     // event 畫面縮放
     window.onresize = () => {
 
-        // Paint（ API: iro.js ）（ 有修改prototype.resize ）
-        PaintResize();
-        PaintPicker.resize( Paint_Width , Paint_Height );
+        // paint（ API: iro.js ）（ 有修改prototype.resize ）
+        paintResize();
+        paintPicker.resize( _paintWidth , _paintHeight );
     };
 
     // event 上傳鍵
-    PaintUpload.onclick = () => {
+    paintUpload.onclick = () => {
         InputName.value = '';
         InputWarn.innerHTML = '';
         Html    .classList.add( '--lock' );
@@ -295,8 +297,8 @@
 
         if ( l >= 4 && l <= 20 ) {
 
-            var p = ( i ) => PaintPointers[ i ].getAttribute( 'data-color-save' ),
-                s = new XMLSerializer().serializeToString( PaintImg ),
+            var p = ( i ) => paintPointers[ i ].getAttribute( 'data-color-save' ),
+                s = new XMLSerializer().serializeToString( paintImg ),
                 b = 'data:image/svg+xml;base64,' + btoa( s );
 
             Html    .classList.remove( '--lock' );
@@ -357,20 +359,20 @@
     }
 
     // event 下載鍵
-    PaintDownload.onclick = () => {
+    paintDownload.onclick = () => {
 
         // 不支援：FB、IG
-        if ( DeviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) ) {
+        if ( deviceJudge( [ 'FBAN' , 'FBIOS' , 'Instagram' ] ) ) {
 
             alert( 'Facebook、Instagram 內建瀏覽器，不支援下載檔案！' );
         
         } else {
 
-            var s = new XMLSerializer().serializeToString( PaintImg ),
+            var s = new XMLSerializer().serializeToString( paintImg ),
                 i = new Image();
 
             // 鎖按鈕
-            PaintBtn.forEach( el => el.disabled = true );
+            paintBtn.forEach( el => el.disabled = true );
 
             // 圖片轉 base64
             i.setAttribute( 'src' , 'data:image/svg+xml;base64,' + btoa( s ) );
@@ -379,27 +381,27 @@
             i.onload = () => {
 
                 var a = document.createElement( 'a' ),
-                    c = PaintCanvas.getContext( '2d' ),
+                    c = paintCanvas.getContext( '2d' ),
                     w = i.width  * 3,
                     h = i.height * 3; 
 
                 // canvas 繪圖
-                PaintCanvas.width  = w;
-                PaintCanvas.height = h;
+                paintCanvas.width  = w;
+                paintCanvas.height = h;
                 c.drawImage( i , 0 , 0 , w , h );
 
                 // 下載圖片準備
                 a.download = `BruceYuDesign ${ dateTran( null , '-' , true ) }.png`;
-                a.href     = PaintCanvas.toDataURL( 'image/png' );
+                a.href     = paintCanvas.toDataURL( 'image/png' );
 
                 // 開始動畫
-                PaintCanvas.classList.add( '--show' );
+                paintCanvas.classList.add( '--show' );
 
                 setTimeout( () => {
 
                     a.click();
-                    PaintBtn.forEach( el => el.disabled = false );
-                    PaintCanvas.classList.remove( '--show' );
+                    paintBtn.forEach( el => el.disabled = false );
+                    paintCanvas.classList.remove( '--show' );
 
                 } , 1250 );
             }
@@ -407,62 +409,62 @@
     }
 
     // event 編輯鍵
-    PaintEdit.onclick = () => {
-        Paint.classList.add( '--edit' )
+    paintEdit.onclick = () => {
+        paint.classList.add( '--edit' )
     }
 
     // event 編輯：重設
-    PaintReset.onclick = () => {
-        PaintSet( 'reset' , 'set' );
-        Picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
+    paintReset.onclick = () => {
+        paintSet( 'reset' , 'set' );
+        picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
     }
 
     // event 編輯：取消
-    PaintCancel.onclick = () => {
-        Paint.classList.remove( '--edit' );
-        PaintSet( 'save' , 'set' );
-        Picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
+    paintCancel.onclick = () => {
+        paint.classList.remove( '--edit' );
+        paintSet( 'save' , 'set' );
+        picker.hexString = queOne( '.paint-pointer-li.--click' ).getAttribute( 'data-color-set' );
     }
 
     // event 編輯：確定
-    PaintApply.onclick = () => {
-        Paint.classList.remove( '--edit' );
-        PaintSet( 'set' , 'save' );
+    paintApply.onclick = () => {
+        paint.classList.remove( '--edit' );
+        paintSet( 'set' , 'save' );
     }
 
     // event 圖庫：開啟
-    PaintLibrary.onclick = () => {
-        PaintSort();
-        PaintBlog.classList.add( '--show' );
-        Html     .classList.add( '--lock' );
-        PaintBrowse( queOne( '.paint-blog-btn.--click' ).value );
+    paintLibrary.onclick = () => {
+        paintSort();
+        paintBlog.classList.add( '--show' );
+        html     .classList.add( '--lock' );
+        paintBrowse( queOne( '.paint-blog-btn.--click' ).value );
     }
 
     // event 圖庫：排序 最多人
-    PaintMore.onclick = () => {
-        PaintSort();
-        PaintMore.classList.add( '--click' );
-        PaintNew .classList.remove( '--click' );
-        PaintBrowse( 'more' );
+    paintMore.onclick = () => {
+        paintSort();
+        paintMore.classList.add( '--click' );
+        paintNew .classList.remove( '--click' );
+        paintBrowse( 'more' );
     }
 
     // event 圖庫：排序 最新
-    PaintNew.onclick = () => {
-        PaintSort();
-        PaintMore.classList.remove( '--click' );
-        PaintNew .classList.add( '--click' );
-        PaintBrowse( 'new' );
+    paintNew.onclick = () => {
+        paintSort();
+        paintMore.classList.remove( '--click' );
+        paintNew .classList.add( '--click' );
+        paintBrowse( 'new' );
     }
 
     // event 圖庫：關閉
-    PaintClose.onclick = () => {
-        PaintBlog.classList.remove( '--show' );
-        Html     .classList.remove( '--lock' );
-        PaintList.innerHTML = '';
+    paintClose.onclick = () => {
+        paintBlog.classList.remove( '--show' );
+        html     .classList.remove( '--lock' );
+        paintList.innerHTML = '';
     }
 
     // event 畫板：點選
-    PaintPointers.forEach( el => {
+    paintPointers.forEach( el => {
         el.onclick = () => {
 
             queOne( '.paint-pointer-li.--click' ).classList.remove( '--click' );
@@ -471,43 +473,43 @@
             var c = el.getAttribute( 'data-color-set' ),
                 n = el.getAttribute( 'data-color-name' );
 
-            PaintName.innerHTML = n;
-            Picker   .hexString = c;
+            paintName.innerHTML = n;
+            picker   .hexString = c;
         }
     })
 
     // event 調色：調色盤模式（ mobile ）
-    PaintPalette.onclick = () => {
-        PaintBody.classList.add( '--palette' )
-        PaintBody.classList.remove( '--colorcode' )
+    paintPalette.onclick = () => {
+        paintBody.classList.add( '--palette' )
+        paintBody.classList.remove( '--colorcode' )
     }
 
     // event 調色：色碼表模式（ mobile ）
-    PaintColorcode.onclick = () => {
-        PaintBody.classList.remove( '--palette' )
-        PaintBody.classList.add( '--colorcode' )
+    paintColorcode.onclick = () => {
+        paintBody.classList.remove( '--palette' )
+        paintBody.classList.add( '--colorcode' )
     }
 
     // event 調色：調色盤（ API: iro.js ）
-    PaintPicker.on( [ 'color:change' , 'color:init' ] , () => {
+    paintPicker.on( [ 'color:change' , 'color:init' ] , () => {
 
-        var x = Picker.hexString,
-            r = Picker.red,
-            g = Picker.green,
-            b = Picker.blue,
-            h = parseInt( Picker.hue        , 10 ),
-            s = parseInt( Picker.saturation , 10 ),
-            l = parseInt( Picker.value      , 10 ),
+        var x = picker.hexString,
+            r = picker.red,
+            g = picker.green,
+            b = picker.blue,
+            h = parseInt( picker.hue        , 10 ),
+            s = parseInt( picker.saturation , 10 ),
+            l = parseInt( picker.value      , 10 ),
             o = queOne( '.paint-pointer-li.--click' ),
             n = o.getAttribute( 'data-color-class' );
 
-        PaintHex.value = x.replace( '#' , '' );
-        PaintR  .value = r;
-        PaintG  .value = g;
-        PaintB  .value = b;
-        PaintH  .value = h;
-        PaintS  .value = s;
-        PaintL  .value = l;
+        paintHex.value = x.replace( '#' , '' );
+        paintR  .value = r;
+        paintG  .value = g;
+        paintB  .value = b;
+        paintH  .value = h;
+        paintS  .value = s;
+        paintL  .value = l;
 
         o.setAttribute( 'data-color-set' , x );
         
@@ -515,27 +517,27 @@
     })
 
     // event 調色：Hex blur 設定顏色
-    PaintHex.onblur = function () {
+    paintHex.onblur = function () {
 
         var v = this.value;
 
         try {
-            Picker.hexString = v
+            picker.hexString = v
 
         } catch {
-            v = ( Picker.hexString ).replace( '#' , '' );
+            v = ( picker.hexString ).replace( '#' , '' );
             this.value = v;
         }
     }
 
     // event 調色：Hex keyup 防呆機制
-    PaintHex.onkeyup = function () {
+    paintHex.onkeyup = function () {
         this.value = this.value.replace( /[^a-fA-F0-9]|_/ig , '' )
     }
 
 
     // event 調色：RGB、HSL
-    PaintNum.forEach( el => {
+    paintNum.forEach( el => {
 
         // blur 設定顏色
         el.onblur = () => {
@@ -549,7 +551,7 @@
                 el.value = 0;
             }
 
-            Picker.setChannel( k , n , v );
+            picker.setChannel( k , n , v );
         }
 
         // keyup 防呆機制
@@ -571,36 +573,39 @@
     })
 
     // event 鍵盤 Enter
-    PaintInput.forEach( el => {
+    paintInput.forEach( el => {
         el.onkeydown = ( e ) => {
             if ( e.keyCode === 13 ) el.blur()
         }
     })
 
     // 調色盤名稱
-    PaintName.innerHTML = getId( 'PaintPointer01' ).getAttribute( 'data-color-name' );
+    paintName.innerHTML = getId( 'PaintPointer01' ).getAttribute( 'data-color-name' );
 
     // 設定圖片顏色
-    PaintPointers.forEach( el => {
+    paintPointers.forEach( el => {
         var c = el.getAttribute( 'data-color-class' ),
             s = el.getAttribute( 'data-color-save' );
         queAll( '.' + c ).forEach( o => o.style.fill = s );
     })
 
-    // Skill --------------------------------------------------
+}()
+
+// skill --------------------------------------------------
+!function() {
 
     // const 
-    const SkillBtnLs = getId( 'SkillBtnLs' ),
-          SkillLs    = getId( 'SkillLs' ),
-          SkillLoad  = getId( 'SkillLoad' ),
-          SkillFull  = getId( 'SkillFull' ),
-          SkillTitle = getId( 'SkillTitle' ),
-          SkillDesc  = getId( 'SkillDesc' ),
-          SkillClose = getId( 'SkillClose' );
+    const skillBtnLs = getId( 'SkillBtnLs' ),
+          skillLs    = getId( 'SkillLs' ),
+          skillLoad  = getId( 'SkillLoad' ),
+          skillFull  = getId( 'SkillFull' ),
+          skillTitle = getId( 'SkillTitle' ),
+          skillDesc  = getId( 'SkillDesc' ),
+          skillClose = getId( 'SkillClose' );
 
     // var
-    var Skill_Array = [],
-        Skill_Total;
+    var _skillArray = [],
+        _skillTotal;
 
     // GET
     Promise.all([
@@ -621,7 +626,7 @@
         // 產生btn
         for( let i = 0 ; i < ary[ 1 ].length ; i++ ) {
 
-            SkillBtnLs.insertAdjacentHTML( 'beforeend' ,
+            skillBtnLs.insertAdjacentHTML( 'beforeend' ,
                 `<button value="${ ary[ 1 ][ i ][ 'Id' ] }" class="skill-btn-li __rad4px __tran200ms">
                     ${ ary[ 1 ][ i ][ 'Kind' ] }
                 </button>`
@@ -629,50 +634,50 @@
         };
 
         queAll( '.skill-btn-li' ).forEach( el =>
-            el.addEventListener( 'click' , SkillKind )
+            el.addEventListener( 'click' , skillKind )
         );
 
         // 產生list
-        Skill_Array = ary[ 0 ];
-        Skill_Total = ary[ 0 ].length;
+        _skillArray = ary[ 0 ];
+        _skillTotal = ary[ 0 ].length;
 
-        Skill_Array.sort( ( a , b ) => {
+        _skillArray.sort( ( a , b ) => {
             return b[ 'Score' ] - a[ 'Score' ]
         });
 
         queOne( '.skill-btn-li' ).classList.add( '--click' );
-        SkillHtml( ary[ 1 ][ 0 ][ 'Id' ] );
+        skillHtml( ary[ 1 ][ 0 ][ 'Id' ] );
 
         // 結束loading
-        SkillLoad .classList.remove( '--show' );
-        SkillBtnLs.classList.add( '--show' );
+        skillLoad .classList.remove( '--show' );
+        skillBtnLs.classList.add( '--show' );
     });
 
     // func 切換類別
-    function SkillKind() {
+    function skillKind() {
 
-        SkillLs.innerHTML = '';
-        SkillHtml( this.getAttribute( 'value' ) );
+        skillLs.innerHTML = '';
+        skillHtml( this.getAttribute( 'value' ) );
 
         queOne( '.skill-btn-li.--click' ).classList.remove( '--click' );
         this.classList.add( '--click' );
     }
 
     // func 產生html
-    function SkillHtml( e ) {
+    function skillHtml( e ) {
 
-        for( let i = 0 ; i < Skill_Total ; i++ ) {
+        for( let i = 0 ; i < _skillTotal ; i++ ) {
 
-            var n = Skill_Array[ i ],
+            var n = _skillArray[ i ],
                 t  = n[ 'Title' ],
                 d  = n[ 'Desc' ],
                 k  = n[ 'Kind' ].toString(),
                 s  = n[ 'Score' ],
-                c  = SkillColor( s );
+                c  = skillColor( s );
 
             if ( k.match( e ) ) {
                 
-                SkillLs.insertAdjacentHTML( 'beforeend' ,
+                skillLs.insertAdjacentHTML( 'beforeend' ,
                     `<li class="skill-li">
                         <div class="skill-li-box __tran200ms __rad12px __sha16px" value="${ i }">
                             <div class="skill-li-head">
@@ -684,32 +689,32 @@
                         </div>
                     </li>`
                 );
-                SkillPiechart( 'Piechart' + i , s , c );
+                skillPiechart( 'Piechart' + i , s , c );
             }
         };
         queAll( '.skill-li-box' ).forEach( el =>
-            el.addEventListener( 'click' , SkillOpen )
+            el.addEventListener( 'click' , skillOpen )
         );
     }
 
     // func 開啟全屏
-    function SkillOpen() {
-        var n = Skill_Array[ this.getAttribute( 'value' ) ],
+    function skillOpen() {
+        var n = _skillArray[ this.getAttribute( 'value' ) ],
             t = n[ 'Title' ],
             d = n[ 'Desc' ],
             s = n[ 'Score' ],
-            c = SkillColor( s );
+            c = skillColor( s );
         
-        SkillPiechart( 'PiechartFull' , s , c );
+        skillPiechart( 'PiechartFull' , s , c );
 
-        SkillTitle.innerHTML = t;
-        SkillDesc .innerHTML = d;
-        SkillFull.classList.add( '--show' );
-        Html     .classList.add( '--lock' );
+        skillTitle.innerHTML = t;
+        skillDesc .innerHTML = d;
+        skillFull.classList.add( '--show' );
+        html     .classList.add( '--lock' );
     }
 
     // func 顏色套用
-    function SkillColor( v ) {
+    function skillColor( v ) {
 
         switch( true ) {
 
@@ -725,7 +730,7 @@
     }
 
     // func 產生圓餅圖
-    function SkillPiechart( id , score , color ) {
+    function skillPiechart( id , score , color ) {
 
         getId( id ).innerHTML =
             `<svg class="circle __imgresp" viewBox="0 0 120 120">
@@ -755,9 +760,9 @@
     }
 
     // event 關閉全屏
-    SkillClose.onclick = () => {
-        SkillFull.classList.remove( '--show' );
-        Html     .classList.remove( '--lock' );
+    skillClose.onclick = () => {
+        skillFull.classList.remove( '--show' );
+        html     .classList.remove( '--lock' );
     }
 
 }()
