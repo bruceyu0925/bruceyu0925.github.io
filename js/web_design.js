@@ -43,15 +43,15 @@
           paintBtn       = queAll( '.paint-btn-li' );
 
     // const 浮動視窗：上傳
-    const MsgNamed       = getId( 'MsgNamed' ),
-          MsgSuccess     = getId( 'MsgSuccess' ),
-          MsgError       = getId( 'MsgError' ),
-          BtnCancel      = getId( 'BtnCancel' ),
-          BtnSend        = getId( 'BtnSend' ),
-          BtnSuccess     = getId( 'BtnSuccess' ),
-          BtnError       = getId( 'BtnError' ),
-          InputName      = getId( 'InputName' ),
-          InputWarn      = getId( 'InputWarn' );
+    const msgNamed       = getId( 'MsgNamed' ),
+          msgSuccess     = getId( 'MsgSuccess' ),
+          msgError       = getId( 'MsgError' ),
+          btnCancel      = getId( 'BtnCancel' ),
+          btnSend        = getId( 'BtnSend' ),
+          btnSuccess     = getId( 'BtnSuccess' ),
+          btnError       = getId( 'BtnError' ),
+          inputName      = getId( 'InputName' ),
+          inputWarn      = getId( 'InputWarn' );
 
     // const 浮動視窗：圖庫
     const paintLibrary   = getId( 'PaintLibrary' ),
@@ -277,32 +277,32 @@
 
     // event 上傳鍵
     paintUpload.onclick = () => {
-        InputName.value = '';
-        InputWarn.innerHTML = '';
+        inputName.value = '';
+        inputWarn.innerHTML = '';
         Html    .classList.add( '--lock' );
-        MsgNamed.classList.add( '--show' );
+        msgNamed.classList.add( '--show' );
     }
 
     // event 上傳：取消
-    BtnCancel.onclick = () => {
+    btnCancel.onclick = () => {
         Html    .classList.remove( '--lock' );
-        MsgNamed.classList.remove( '--show' );
+        msgNamed.classList.remove( '--show' );
     }
 
     // event 上傳：送出 POST
-    BtnSend.onclick = () => {
+    btnSend.onclick = () => {
 
-        var n = InputName.value,
+        var n = inputName.value,
             l = n.replace( /\s*/g , '' ).replace( /[^\x00-\xff]/g , 'xx' ).length;
 
         if ( l >= 4 && l <= 20 ) {
 
-            var p = ( i ) => paintPointers[ i ].getAttribute( 'data-color-save' ),
+            var p = i => paintPointers[ i ].getAttribute( 'data-color-save' ),
                 s = new XMLSerializer().serializeToString( paintImg ),
                 b = 'data:image/svg+xml;base64,' + btoa( s );
 
-            Html    .classList.remove( '--lock' );
-            MsgNamed.classList.remove( '--show' );
+            html    .classList.remove( '--lock' );
+            msgNamed.classList.remove( '--show' );
 
             fetch( GAS( 'AKfycbzMcXYekQV2kc7LUPUhZ-sl3P8p-8NzIc3k3v83HkrtQJ1VFkuERCkdYUcTE5733n6O' ) , {
                 method: 'POST',
@@ -327,35 +327,35 @@
         
             }).then( data => {
 
-                Html.classList.add( '--lock' );
+                html.classList.add( '--lock' );
 
                 if ( data === 'Success' ) {
-                    MsgSuccess.classList.add( '--show' )
+                    msgSuccess.classList.add( '--show' )
 
                 } else if ( data === 'Warn' ) {
-                    MsgNamed.classList.add( '--show' );
-                    InputWarn.innerHTML = '已有相同名稱！';
+                    msgNamed.classList.add( '--show' );
+                    inputWarn.innerHTML = '已有相同名稱！';
                 }
 
             }).catch( err => {
-                MsgError.classList.add( '--show' );
+                msgError.classList.add( '--show' );
             })
 
         } else {
-            InputWarn.innerHTML = '不符合命名規範！';
+            inputWarn.innerHTML = '不符合命名規範！';
         }
     }
 
     // event 上傳：成功
-    BtnSuccess.onclick = () => {
-        MsgSuccess.classList.remove( '--show' );
-        Html      .classList.remove( '--lock' );
+    btnSuccess.onclick = () => {
+        msgSuccess.classList.remove( '--show' );
+        html      .classList.remove( '--lock' );
     }
 
     // event 上傳：失敗
-    BtnError.onclick = () => {
-        MsgError.classList.remove( '--show' );
-        Html    .classList.remove( '--lock' );
+    btnError.onclick = () => {
+        msgError.classList.remove( '--show' );
+        html    .classList.remove( '--lock' );
     }
 
     // event 下載鍵
@@ -575,7 +575,7 @@
     // event 鍵盤 Enter
     paintInput.forEach( el => {
         el.onkeydown = ( e ) => {
-            if ( e.keyCode === 13 ) el.blur()
+            e.keyCode === 13 ? el.blur() : null ;
         }
     })
 
