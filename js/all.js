@@ -66,6 +66,8 @@ function deviceJudge( device = '' ) {
 
 // func 點選螢幕滑動
 function clickScroll( obj , time = 600 ) {
+    
+    header.classList.remove( '--open' );
 
     var b = [ '#BtnTop' , '#BtnMore' , '.header-btn' ],
         w = window.pageYOffset,
@@ -74,8 +76,6 @@ function clickScroll( obj , time = 600 ) {
         f = 50,
         h = ( o - w ) / f,
         t = time / f;
-
-    header.classList.remove( '--open' );
 
     b.forEach( el =>
         queAll( el ).forEach( n => {
